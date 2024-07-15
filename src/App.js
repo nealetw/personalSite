@@ -6,6 +6,20 @@ function App() {
   const [selectedTab, setTab] = useState(0);
   const [content, setContent] = useState(<></>)
   const [age, setAge] = useState((Date.now() - new Date('1998-11-06')))
+
+  const resumeDownload = () => {
+    fetch("TimNeale_Resume.pdf").then((response) => {
+        response.blob().then((blob) => {
+            const fileURL =
+                window.URL.createObjectURL(blob);
+            let alink = document.createElement("a");
+            alink.href = fileURL;
+            alink.download = "TimNeale_Resume.pdf";
+            alink.click();
+        });
+    });
+  };
+
   const infoText =(
 
     <div className='infoSection'>
@@ -15,7 +29,7 @@ function App() {
       <br/><br/>
       <h3>Click the tabs above to go see my <span className='hiddenLink' onClick={() => setTab(1)}>work experience</span> and <span className='hiddenLink' onClick={() => setTab(2)}>personal projects</span>.</h3>
       <h3>Or you can just get my resume or contact information directly below!</h3>
-      <a href='/TimNeale_Resume.pdf' download className='imageLink'>
+      <a onClick={resumeDownload} className='imageLink'>
         <img  className='invertImage' alt='Download Resume' src={require('.//images/resume.png')}/>
       </a>
       <a href='mailto:neale.timw@gmail.com' className='imageLink'>
