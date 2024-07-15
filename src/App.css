@@ -1,0 +1,187 @@
+.App {
+  text-align: center;
+  font-family: monospace;
+}
+
+.title{
+  animation: fadeIn 0.5s;
+}
+footer{
+  height: 100px;
+  margin: 0;
+  margin-top: -15px;
+  padding-top: 10px;
+  background-color: #1e2127;
+  color: white;
+}
+.content{
+  padding: 10px;
+  padding-top: 3em;
+  margin-bottom: 0;
+}
+h1{
+  animation: fadeIn 1.5s;
+}
+h2{
+  animation: fadeIn 1.5s;
+}
+h3{
+  animation: fadeIn 1.5s;
+}
+.infoSection{
+  animation: fadeIn 5.5s;
+}
+.important{
+  font-weight: 900;
+  font-style: italic;
+  color: bisque;
+}
+a{
+  color: rgb(160, 185, 253);
+  text-decoration: none;
+  &:hover{
+    transition: 0.25s;
+    color: rgb(95, 111, 156);
+    text-decoration: underline;
+    text-decoration-color: rgb(95, 111, 156);
+  }
+}
+.contentSection{
+  display: flex;
+  flex: 1;
+  margin: 1em;
+  justify-content: space-evenly;
+  flex-direction: row;
+  border:solid grey;
+  border-radius: 8px;
+  border-width: 1px ;
+  animation: fadeIn 1.5s;
+}
+.skillsList{
+  animation: fadeIn 1.5s;
+  list-style-type: none;
+  & .skillsTitle{
+    font-weight: 900;
+    font-style: italic;
+    color: bisque;
+    text-decoration: underline;
+  }
+  & li{
+    color: bisque;
+
+  }
+}
+.sectionTitle{
+  padding: 1em;
+  max-width: 30%;
+  animation: fadeIn 1.5s;
+}
+.contentText{
+  transition: 1s;
+  animation: fadeIn 0.5s;
+  max-width: 65%;
+  padding: 15px;
+}
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+.siteName{
+  position: absolute;
+  left: 2em;
+  top: 0.3em;
+  z-index: 1000;
+  font-weight: bold;
+  font-size: larger;
+  font-style:italic;
+  text-decoration: underline;
+  animation: fadeIn 1.5s;
+  cursor: default;
+}
+
+.ListHeader{
+  text-overflow: ellipsis;
+  position: absolute;
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-content:center;
+  text-align: center;
+  text-decoration: none;
+  background-color: #1e2127;
+  border: 100px white;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-style: oblique;
+  animation: fadeIn 0.5s;
+  & li{
+    height: 1em;
+    cursor: pointer;
+    padding: .5em 1em;
+    color:rgb(160, 185, 253);
+    text-decoration-color: rgb(160, 185, 253);
+    transition: 0.25s;
+    &:hover{
+      background-color: #2d2d2e;
+      transition: 0.25s;
+      color: rgb(95, 111, 156);
+      text-decoration: underline;
+      text-decoration-color: rgb(95, 111, 156);
+
+    }
+   }
+}
+
+.App-header {
+  background-color: #2b2f38;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+.my-node-enter {
+  opacity: 0;
+}
+.my-node-enter-active {
+  opacity: 1;
+  transition: opacity 200ms;
+}
+.my-node-exit {
+  opacity: 1;
+}
+.my-node-exit-active {
+  opacity: 0;
+  transition: opacity 200ms;
+}
+
+.imageLink{
+  padding: .5em;
+}
+.invertImage {-webkit-filter: invert(100%); /* Safari/Chrome */
+  filter: invert(100%);
+  width: 100px;
+  transition: 0.25s;
+  &:hover{ -webkit-filter: invert(50%);
+    filter: invert(50%);}
+}
+.image{
+  margin-left: 10px;
+  width: 100px;
+  transition: 0.25s;
+  &:hover{ filter: brightness(50%);}
+}
+.App-link {
+  color: #61dafb;
+}
+.hiddenLink:hover{
+  cursor: pointer;
+  transition: 0.25s;
+  color: rgb(95, 111, 156);
+  text-decoration: underline;
+  text-decoration-color: rgb(95, 111, 156);
+}
+
