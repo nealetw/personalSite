@@ -3,10 +3,6 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 
 function App() {
-  const [selectedTab, setTab] = useState(0);
-  const [content, setContent] = useState(<></>)
-  const [isMobile, setIsMobile] = useState(false)
-  const [age, setAge] = useState((Date.now() - new Date('1998-11-06')))
 
   function getWindowDimensions() {
     const { innerWidth: width, innerHeight: height } = window;
@@ -15,6 +11,12 @@ function App() {
       height
     };
   }
+
+  const [selectedTab, setTab] = useState(0);
+  const [content, setContent] = useState(<></>)
+  const [isMobile, setIsMobile] = useState(getWindowDimensions().width < 800)
+  const [age, setAge] = useState((Date.now() - new Date('1998-11-06')))
+
 
   useEffect(() => {
     function handleResize() {
