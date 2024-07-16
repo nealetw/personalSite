@@ -57,8 +57,19 @@ a{
   border-width: 1px ;
   animation: fadeIn 1.5s;
 }
+.smallSection{
+  display: flex;
+  flex: 1;
+  margin: 1em;
+  flex-direction: column;
+  border:solid grey;
+  border-radius: 8px;
+  border-width: 1px ;
+  animation: fadeIn 1.5s;
+}
 .skillsList{
   animation: fadeIn 1.5s;
+  padding-left: 0;
   list-style-type: none;
   & .skillsTitle{
     font-weight: 900;
@@ -75,11 +86,22 @@ a{
   padding: 1em;
   max-width: 30%;
   animation: fadeIn 1.5s;
+  overflow-x: hidden;
+}
+.smallSectionTitle{
+  padding: 1em;
+  animation: fadeIn 1.5s;
+  overflow-x: hidden;
 }
 .contentText{
   transition: 1s;
   animation: fadeIn 0.5s;
   max-width: 65%;
+  padding: 15px;
+}
+.smallContentText{
+  transition: 1s;
+  animation: fadeIn 0.5s;
   padding: 15px;
 }
 @keyframes fadeIn {
@@ -98,6 +120,18 @@ a{
   animation: fadeIn 1.5s;
   cursor: default;
 }
+.smolSiteName{
+  position: absolute;
+  left: .5em;
+  top: 0.3em;
+  z-index: 1000;
+  font-weight: bold;
+  font-size: larger;
+  font-style:italic;
+  opacity: 50%;
+  animation: fadeIn 1.5s;
+  cursor: default;
+}
 
 .ListHeader{
   text-overflow: ellipsis;
@@ -109,6 +143,7 @@ a{
   align-content:center;
   text-align: center;
   text-decoration: none;
+  overflow-x: hidden;
   background-color: #1e2127;
   border: 100px white;
   width: 100%;
@@ -163,14 +198,14 @@ a{
 }
 .invertImage {-webkit-filter: invert(100%); /* Safari/Chrome */
   filter: invert(100%);
-  width: 100px;
+  width: 4em;
   transition: 0.25s;
   &:hover{ -webkit-filter: invert(50%);
     filter: invert(50%);}
 }
 .image{
   margin-left: 10px;
-  width: 100px;
+  width: 4em;
   transition: 0.25s;
   &:hover{ filter: brightness(50%);}
 }

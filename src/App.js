@@ -5,7 +5,25 @@ import './App.css';
 function App() {
   const [selectedTab, setTab] = useState(0);
   const [content, setContent] = useState(<></>)
+  const [isMobile, setIsMobile] = useState(<></>)
   const [age, setAge] = useState((Date.now() - new Date('1998-11-06')))
+
+  function getWindowDimensions() {
+    const { innerWidth: width, innerHeight: height } = window;
+    return {
+      width,
+      height
+    };
+  }
+
+  useEffect(() => {
+    function handleResize() {
+      setIsMobile(getWindowDimensions().width < 800);
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const resumeDownload = () => {
     fetch("TimNeale_Resume.pdf").then((response) => {
@@ -60,8 +78,8 @@ function App() {
         case 1:
           setContent(<>
             <h1 className='title'>Previous Work</h1>
-            <div className='contentSection'>
-              <div className='sectionTitle'>
+            <div className={isMobile ? 'smallSection' : 'contentSection'}>
+              <div className={isMobile ? 'smallSectionTitle' :  'sectionTitle'}>
                 <h2>iReportSource:</h2>
                 <h3>May 2021 - June 2024</h3>
               <ul className='skillsList'>
@@ -78,7 +96,7 @@ function App() {
                 <li>GitLab</li>
               </ul>
               </div>
-              <p className='contentText'>
+              <p className={isMobile ? 'smallContentText' : 'contentText'}>
                 Starting here as a co-op student in my junior year of college, I had little experience with <span className='important'>Javascript</span>. I learned it well while learning the already established code-base, and went to be offered a full time position after graduation.
                 <br/>Worked directly with the company's CTO and CEO on features and their specifications for development, and used <span className='important'>GitLab</span> to track progress and version control.
                 <br/>Helped launch and maintain many features on <a href="ireportapp.com">the iReport App</a> on both web and mobile applications, including total overhaul on the Training Management System, as requested by customers.
@@ -89,8 +107,8 @@ function App() {
 
               </p>
             </div>
-            <div className='contentSection'>
-              <div className='sectionTitle'>
+            <div className={isMobile ? 'smallSection' :  'contentSection'}>
+              <div className={isMobile ? 'smallSectionTitle' :  'sectionTitle'}>
                 <h2>Matco Tools:</h2>
                 <h3>Oct 2018 - April 2020</h3>
                 <ul className='skillsList'>
@@ -106,7 +124,7 @@ function App() {
                 <li>CSS</li>
               </ul>
               </div>
-              <p className='contentText'>
+              <p className={isMobile ? 'smallContentText' : 'contentText'}>
                 My first co-op, starting in my sophomore year of college, I stayed here for 3 separate co-op terms, and relocated to Stow, OH each term.
                 <br/>I went into this position with only <span className='important'>Java</span> knowledge, but learned the culture well, and learned web development with <span className='important'>Red Hat Studio</span>, a modified version of <span className='important'>Eclipse</span>.
                 <br/>Working in a small development team for a larger company, adding and modifying pages on <a href='matcotools.com'>Matcotools.com</a> to be more accurate and <span className='important'>meet marketing standards</span>.
@@ -124,22 +142,22 @@ function App() {
             setContent(<>
               <h1 className='title'>Personal Projects</h1>
               <h3>My personal projects range from school projects that were graded, to things that I wanted to develop for actual use, to things that I just wanted to develop for fun. Most of them can be found over on <a href='https://github.com/nealetw' rel="noreferrer" target="_blank">my Github page</a>, though some may be out of date and being maintained on private repositorties instead.</h3>
-              <div className='contentSection'>
-                <div className='sectionTitle'>
+              <div className={isMobile ? 'smallSection': 'contentSection' }>
+                <div className={isMobile ? 'smallSectionTitle' :  'sectionTitle'}>
                   <h2><a href='https://github.com/nealetw/discordBot' rel="noreferrer" target="_blank">Discord Bots</a></h2>
                 </div>
-                <p className='contentText'>
+                <p className={isMobile ? 'smallContentText' : 'contentText'}>
                   I use <a href='https://discord.com/' rel="noreferrer" target="_blank">Discord</a> a lot, and they have <a href='https://discord.js.org/docs/packages/discord.js/14.15.3' rel="noreferrer" target="_blank">an extensive development API</a> that I basically used to learn <span className='important'>Javascript</span>.
                   <br/>The link to the left goes to one of my first iterations, though its a bit depricated. I've worked on a newer one that is privately maintained, with a newer version of DiscordJs, as an update broke the entire bot (Woo!).
                   <br/><a href='https://github.com/nealetw/group-python-discordbot'>Here's a slightly newer one</a> I did for a group project in <span className='important'>Python</span> instead (using their <a href='https://discordpy.readthedocs.io/en/stable/'>discord.py</a> libraries)!
                 </p>
               </div>
 
-              <div className='contentSection'>
-                <div className='sectionTitle'>
+              <div className={isMobile ? 'smallSection': 'contentSection' }>
+                <div className={isMobile ? 'smallSectionTitle' :  'sectionTitle'}>
                   <h2><a href='https://github.com/nealetw/Senior_Design_Project_Hackney_Neale' rel="noreferrer" target="_blank">Cat GAN</a></h2>
                 </div>
-                <p className='contentText'>
+                <p className={isMobile ? 'smallContentText' : 'contentText'}>
                   My senior capstone at University of Cincinnati, my partner and I researched and trained a <span className='important'>Generative Adverserial Network</span> to create pictures of cat faces in <span className='important'>Python</span>.
                   <br/>We used primarily <span className='important'>TensorFlow</span> and our local computers at home to train it, but near the end of the project, we did get some time to train it remotely using a <span className='important'>research computer at OSU</span>. The results were still rough, but our dataset was fairly small compared to what other GANs have used before,
                   <br/>Much of the challenge with this project was settling on a technology, as we went through many neural network libraries to try to find what would fit our use case. This included almost a month of trying to fit <span className='important'>PyTorch</span> to our use case.
@@ -147,11 +165,11 @@ function App() {
               </div>
 
 
-              <div className='contentSection'>
-                <div className='sectionTitle'>
+              <div className={isMobile ? 'smallSection': 'contentSection' }>
+                <div className={isMobile ? 'smallSectionTitle' :  'sectionTitle'}>
                   <h2><a href='https://github.com/nealetw/roboticsCodeCopy' rel="noreferrer" target="_blank">High School FRC</a></h2>
                 </div>
-                <p className='contentText'>
+                <p className={isMobile ? 'smallContentText' : 'contentText'}>
                   Some of my first group code, this is a copy of the <span className='important'>Java</span> code I contributed to for team ScotBot 4284 (Oak Hills High School) competing in <span className='important'>First Robotics Competition</span> in 2017.
                   <br/>This was written while I was learning <span className='important'>Java</span> in an Advanced Placement class, and I consider it some of my first actual development.
                   <br/>This also included <span className='important'>hardware integration</span> and <span className='important'>communicating across multiple teams</span>communicating across multiple teams to make sure things worked as intended.
@@ -171,7 +189,7 @@ function App() {
   return (
     <div className="App">
       <div className="App-header">
-        <span className='siteName'>Tim Neale</span>
+        {isMobile ? <span className='smolSiteName'>TN</span> : <span className='siteName'>Tim Neale</span>}
         <ul className='ListHeader'>
           <li onClick={() => setTab(0)}>Home</li>
           <li onClick={() => setTab(1)}>Work</li>
