@@ -5,7 +5,7 @@ import './App.css';
 function App() {
   const [selectedTab, setTab] = useState(0);
   const [content, setContent] = useState(<></>)
-  const [isMobile, setIsMobile] = useState(<></>)
+  const [isMobile, setIsMobile] = useState(false)
   const [age, setAge] = useState((Date.now() - new Date('1998-11-06')))
 
   function getWindowDimensions() {
