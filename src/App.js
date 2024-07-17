@@ -85,7 +85,7 @@ function App() {
                 <h2>iReportSource:</h2>
                 <h3>May 2021 - June 2024</h3>
               <ul className='skillsList'>
-                <span className='important'>Skills Learned:</span>
+                <span className='skillsTitle'>Skills Learned:</span>
                 <li>React</li>
                 <li>React-Native</li>
                 <li>Javascript</li>
