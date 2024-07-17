@@ -101,7 +101,7 @@ function App() {
               <p className={isMobile ? 'smallContentText' : 'contentText'}>
                 Starting here as a co-op student in my junior year of college, I had little experience with <span className='important'>Javascript</span>. I learned it well while learning the already established code-base, and went to be offered a full time position after graduation.
                 <br/>Worked directly with the company's CTO and CEO on features and their specifications for development, and used <span className='important'>GitLab</span> to track progress and version control.
-                <br/>Helped launch and maintain many features on <a href="ireportapp.com">the iReport App</a> on both web and mobile applications, including total overhaul on the Training Management System, as requested by customers.
+                <br/>Helped launch and maintain many features on <a href="https://ireportapp.com/" rel="noreferrer" target="_blank">the iReport App</a> on both web and mobile applications, including total overhaul on the Training Management System, as requested by customers.
                 <br/>This <span className='important'>fast-paced environment</span> had us developing features, testing them, and deploying them as they were done in batches. This also had us <span className='important'>fixing bugs reported by customers</span> directly.
                 <br/>
                 <br/>I learned a lot about <span className='important'>code optimizatiom</span> from this job opportunity as well, as our customer base grew and the needs of those customers grew with it, we had to deal with ever growing datasets, and account for a lot of data when trying to handle calculations in the backend.
@@ -129,8 +129,8 @@ function App() {
               <p className={isMobile ? 'smallContentText' : 'contentText'}>
                 My first co-op, starting in my sophomore year of college, I stayed here for 3 separate co-op terms, and relocated to Stow, OH each term.
                 <br/>I went into this position with only <span className='important'>Java</span> knowledge, but learned the culture well, and learned web development with <span className='important'>Red Hat Studio</span>, a modified version of <span className='important'>Eclipse</span>.
-                <br/>Working in a small development team for a larger company, adding and modifying pages on <a href='matcotools.com'>Matcotools.com</a> to be more accurate and <span className='important'>meet marketing standards</span>.
-                <br/>Overhauled portions of their <a href='https://www.matcotools.com/toolboxconfigurator'>Toolbox configurator</a> to fit new features and color options from engineering specifications.
+                <br/>Working in a small development team for a larger company, adding and modifying pages on <a href='https://www.matcotools.com/' rel="noreferrer" target="_blank">Matcotools.com</a> to be more accurate and <span className='important'>meet marketing standards</span>.
+                <br/>Overhauled portions of their <a href='https://www.matcotools.com/toolboxconfigurator' rel="noreferrer" target="_blank">Toolbox configurator</a> to fit new features and color options from engineering specifications.
                 <br/>
                 <br/>A lot of this experience was learning coding in an actual industry rather than in a classroom or on personal projects.
                 <br/>Being given deadlines and actual marketing specifications, coming to terms that some things seem wrong but thats what customers want, it was genuinely a great learning experience.
@@ -151,7 +151,7 @@ function App() {
                 <p className={isMobile ? 'smallContentText' : 'contentText'}>
                   I use <a href='https://discord.com/' rel="noreferrer" target="_blank">Discord</a> a lot, and they have <a href='https://discord.js.org/docs/packages/discord.js/14.15.3' rel="noreferrer" target="_blank">an extensive development API</a> that I basically used to learn <span className='important'>Javascript</span>.
                   <br/>The link to the left goes to one of my first iterations, though its a bit depricated. I've worked on a newer one that is privately maintained, with a newer version of DiscordJs, as an update broke the entire bot (Woo!).
-                  <br/><a href='https://github.com/nealetw/group-python-discordbot'>Here's a slightly newer one</a> I did for a group project in <span className='important'>Python</span> instead (using their <a href='https://discordpy.readthedocs.io/en/stable/'>discord.py</a> libraries)!
+                  <br/><a href='https://github.com/nealetw/group-python-discordbot' rel="noreferrer" target="_blank">Here's a slightly newer one</a> I did for a group project in <span className='important'>Python</span> instead (using their <a href='https://discordpy.readthedocs.io/en/stable/' rel="noreferrer" target="_blank">discord.py</a> libraries)!
                 </p>
               </div>
 
