@@ -178,6 +178,44 @@ a{
   font-size: calc(10px + 2vmin);
   color: white;
 }
+.CompletedHeader {
+  background:
+   linear-gradient(rgba(255,0,0,1) 0%, rgba(255,154,0,1) 10%, rgba(208,222,33,1) 20%, rgba(79,220,74,1) 30%, rgba(63,218,216,1) 40%, rgba(47,201,226,1) 50%, rgba(28,127,238,1) 60%, rgba(95,21,242,1) 70%, rgba(186,12,248,1) 80%, rgba(251,7,217,1) 90%, rgba(255,0,0,1) 100%)
+   0 0/100% 200%;
+   animation: a 2s linear infinite;
+
+   text-overflow: ellipsis;
+   position: absolute;
+   list-style-type: none;
+   display: flex;
+   justify-content: center;
+   flex-direction: row;
+   align-content:center;
+   text-align: center;
+   text-decoration: none;
+   overflow-x: hidden;
+   border: 100px white;
+   width: 100%;
+   margin: 0;
+   padding: 0;
+   font-style: oblique;
+   & li{
+     height: 1em;
+     cursor: pointer;
+     padding: .5em 1em;
+     color:rgb(160, 185, 253);
+     text-decoration-color: rgb(160, 185, 253);
+     transition: 0.25s;
+     &:hover{
+       background-color: #2d2d2e;
+       transition: 0.25s;
+       color: rgb(95, 111, 156);
+       text-decoration: underline;
+       text-decoration-color: rgb(95, 111, 156);
+
+     }
+    }
+}
 .my-node-enter {
   opacity: 0;
 }
@@ -219,4 +257,118 @@ a{
   text-decoration: underline;
   text-decoration-color: rgb(95, 111, 156);
 }
+.modal {
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
 
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.jerry0{
+  opacity: 0%;
+  cursor: pointer;
+  transition: .1s;
+  position: absolute;
+  filter: brightness(250%) grayscale(1) ;
+  height: 2em;
+  right: 1em;
+  &:hover{
+    opacity: 100%;
+  }
+}
+.jerry0Revealed {
+  transition: .1s;
+  position: absolute;
+  filter: brightness(250%) grayscale(1) ;
+  height: 2em;
+  right: 1em;
+}
+
+.jerry1{
+  opacity: 10%;
+  cursor: pointer;
+  transition: .1s;
+  filter: brightness(250%) grayscale(1) ;
+  height: 2em;
+  &:hover{
+    opacity: 100%;
+  }
+}
+.jerry2{
+  opacity: 10%;
+  cursor: pointer;
+  transition: .1s;
+  filter: brightness(250%) grayscale(1) ;
+  width: 3em;
+  height: 5em;
+  &:hover{
+    opacity: 100%;
+  }
+}
+.jerry3{
+  opacity: 10%;
+  cursor: pointer;
+  transition: 1.1s;
+  filter: brightness(250%) grayscale(1) ;
+  height: 3em;
+  position: absolute;
+  right: 20%;
+  top: 10%;
+  &:hover{
+    opacity: 100%;
+  }
+}
+.jerry1Revealed {
+  filter: brightness(250%) grayscale(1) ;
+  height: 2em;
+  position: absolute;
+  right: 2.2em;
+  opacity: 100%;
+}
+.jerry2Revealed {
+  filter: brightness(250%) grayscale(1) ;
+  height: 2em;
+  position: absolute;
+  right: 3.4em;
+  opacity: 100%;
+}
+.jerry3Revealed {
+  filter: brightness(250%) grayscale(1) ;
+  height: 2em;
+  position: absolute;
+  right: 4.6em;
+  opacity: 100%;
+}
+
+@keyframes a {
+  to {background-position:0 -200%}
+}

@@ -14,6 +14,9 @@ function App() {
 
   const [selectedTab, setTab] = useState(0);
   const [content, setContent] = useState(<></>)
+  const [miniGame, setMiniGame] = useState([false, false, false, false])
+  const [modalOpen, setModalOpen] = useState(false)
+  const [winModal, setWinModal] = useState(false)
   const [isMobile, setIsMobile] = useState(getWindowDimensions().width < 800)
   const [age, setAge] = useState((Date.now() - new Date('1998-11-06')))
 
@@ -26,6 +29,23 @@ function App() {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  const onJerryClick = (index) => {
+    if(index === undefined)
+      return;
+
+    const values = [...miniGame]
+    const tab = selectedTab
+    values[index] = true
+    setMiniGame(values)
+    setTab(0)
+    setTab(tab)
+
+    if(values.every(t => t))
+      setWinModal(true);
+    else
+      setModalOpen(true)
+  }
 
   const resumeDownload = () => {
     fetch("TimNeale_Resume.pdf").then((response) => {
@@ -40,8 +60,7 @@ function App() {
     });
   };
 
-  const infoText =(
-
+  const infoText = (
     <div className='infoSection'>
       <h1>Hi, I'm Tim</h1>
       <h2>I'm a {(age/1000/60/60/24/365).toFixed(7)} year old developer who started programming in high school.</h2>
@@ -61,7 +80,11 @@ function App() {
       <a href='https://www.linkedin.com/in/timwneale/' rel="noreferrer" target="_blank" className='imageLink'>
         <img className='image' alt='LinkedIn Profile' src={require('.//images/linkedin.png')}/>
       </a>
-  </div>);
+      {!isMobile && miniGame[0] && !miniGame[2] ?
+      <img onClick={() => onJerryClick(2)} className={'jerry2'} src={require('.//images/jerry.png')} />
+      : <></>}
+  </div>
+  );
 
   useEffect(() => {
     if(selectedTab === 0){
@@ -84,19 +107,22 @@ function App() {
               <div className={isMobile ? 'smallSectionTitle' :  'sectionTitle'}>
                 <h2>iReportSource:</h2>
                 <h3>May 2021 - June 2024</h3>
-              <ul className='skillsList'>
-                <span className='skillsTitle'>Skills Learned:</span>
-                <li>React</li>
-                <li>React-Native</li>
-                <li>Javascript</li>
-                <li>Express</li>
-                <li>MongoDB</li>
-                <li>Mongoose</li>
-                <li>Typescript</li>
-                <li>HTML</li>
-                <li>SCSS/Sass</li>
-                <li>GitLab</li>
-              </ul>
+                <ul className='skillsList'>
+                  <span className='skillsTitle'>Skills Learned:</span>
+                  <li>React</li>
+                  <li>React-Native</li>
+                  <li>Javascript</li>
+                  <li>Express</li>
+                  <li>MongoDB</li>
+                  <li>Mongoose</li>
+                  <li>Typescript</li>
+                  <li>HTML</li>
+                  <li>SCSS/Sass</li>
+                  <li>GitLab</li>
+                </ul>
+                {!isMobile && miniGame[0] ?
+                <img onClick={() => miniGame[1] ? {} : onJerryClick(1)} className={miniGame[1] ? 'jerry1Revealed' : 'jerry1'} src={require('.//images/jerry.png')} />
+                : <></>}
               </div>
               <p className={isMobile ? 'smallContentText' : 'contentText'}>
                 Starting here as a co-op student in my junior year of college, I had little experience with <span className='important'>Javascript</span>. I learned it well while learning the already established code-base, and went to be offered a full time position after graduation.
@@ -143,6 +169,9 @@ function App() {
           case 2:
             setContent(<>
               <h1 className='title'>Personal Projects</h1>
+              {!isMobile && miniGame[0] && !miniGame[3] ?
+              <img onClick={() => onJerryClick(3)} className={'jerry3'} src={require('.//images/jerry.png')} />
+              : <></>}
               <h3>My personal projects range from school projects that were graded, to things that I wanted to develop for actual use, to things that I just wanted to develop for fun. Most of them can be found over on <a href='https://github.com/nealetw' rel="noreferrer" target="_blank">my Github page</a>, though some may be out of date and being maintained on private repositorties instead.</h3>
               <div className={isMobile ? 'smallSection': 'contentSection' }>
                 <div className={isMobile ? 'smallSectionTitle' :  'sectionTitle'}>
@@ -188,15 +217,21 @@ function App() {
 
   }, [selectedTab])
 
+  const miniGameLength = miniGame.filter(t => !t).length
+
   return (
     <div className="App">
       <div className="App-header">
         {isMobile ? <span className='smolSiteName'>TN</span> : <span className='siteName'>Tim Neale</span>}
-        <ul className='ListHeader'>
+        <ul className={miniGame.every(t => t) ? 'CompletedHeader' : "ListHeader"}>
           <li onClick={() => setTab(0)}>Home</li>
           <li onClick={() => setTab(1)}>Work</li>
           <li onClick={() => setTab(2)}>Personal</li>
         </ul>
+        {!isMobile ? <img onClick={() => miniGame[0] ? {} : onJerryClick(0)} className={miniGame[0] ? 'jerry0Revealed' : 'jerry0'} src={require('.//images/jerry.png')} /> : <></>}
+        {!isMobile && miniGame[1] ? <img className='jerry1Revealed' src={require('.//images/jerry.png')} /> : <></>}
+        {!isMobile && miniGame[2] ? <img className='jerry2Revealed' src={require('.//images/jerry.png')} /> : <></>}
+        {!isMobile && miniGame[3] ? <img className='jerry3Revealed' src={require('.//images/jerry.png')} /> : <></>}
         <div className='content'>
           {content}
         </div>
@@ -206,6 +241,25 @@ function App() {
         <p>All Rights Reserved {new Date().getFullYear()}</p>
         <p><a href="mailto:neale.timw@gmail.com">neale.timw@gmail.com</a></p>
       </footer>
+
+      {modalOpen ?
+        <div id="modal" class="modal">
+          <div className="modal-content">
+            <span className="close" onClick={() => setModalOpen(false)}>&times;</span>
+            <p>You found a Jerry! Clicking him reveals there { miniGameLength > 1 ? 'are' : 'is'} {miniGameLength} other Jerry{miniGameLength > 1 ? 's' : ''} around the site...</p>
+          </div>
+        </div> :
+      <></>}
+      {winModal ?
+        <div id="modal" class="modal">
+          <div className="modal-content">
+            <span className="close" onClick={() => setWinModal(false)}>&times;</span>
+            <p>Congrats! You found all the Jerrys!</p>
+            <img className='completedJerrys' src={require('.//images/blob.gif')} />
+          </div>
+        </div> :
+      <></>}
+
     </div>
   );
 }
