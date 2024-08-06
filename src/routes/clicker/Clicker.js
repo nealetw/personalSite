@@ -18,9 +18,10 @@ function Clicker() {
   const [currentClicks, setCurrentClicks] = useState(0);
   const [upgrades, setUpgrades] = useState([
     {name:'Lillia Passive', price: 5, cps:0.2, unlockNumber: 5, image:'LilliaP.webp'},
-    {name:'Arrow', price: 20, cps:1, unlockNumber: 5, image:'Arrow.webp'},
-    {name:'Shotgun', price: 50, cps:3, unlockNumber: 5, image:'Shotgun.webp'},
-    {name:'Forest Fire', price: 1000, cps:20, unlockNumber: 5, image:'Fire.png'},
+    {name:'Arrow', price: 20, cps:1, unlockNumber: 20, image:'Arrow.webp'},
+    {name:'Shotgun', price: 50, cps:3, unlockNumber: 50, image:'Shotgun.webp'},
+    {name:'Landmines', price: 200, cps:6, unlockNumber: 200, image:'Mine.webp'},
+    {name:'Forest Fire', price: 1000, cps:20, unlockNumber: 1000, image:'Fire.png'},
   ]);
 
   const handleUnlocks = () => {
