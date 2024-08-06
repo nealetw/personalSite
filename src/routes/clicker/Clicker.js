@@ -144,6 +144,7 @@ function Clicker() {
           )}
         </ul>
       </div>
+      <span className='signature'>a dumb thing made by <a className='signatureLink' href='https://nealetw.com/'>Tim Neale</a></span>
     </div>
   );
 }

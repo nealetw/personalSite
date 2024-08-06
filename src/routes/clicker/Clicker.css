@@ -131,6 +131,20 @@ img{
   transition: 0.2;
   z-index: 100;
 }
+.signature{
+  color: rgba(0, 0, 0, 0.541);
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-style: italic;
+  font-size: smaller;
+}
+.signatureLink{
+  color: inherit
+}
+.signatureLink:hover{
+  color:blue
+}
 
 
 
