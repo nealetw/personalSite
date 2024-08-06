@@ -119,7 +119,9 @@ function Clicker() {
         <a className='deerButton' onClick={deerClick}>
           <img draggable='false' alt='Deer' className='deer' src={require('./../../images/deer.png')} />
         </a>
-        <p>You've clicked the deer <span className='clickCount'>{total}</span> times!</p>
+        <p>You've clicked the deer <br/><br/>
+        <span className='clickCount'>{total}</span><br/><br/>
+         times!</p>
         <br/>
         {clicksPerSec ? <p>Generating {clicksPerSec} clicks per second</p> : <p></p>}
       </div>
