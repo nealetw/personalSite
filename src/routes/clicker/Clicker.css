@@ -4,39 +4,215 @@
   background-color: grey;
   display: flex;
   flex-direction: row;
-  height: 100%;
-  padding: 5%;
+  height: 100vh;
+  align-items: center;
+  font-size: larger;
 }
 .deerContainer{
   display: flex;
   justify-content: center;
   flex-direction: column;
-  height: 13em;
+  height: 125em;
+  width: 25em;
+
 }
+img{
+  user-drag: none;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;}
 .deer{
-  justify-self: start;
-  max-width: 10em;
+  max-width: 25em;
   transition: 0.1s;
 }
 .deer:hover{
-  max-width: 10.4em;
+  transform: scale(1.05);
   transition: 0.1s;
 }
 .deer:active{
-  max-width: 9.6em;
+  transform: scale(0.95);
   transition: 0.1s;
 }
 .upgradeContainer{
   width: 100%;
 }
 .upgradeList{
-  width: 100%;
+  width: 95%;
 }
 .upgrade{
+  flex:1;
   height: 3em;
-  width:100%;
-}
-ul{
-  list-style: none;
   width: 100%;
+  transition: 1s;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: larger;
+  background-color: rgb(212, 163, 107);
+  border: 2px groove black;
+  border-radius: 16px;
+}
+.upgrade:hover{
+  transform: scale(1.01);
+  transition: 0.1s;
+}
+.upgradeDisabled{
+  flex:1;
+  height: 3em;
+  width: 100%;
+  cursor: not-allowed;
+  background-color: rgb(158, 147, 135);
+  transition: 1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: larger;
+  border: 2px groove black;
+  border-radius: 16px;
+  transform: scale(0.99);
+  transition: 1s;
+}
+.upgrade:active{
+  transform: scale(0.99);
+  transition: 0.1s;
+}
+.upgradeImage{
+  height: 90%;
+  border-radius: 8px;
+  transition: 1s;
+  margin-right: 10px;
+}
+.disabledUpgradeImage{
+  height: 90%;
+  opacity: 50%;
+  border-radius: 8px;
+  filter: grayscale(100%);
+  transition: 1s;
+  margin-right: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.speech-bubble{
+  --arrow-w:0.5em;
+  --arrow-h:1em;
+  --bubble-corners:16px;
+  --w:8em;
+  --border-size:3px;
+  --text-color:black;
+  --bubble-color:white;
+  --border-color:black;
+  opacity: 60%;
+  text-align:center;
+  font-family:cursive;
+  font-size:20px;
+  font-weight:bold;
+  color:var(--text-color);
+  background:var(--bubble-color);
+  padding:1em;
+  position:relative;
+  align-self: center;
+  border-radius:var(--bubble-corners);
+  box-shadow:0 0 0 var(--border-size) var(--border-color);
+  transition: 0.5;
+  z-index: 100;
+}
+.speech-bubble-hidden{
+  --arrow-w:0.5em;
+  --arrow-h:1em;
+  --bubble-corners:0;
+  --w:12em;
+  --border-size:3px;
+  --text-color:black;
+  --bubble-color:white;
+  --border-color:black;
+  opacity: 0%;
+  text-align:center;
+  font-family:cursive;
+  font-size:20px;
+  font-weight:bold;
+  color:var(--text-color);
+  background:var(--bubble-color);
+  padding:1em;
+  position:relative;
+  border-radius:var(--bubble-corners);
+  max-width:var(--w);
+  box-shadow:0 0 0 var(--border-size) var(--border-color);
+  transition: 0.5;
+}
+
+.speech-bubble:before,.speech-bubble:after,.speech-bubble-hidden:after,.speech-bubble-hidden:before{
+  content:"";
+  position:absolute;
+  bottom:calc(-1 * var(--arrow-h) * 2 + 0.5px);
+  left:50%;
+  border-style:solid;
+  border-width:var(--arrow-h) var(--arrow-w);
+  border-color:var(--bubble-color) transparent transparent;
+}
+
+.speech-bubble:before,.speech-bubble-hidden:before{
+  border-width:calc(var(--arrow-h) + var(--border-size)) calc(var(--arrow-w) + var(--border-size));
+  border-color:var(--border-color) transparent transparent;
+  bottom:calc(-1 * var(--arrow-h) * 2 - 2.5*var(--border-size));
+  left:calc(50% - var(--border-size));
+}
+
+.speech-bubble.t:after,.speech-bubble-hidden.t:after{
+  border-color:transparent transparent var(--bubble-color);
+  bottom:auto;
+  top:calc(-1 * var(--arrow-h) * 2 + 0.5px);
+}
+
+.speech-bubble.t:before,.speech-bubble-hidden.t:before{
+  border-width:calc(var(--arrow-h) + var(--border-size)) calc(var(--arrow-w) + var(--border-size));
+  border-color:transparent transparent var(--border-color);
+  bottom:auto;
+  top:calc(-1 * var(--arrow-h) * 2 - 2.5*var(--border-size));
+}
+
+.speech-bubble.l:after,.speech-bubble-hidden.l:after{
+  border-color:transparent var(--bubble-color) transparent transparent;
+  bottom:auto;
+  border-width:var(--arrow-w) var(--arrow-h);
+  top:calc(50% - var(--arrow-w));
+  left:calc(-1 * var(--arrow-h) * 2 + 0.5px);
+}
+
+.speech-bubble.l:before.speech-bubble-hidden.l:before{
+  border-width:calc(var(--arrow-w) + var(--border-size)) calc(var(--arrow-h) + var(--border-size));
+  border-color:transparent var(--border-color) transparent transparent;
+  bottom:auto;
+  top:calc(50% - var(--arrow-w) - var(--border-size));
+  left:calc(-1 * var(--arrow-h) * 2 - 2.5*var(--border-size));
+}
+
+.speech-bubble.r:after,.speech-bubble-hidden.r:after{
+  border-color:transparent transparent transparent var(--bubble-color);
+  bottom:auto;
+  left:auto;
+  border-width:var(--arrow-w) var(--arrow-h);
+  top:calc(50% - var(--arrow-w));
+  right:calc(-1 * var(--arrow-h) * 2 + 0.5px);
+}
+
+.speech-bubble.r:before,.speech-bubble-hidden.r:after{
+  border-width:calc(var(--arrow-w) + var(--border-size)) calc(var(--arrow-h) + var(--border-size));
+  border-color:transparent transparent transparent var(--border-color);
+  bottom:auto;
+  left:auto;
+  top:calc(50% - var(--arrow-w) - var(--border-size));
+  right:calc(-1 * var(--arrow-h) * 2 - 2.5*var(--border-size));
 }
