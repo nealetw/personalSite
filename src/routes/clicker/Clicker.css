@@ -12,7 +12,7 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  height: 125em;
+  height: 100vh;
   width: 25em;
 
 }
@@ -37,19 +37,24 @@ img{
 }
 .upgradeContainer{
   width: 100%;
+  flex: 1;
+  display: flex;
 }
 .upgradeList{
   width: 95%;
+  justify-content: center;
+  align-items: center;
 }
 .upgrade{
   flex:1;
   height: 3em;
-  width: 100%;
+  width: 130vh;
+  padding-left: 1em;
+  padding-right: 1em;
   transition: 1s;
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: center;
   font-size: larger;
   background-color: rgb(212, 163, 107);
   border: 2px groove black;
@@ -62,7 +67,9 @@ img{
 .upgradeDisabled{
   flex:1;
   height: 3em;
-  width: 100%;
+  width: 130vh;
+  padding-left: 1em;
+  padding-right: 1em;
   cursor: not-allowed;
   background-color: rgb(158, 147, 135);
   transition: 1s;
@@ -78,14 +85,20 @@ img{
 .upgrade:active{
   transform: scale(0.99);
   transition: 0.1s;
+}.upgradeText{
+  display: flex;
+  flex:1;
+  justify-content: space-between;
 }
 .upgradeImage{
   height: 90%;
   border-radius: 8px;
   transition: 1s;
   margin-right: 10px;
+  justify-self: start;
 }
 .disabledUpgradeImage{
+  justify-self: start;
   height: 90%;
   opacity: 50%;
   border-radius: 8px;
@@ -93,8 +106,29 @@ img{
   transition: 1s;
   margin-right: 10px;
 }
-
-
+.italic{
+  font-style: italic;
+  color: rgb(51, 51, 51);
+}
+.clickCount{
+  font-size: x-large;
+  font-weight: 700;
+  font-style: oblique;
+  text-decoration: underline;
+  color:rgb(212, 163, 107);
+  text-shadow: black 2px 2px;
+}
+.clickText{
+  pointer-events: none;
+  user-select: none;
+  font-size: x-large;
+  font-weight: 700;
+  cursor: default;
+  color:rgb(212, 163, 107);
+  text-shadow: black 2px 2px;
+  transition: 0.2;
+  z-index: 100;
+}
 
 
 
