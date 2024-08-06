@@ -1,0 +1,42 @@
+.deerApp {
+  text-align: center;
+  font-family: monospace;
+  background-color: grey;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  padding: 5%;
+}
+.deerContainer{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 13em;
+}
+.deer{
+  justify-self: start;
+  max-width: 10em;
+  transition: 0.1s;
+}
+.deer:hover{
+  max-width: 10.4em;
+  transition: 0.1s;
+}
+.deer:active{
+  max-width: 9.6em;
+  transition: 0.1s;
+}
+.upgradeContainer{
+  width: 100%;
+}
+.upgradeList{
+  width: 100%;
+}
+.upgrade{
+  height: 3em;
+  width:100%;
+}
+ul{
+  list-style: none;
+  width: 100%;
+}
