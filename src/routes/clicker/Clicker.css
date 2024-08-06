@@ -142,6 +142,8 @@ img{
   text-align:center;
   font-family:cursive;
   font-size:20px;
+  overflow-x: visible;
+  overflow-wrap: unset;
   font-weight:bold;
   color:var(--text-color);
   background:var(--bubble-color);

@@ -7,7 +7,12 @@ function Clicker() {
   const [total, setTotal] = useState(0)
   const [lifetimeTotal, setLifetime] = useState(0)
   const [milestone, setMilestone] = useState(10)
-  const [upgrades, setUpgrades] = useState([{name:'Lillia Passive', price: 5, cps:0.2, unlockNumber: 5, image:'LilliaP.webp'}])
+  const [upgrades, setUpgrades] = useState([
+    {name:'Lillia Passive', price: 5, cps:0.2, unlockNumber: 5, image:'LilliaP.webp'},
+    {name:'Arrow', price: 20, cps:1, unlockNumber: 5, image:'Arrow.webp'},
+    {name:'Shotgun', price: 50, cps:3, unlockNumber: 5, image:'Shotgun.webp'},
+    {name:'Forest Fire', price: 1000, cps:20, unlockNumber: 5, image:'Fire.png'},
+  ])
   const [clicksPerSec, setClicksPerSec] = useState(0)
   const [owned, setOwned] = useState({})
   const [sessionTime, setSessionTime] = useState(0)
@@ -72,7 +77,7 @@ function Clicker() {
       const numOwned = isNaN(owned[k]) ? 0 : owned[k] ?? 0;
       const upgrade = upgrades.find(t => t.name == k)
       if(upgrade)
-        total += ((numOwned * upgrade.cps) ?? 0)
+        total += ((numOwned * (upgrade.cps ?? upgrade.price * 0.05)) ?? 0)
     })
     if(total !== clicksPerSec){
       setClicksPerSec(Math.round(total * 10)/10)
