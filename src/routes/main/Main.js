@@ -15,12 +15,13 @@ function Main() {
   }
 
   const [selectedTab, setTab] = useState(location?.length ? location : 'home' ?? 'home');
-  const [content, setContent] = useState(<></>)
-  const [miniGame, setMiniGame] = useState([false, false, false, false])
-  const [modalOpen, setModalOpen] = useState(false)
-  const [winModal, setWinModal] = useState(false)
-  const [isMobile, setIsMobile] = useState(getWindowDimensions().width < 800)
-  const [age, setAge] = useState((Date.now() - new Date('1998-11-06')))
+  const [content, setContent] = useState(<></>);
+  const [miniGame, setMiniGame] = useState([false, false, false, false]);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [winModal, setWinModal] = useState(false);
+  const [isMobile, setIsMobile] = useState(getWindowDimensions().width < 800);
+  const [age, setAge] = useState((Date.now() - new Date('1998-11-06')));
+  const [timer, setTimer] = useState();
 
 
   useEffect(() => {
@@ -90,10 +91,13 @@ function Main() {
 
   useEffect(() => {
     if(selectedTab === 0 || selectedTab === 'home'){
-      setTimeout(() => setAge(Date.now() - new Date('1998-11-06')), 1000)
+      setTimer(setTimeout(() => {
+        setAge(Date.now() - new Date('1998-11-06'))}, 1000)
+      )
       setContent(infoText)
     }
-  }, [age, selectedTab, infoText])
+    return () => {if(timer) clearTimeout(timer)}
+  }, [age, selectedTab])
 
 
   useEffect(() => {
