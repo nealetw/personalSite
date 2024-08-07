@@ -53,7 +53,7 @@ function Clicker() {
       setUpgrades(newUp);
     }
     const deerUnlocks = deerUpgrades.find(t => !t?.unlocked);
-    if(notUnlocked?.unlockNumber <= total || deerUnlocks?.unlockNumber <= lifetimeTotal/4){
+    if(deerUnlocks?.unlockNumber <= total || deerUnlocks?.unlockNumber <= lifetimeTotal/4){
       const newUp = [...deerUpgrades];
       const index = newUp.findIndex(t => t.name === deerUnlocks?.name);
       if(index !== undefined){
@@ -186,14 +186,14 @@ function Clicker() {
                     <span>Cost: {u.price}</span>
                   </div>
                 </Tooltip>
-                <div className={disabled ? 'deerUpgradeDisabled' : 'deerUpgrade'}
+                <div className={disabled || total < u.price ? 'deerUpgradeDisabled' : 'deerUpgrade'}
                   data-tooltip-id="upgrade-desc"
                   data-tooltip-place="bottom-start"
                   id='upgradeDiv'
                   onClick={() =>
                     buyUpgrade(u, u.price, true)
                   }>
-                    <img draggable='false' src={u.image ? require(`./../../images/upgradeImages/${u.image}`) : ''} className={disabled ? 'disabledDeerUpgradeImage' : 'deerUpgradeImage'}/>
+                    <img draggable='false' src={u.image ? require(`./../../images/upgradeImages/${u.image}`) : ''} className={disabled || total < u.price ? 'disabledDeerUpgradeImage' : 'deerUpgradeImage'}/>
                   </div>
                 </>)
                 }
