@@ -10,8 +10,9 @@
 }
 .deerContainer{
   display: flex;
-  justify-content: start;
+  justify-content: center;
   flex-direction: column;
+  bottom: 0;
   height: 100vh;
   width: 25em;
 
@@ -43,11 +44,13 @@ img{
 .deerUpgradeContainer{
   width: 100%;
   flex:1;
-  display: grid;
+  display: flex;
+  max-height: 5em;
+  flex-direction: row;
   justify-self: center;
+  justify-items: center;
+  justify-content: space-evenly;
   align-self: center;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 1fr);
   grid-column-gap: 0px;
   grid-row-gap: 0px;
   margin-left: auto;
@@ -78,10 +81,12 @@ img{
 .deerUpgrade{
   flex:1;
   height: 3em;
+  max-width: 3em;
   width: 3em;
   transition: 1s;
   cursor: pointer;
   padding-left: 0.4em;
+  justify-self: center;
 
   background-color: rgb(212, 163, 107);
   display: flex;
@@ -128,6 +133,7 @@ img{
 
   height: 3em;
   width: 3em;
+  max-width: 3em;
   padding-left: 0.4em;
   border-radius: 16px;
 }
