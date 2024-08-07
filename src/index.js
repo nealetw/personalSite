@@ -12,7 +12,22 @@ import ErrorPage from "./routes/error-page";
 
 const router = createBrowserRouter([
   {
-    path: "/:tab?",
+    path: "/",
+    element: <Main />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/home",
+    element: <Main />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/work",
+    element: <Main />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/personal",
     element: <Main />,
     errorElement: <ErrorPage />,
   },

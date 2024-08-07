@@ -212,7 +212,7 @@ function Main() {
               <br/>With a lot of late nights, and <span className='important'>debugging</span> even during competition, we did end up going to the world-wide competition!
               </p>
           </div>
-          {/* <div className={isMobile ? 'smallSection': 'contentSection' }>
+          <div className={isMobile ? 'smallSection': 'contentSection' }>
             <div className={isMobile ? 'smallSectionTitle' :  'sectionTitle'}>
               <h2>This site!</h2>
             </div>
@@ -220,7 +220,7 @@ function Main() {
               With my free time, and a need to show off my work/portfolio, I deployed this <span className='important'>React</span> website in a few days.  Its hosted on an <span className='important'>AWS EC2 instance</span>, and I keep it up to date with <span className='important'>Github + SSH</span>
               <br/>Over time, I've wanted to add more and more things, and my friend told me to add a game similar to <a href='https://orteil.dashnet.org/cookieclicker/' rel="noreferrer" target="_blank">Cookie Clicker</a>. Seeing it as a challenge to push the limits of my knowledge, I <a href='/clicker' rel="noreferrer" target="_blank">made one from scratch here</a>. It was actually a lot of fun!
               </p>
-          </div> */}
+          </div>
         </>
         )
         break;
