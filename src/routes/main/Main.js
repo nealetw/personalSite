@@ -89,7 +89,7 @@ function Main() {
   );
 
   useEffect(() => {
-    if(selectedTab === 0){
+    if(selectedTab === 0 || selectedTab === 'home'){
       setTimeout(() => setAge(Date.now() - new Date('1998-11-06')), 1000)
       setContent(infoText)
     }
