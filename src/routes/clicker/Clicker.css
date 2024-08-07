@@ -40,6 +40,21 @@ img{
   flex: 1;
   display: flex;
 }
+.deerUpgradeContainer{
+  width: 100%;
+  flex:1;
+  display: grid;
+  justify-self: center;
+  align-self: center;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  justify-items: center;
+
+}
 .upgradeList{
   width: 95%;
   justify-content: center;
@@ -60,7 +75,25 @@ img{
   border: 2px groove black;
   border-radius: 16px;
 }
-.upgrade:hover{
+.deerUpgrade{
+  flex:1;
+  height: 3em;
+  width: 3em;
+  transition: 1s;
+  cursor: pointer;
+  padding-left: 0.4em;
+
+  background-color: rgb(212, 163, 107);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: larger;
+  border: 2px groove black;
+  border-radius: 16px;
+  transform: scale(0.99);
+  transition: 1s;
+}
+.upgrade:hover, .deerUpgrade:hover{
   transform: scale(1.01);
   transition: 0.1s;
 }
@@ -81,8 +114,24 @@ img{
   border-radius: 16px;
   transform: scale(0.99);
   transition: 1s;
+}.deerUpgradeDisabled{
+  flex:1;
+  cursor: not-allowed;
+  background-color: rgb(158, 147, 135);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: larger;
+  border: 2px groove black;
+  transform: scale(0.99);
+  transition: 1s;
+
+  height: 3em;
+  width: 3em;
+  padding-left: 0.4em;
+  border-radius: 16px;
 }
-.upgrade:active{
+.upgrade:active, .deerUpgrade:active{
   transform: scale(0.99);
   transition: 0.1s;
 }
@@ -92,14 +141,16 @@ img{
   user-select: none;
   justify-content: space-between;
 }
-.upgradeImage{
+.upgradeImage, .deerUpgradeImage{
   height: 90%;
   border-radius: 8px;
   transition: 1s;
   margin-right: 10px;
   justify-self: start;
+  max-width: 3em;
+  max-height: 3em;
 }
-.disabledUpgradeImage{
+.disabledUpgradeImage,.disabledDeerUpgradeImage{
   justify-self: start;
   height: 90%;
   opacity: 50%;
@@ -107,6 +158,8 @@ img{
   filter: grayscale(100%);
   transition: 1s;
   margin-right: 10px;
+  max-width: 3em;
+  max-height: 3em;
 }
 .italic{
   font-style: italic;
