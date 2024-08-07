@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './Main.css';
 
 function Main() {
-  const params = useParams()
+  const location = useLocation()?.pathname?.replace('/','')
   const navigate = useNavigate()
 
   function getWindowDimensions() {
@@ -14,7 +14,7 @@ function Main() {
     };
   }
 
-  const [selectedTab, setTab] = useState(params.tab ?? 'home');
+  const [selectedTab, setTab] = useState(location?.length ? location : 'home' ?? 'home');
   const [content, setContent] = useState(<></>)
   const [miniGame, setMiniGame] = useState([false, false, false, false])
   const [modalOpen, setModalOpen] = useState(false)
