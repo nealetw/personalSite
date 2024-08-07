@@ -14,7 +14,7 @@ function Clicker() {
   const [owned, setOwned] = useState(cookies?.data?.owned ?? {});
   const [deerLevel, setDeerLevel] = useState(cookies?.data?.deerLevel ?? 0);
   const [sessionTime, setSessionTime] = useState(cookies?.data?.sessionTime ?? 0);
-  const [clicksPerSec, setClicksPerSec] = useState(10000);
+  const [clicksPerSec, setClicksPerSec] = useState(0);
   const [speechText, setSpeechText] = useState('0');
   const [position, setPosition] = useState([0,0]);
   const [currentClicks, setCurrentClicks] = useState(0);
@@ -40,7 +40,6 @@ function Clicker() {
     {name:'Horse', price: 300000, unlockNumber: 300000, image:'horse.png', desc: 'Upgrade to a horse, but dont it wont be beat dead.', bought:false, clickMult:1000, passMult: 8, deerPic:'horse.png'},
     {name:'Lillia', price: 800000, unlockNumber: 800000, image:'lilliaIcon.webp', desc: 'Upgrade the deer to Lillia, the best deer', bought:false, clickMult:10000, passMult: 16, deerPic:'Lillia.png'}
   ]);
-  console.log(deerLevel, deerUpgrades.length)
 
   const handleUnlocks = () => {
     const notUnlocked = upgrades.find(t => !t.unlocked);
@@ -63,8 +62,11 @@ function Clicker() {
     }
   }
   const autoClick = () => {
+    if(!clicksPerSec)
+      return
     const mult = deerUpgrades[deerLevel]?.passMult ?? 1
-    setTotal(Math.round((total + (clicksPerSec*mult)/2) * 10)/10);
+    const tot = Math.round((total + (clicksPerSec*mult)/2) * 10)/10
+    setTotal(tot);
     setLifetime(Math.round((lifetimeTotal + (clicksPerSec*mult)/2) * 10)/10);
   }
 
