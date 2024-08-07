@@ -12,12 +12,14 @@ function Clicker() {
   const [lifetimeTotal, setLifetime] = useState(cookies?.data?.lifetimeTotal ?? 0);
   const [milestone, setMilestone] = useState(cookies?.data?.milestone ?? 10);
   const [owned, setOwned] = useState(cookies?.data?.owned ?? {});
-  const [deerLevel, setDeerLevel] = useState(2);
+  const [deerLevel, setDeerLevel] = useState(cookies?.data?.deerLevel ?? 0);
   const [sessionTime, setSessionTime] = useState(cookies?.data?.sessionTime ?? 0);
   const [clicksPerSec, setClicksPerSec] = useState(10000);
   const [speechText, setSpeechText] = useState('0');
   const [position, setPosition] = useState([0,0]);
   const [currentClicks, setCurrentClicks] = useState(0);
+  const [winModal, setWinModal] = useState(false)
+  const [hasWon, setHasWon] = useState(false)
   const [upgrades, setUpgrades] = useState([
     {name:'Lillia Passive', price: 5, cps:0.2, unlockNumber: 5, image:'LilliaP.webp', desc: 'Lillia passive does like, zero damage, but it should hurt the deer a little bit'},
     {name:'Arrow', price: 20, cps:1, unlockNumber: 20, image:'Arrow.webp', desc: 'Upgrade to bow and arrow, the most primitive deer hunting tool!'},
@@ -29,6 +31,7 @@ function Clicker() {
     {name:'Global Warming', price: 30000, cps:60, unlockNumber: 25000, image:'earth.png', desc: `...destroying the whole forest wasn't enough, now we cook the planet alive.`},
     {name:'Moon Throw', price: 85000, cps:110, unlockNumber: 85000, image:'MoonThrow.jpg', desc: `Strap some rockets on the moon, direct it toward the planet, and wait..`},
     {name:'Black Hole', price: 1000000, cps:2000, unlockNumber: 800000, image:'Blackhole.webp', desc: `Aurelion Sol can surely execute the deer, how many stacks does he have?`},
+    {name:'Death', price: 100000000, cps:10000000, unlockNumber: 100000000, image:'Skull.png', desc: `This kills the deer.`},
   ]);
   const [deerUpgrades, setDeerUpgrades] = useState([
     {name:'Deer', price: 0, unlockNumber: 0, image:'ReindeerIcon.png', desc: 'Base Deer', bought:false, clickMult:1, passMult: 1, deerPic: 'deer.png'},
@@ -37,6 +40,7 @@ function Clicker() {
     {name:'Horse', price: 300000, unlockNumber: 300000, image:'horse.png', desc: 'Upgrade to a horse, but dont it wont be beat dead.', bought:false, clickMult:1000, passMult: 8, deerPic:'horse.png'},
     {name:'Lillia', price: 800000, unlockNumber: 800000, image:'lilliaIcon.webp', desc: 'Upgrade the deer to Lillia, the best deer', bought:false, clickMult:10000, passMult: 16, deerPic:'Lillia.png'}
   ]);
+  console.log(deerLevel, deerUpgrades.length)
 
   const handleUnlocks = () => {
     const notUnlocked = upgrades.find(t => !t.unlocked);
@@ -121,7 +125,7 @@ function Clicker() {
         total += ((numOwned * (upgrade.cps ?? upgrade.price * 0.05)) ?? 0);
     })
     if(total !== clicksPerSec){
-      setClicksPerSec(Math.round(total * 10)*10);
+      setClicksPerSec(Math.round(total * 10)/10);
     }
   }
 
@@ -144,6 +148,12 @@ function Clicker() {
       setTotal(Math.round((total - newPrice) * 10)/10);
       setOwned({...owned, [upgrade.name]:(owned[upgrade.name] ?? 0) + 1});
     }
+    if(upgrade.name === 'Death'
+      && deerLevel+1 === deerUpgrades.length
+      && !hasWon){
+        setHasWon(true)
+        setWinModal(true)
+    }
   }
 
   return (
@@ -153,7 +163,7 @@ function Clicker() {
           position: "absolute",
           left: position[0],
           top: position[1]-50,
-        }}>+ {currentClicks}</p> : <></>}
+        }}> + {currentClicks}</p> : <></>}
         <div class={speechText.length > 1 ? "speech-bubble" : "speech-bubble-hidden"}>{speechText}</div>
         <a className='deerButton' onClick={deerClick}>
           <img draggable='false' alt={deerUpgrades[deerLevel].name ?? 'Deer'} className='deer' src={require(`./../../images/${deerUpgrades[deerLevel].deerPic ?? 'deer.png'}`)} />
@@ -221,6 +231,17 @@ function Clicker() {
         </ul>
       </div>
       <span className='signature'>a dumb thing made by <a className='signatureLink' href='https://nealetw.com/'>Tim Neale</a></span>
+      {winModal ?
+        <div id="modal" class="modal">
+          <div className="modal-content">
+            <span className="close" onClick={() => setWinModal(false)}>&times;</span>
+            <p>You've killed the deer with your millions of clicks.</p>
+            <p>You've bought all the upgrades, not employing death itself.</p>
+            <p>I hope you're happy with yourself.</p>
+            <p>(no really congrats, you've won this dumb game, theres nothing past this point)</p>
+          </div>
+        </div> :
+      <></>}
     </div>
   );
 }
