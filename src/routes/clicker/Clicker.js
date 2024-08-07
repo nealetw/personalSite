@@ -141,6 +141,7 @@ function Clicker() {
       if(index !== undefined){
         newUp[index] = {...newUp[index], bought: true};
         setDeerUpgrades(newUp);
+        setTotal(Math.round((total - newPrice) * 10)/10);
         setDeerLevel(index)
       }
     }
