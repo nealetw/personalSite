@@ -235,7 +235,7 @@ function Clicker() {
           )}
         </ul>
       </div>
-      <span className='signature'>a dumb thing made by <a className='signatureLink' href='https://nealetw.com/'>Tim Neale, (v. {versionNumber})</a></span>
+      <span className='signature'>a dumb thing made by <a className='signatureLink' href='https://nealetw.com/'>Tim Neale</a> (v. {versionNumber})</span>
       {winModal ?
         <div id="modal" class="modal">
           <div className="modal-content">
