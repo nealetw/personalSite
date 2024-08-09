@@ -6,6 +6,8 @@ import { painArray, timeArray } from './SpeechBubbles';
 import './Clicker.css';
 
 function Clicker() {
+  const versionNumber = '1.0'
+
   const [cookies, setCookies] = useCookies(['data']);
 
   const [total, setTotal] = useState(cookies?.data?.total ?? 0);
@@ -233,7 +235,7 @@ function Clicker() {
           )}
         </ul>
       </div>
-      <span className='signature'>a dumb thing made by <a className='signatureLink' href='https://nealetw.com/'>Tim Neale</a></span>
+      <span className='signature'>a dumb thing made by <a className='signatureLink' href='https://nealetw.com/'>Tim Neale, (v. {versionNumber})</a></span>
       {winModal ?
         <div id="modal" class="modal">
           <div className="modal-content">

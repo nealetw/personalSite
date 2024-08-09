@@ -218,7 +218,7 @@ function Main() {
           </div>
           <div className={isMobile ? 'smallSection': 'contentSection' }>
             <div className={isMobile ? 'smallSectionTitle' :  'sectionTitle'}>
-              <h2>This site!</h2>
+              <h2><a href='https://github.com/nealetw/personalSite' rel="noreferrer" target="_blank">This site!</a></h2>
             </div>
             <p className={isMobile ? 'smallContentText' : 'contentText'}>
               With my free time, and a need to show off my work/portfolio, I deployed this <span className='important'>React</span> website in a few days.  Its hosted on an <span className='important'>AWS EC2 instance</span>, and I keep it up to date with <span className='important'>Github + SSH</span>
