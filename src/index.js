@@ -4,7 +4,7 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Main from "./routes/main/Main";
 import Clicker from "./routes/clicker/Clicker";
-import Board from "./routes/board/Board";
+//import Board from "./routes/board/Board";
 import reportWebVitals from "./reportWebVitals";
 import ErrorPage from "./routes/error-page";
 import LOLSmash from "./routes/LOLSmash/LOLSmash";
@@ -40,11 +40,11 @@ const router = createBrowserRouter([
         element: <LOLSmash />,
         errorElement: <ErrorPage />,
     },
-    {
-        path: "/board",
-        element: <Board />,
-        errorElement: <ErrorPage />,
-    },
+    // {
+    //     path: "/board",
+    //     element: <Board />,
+    //     errorElement: <ErrorPage />,
+    // },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
