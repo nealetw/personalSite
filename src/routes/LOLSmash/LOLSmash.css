@@ -1,0 +1,110 @@
+.smashApp {
+  text-align: center;
+  font-family: monospace;
+  background-color: grey;
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  font-size: larger;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+overflow-y: scroll;
+}
+.cardContainer{
+  margin-top: 0;
+  max-height: 100%;
+}
+.champSelect{
+  margin-bottom: 1em;
+}
+.champImage{
+  height: 600;
+}
+.imageScroll{
+  display: flex;
+  max-height: 75%;
+  align-items: center;
+  justify-content: center;
+}
+.scrollButton {
+  padding: 1em;
+  height: 50%;
+}
+.smashButton, .passButton, .notSelectedButton{
+  padding: 1.5em 2em;
+  width: 10em;
+  margin: 1em;
+  color: black;
+  border: solid 2px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: large;
+}
+.smashButton{
+  background-color: greenyellow;
+  border-color: green;
+}
+.smashButton:hover{
+  background-color: rgb(143, 194, 66);
+  border-color: rgb(0, 82, 0);
+  box-shadow: 0.025em 0.025em 0.025em 0.025em;
+}
+.passButton{
+  background-color: coral;
+  border-color: red;
+}
+.passButton:hover{
+  background-color: rgb(206, 100, 62);
+  border-color: rgb(189, 2, 2);
+  box-shadow: 0.025em 0.025em 0.025em 0.025em;
+}
+.notSelectedButton{
+  background-color: lightgrey;
+  border-color: black;
+}
+.notSelectedButton:hover{
+  background-color: rgb(150, 148, 148);
+  border-color: black;
+  box-shadow: 0.025em 0.025em 0.025em 0.025em;
+}
+.champName{
+  font-style: normal;
+  line-height: 0;
+  font-size: 36px;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-weight: 900;
+}
+.skinName{
+  font-style: italic;
+  font-weight: 300;
+  color: rgb(80, 80, 80);
+}
+
+.infoBox{
+  margin: 0 2em;
+}
+.showInfoCheck{
+  line-height: 0;
+  margin:0;
+  padding: 0;
+}
+.showInfoContent{
+  padding: 0 2em
+}
+
+
+.signature{
+  color: rgba(0, 0, 0, 0.541);
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-style: italic;
+  font-size: smaller;
+}
+.signatureLink{
+  color: inherit
+}
+.signatureLink:hover{
+  color:blue
+}
