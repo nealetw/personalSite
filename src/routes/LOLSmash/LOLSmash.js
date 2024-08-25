@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
+import _ from "lodash";
+import moment from "moment";
 import { useCookies } from "react-cookie";
 import { getLeagueChampInfo, getLeagueChamps, getLeagueVersion } from "../../api";
-import customTags from './customTags.json';
-import _ from "lodash";
+import customTags from "./customTags.json";
 
 import "./LOLSmash.css";
 
@@ -15,6 +16,7 @@ function LOLSmash() {
     const [smashData, setSmashData] = useState(cookies.data ?? {});
     const [currentIndex, setIndex] = useState();
     const [endScreen, setEndScreen] = useState(false);
+    const [clearModal, setClearModal] = useState(false);
     const [stats, setStats] = useState({});
     const [showInfo, setShowInfo] = useState(false);
     const [skinNumber, setSkinNumber] = useState(0);
@@ -29,9 +31,8 @@ function LOLSmash() {
         if (gameVersion)
             getLeagueChamps(gameVersion).then((r) => {
                 var mapped = [];
-
                 for (var i in r.data)
-                    mapped.push({ ...r.data[i], smash: smashData[r.data[i].id] })
+                    mapped.push({ ...r.data[i], smash: smashData[r.data[i].id] });
 
                 setChamps(mapped);
                 if (mapped.every((c) => c.smash !== undefined)) {
@@ -50,21 +51,26 @@ function LOLSmash() {
     }, [currentIndex]);
 
     const calculateStats = () => {
-        const tags = []
-        for (var i of Object.keys(smashData)){
-            if(smashData[i]){
-                tags.push(customTags[i])}
+        const tags = [];
+        for (var i of Object.keys(smashData)) {
+            if (smashData[i]) {
+                tags.push(customTags[i]);
+            }
         }
-        const counted = _.countBy(tags.join(',').split(','))
-        const otherTags = Object.entries(counted).filter(c => c[0] !== 'Male' && c[0] !== 'Female' && c[0] !== 'Nonbinary').sort((a,b) => b[1] - a[1])
-        setStats({...counted, total:tags.length, customTags: otherTags })
-    }
+        const counted = _.countBy(tags.join(",").split(","));
+        const otherTags = Object.entries(counted)
+            .filter(
+                (c) => c[0] !== "Male" && c[0] !== "Female" && c[0] !== "Nonbinary"
+            )
+            .sort((a, b) => b[1] - a[1]);
+        setStats({ ...counted, total: tags.length, customTags: otherTags });
+    };
 
     useEffect(() => {
-        if(endScreen && champs){
-            calculateStats()
+        if (endScreen && champs) {
+            calculateStats();
         }
-    },[endScreen, champs])
+    }, [endScreen, champs]);
 
     const getSplash = (champ) => {
         if (champ)
@@ -95,6 +101,40 @@ function LOLSmash() {
         setUsedDropdown(true);
     };
 
+    const clearSelections = () => {
+        getLeagueChamps(gameVersion).then((r) => {
+            var mapped = [];
+            for (var i in r.data)
+                mapped.push({ ...r.data[i], smash: smashData[r.data[i].id] });
+
+            setChamps(mapped);
+            setCookies("data", {});
+            setSmashData({})
+            setIndex(0);
+            setSkinNumber(0);
+            setClearModal(false)
+        });
+    };
+
+    const convertToCSV = (data) => {
+        const smashes = data.filter((c) => c[1]).map((c) => c[0]);
+        const passes = data.filter((c) => !c[1]).map((c) => c[0]);
+        return ["Smashes:", ...smashes, "\n", "Passes:", ...passes].join("\n");
+    };
+
+    const downloadCSV = () => {
+        const csvData = new Blob([convertToCSV(Object.entries(smashData))], {
+            type: "text/csv",
+        });
+        const csvURL = URL.createObjectURL(csvData);
+        const link = document.createElement("a");
+        link.href = csvURL;
+        link.download = `MyLeagueSmashes-${moment().format("MM-DD-YY")}.csv`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
     return (
         <div className="smashApp">
             <div className="cardContainer">
@@ -106,16 +146,38 @@ function LOLSmash() {
                     onChange={handleDropdownChange}
                 >
                     {champs.map((c, i) => {
-                        const smashedOrPassed = smashData[c.id] === undefined
-                        ? undefined
-                        : smashData?.[c.id]
+                        const smashedOrPassed =
+                            smashData[c.id] === undefined
+                                ? undefined
+                                : smashData?.[c.id];
                         return (
-                        <option value={i} style={{backgroundColor: smashedOrPassed === true ? "lightgreen" : smashedOrPassed === undefined ? '' : "lightcoral"}}>
-                            {c.name}{" "}
-                            {smashedOrPassed === true ? "(Smashed)" : smashedOrPassed === undefined ? '' : "(Passed)"}
-                        </option>
-                    )})}
+                            <option
+                                value={i}
+                                style={{
+                                    backgroundColor:
+                                        smashedOrPassed === true
+                                            ? "lightgreen"
+                                            : smashedOrPassed === undefined
+                                            ? ""
+                                            : "lightcoral",
+                                }}
+                            >
+                                {c.name}{" "}
+                                {smashedOrPassed === true
+                                    ? "(Smashed)"
+                                    : smashedOrPassed === undefined
+                                    ? ""
+                                    : "(Passed)"}
+                            </option>
+                        );
+                    })}
                 </select>
+                <input
+                 style={{marginLeft:'15px'}}
+                    type="button"
+                    value="Clear All Selections"
+                    onClick={() => setClearModal(true)}
+                />
                 <div className="buttonContainer">
                     <div className="champCard">
                         <div className="imageScroll">
@@ -201,12 +263,54 @@ function LOLSmash() {
                             &times;
                         </span>
                         <h1>Congrats!</h1>
-                        <p>Champions Smashed: {champs.filter((c) => c.smash).length}</p>
-                        <p>Champions Passed: {champs.filter((c) => !c.smash).length}</p>
+                        <p>
+                            Champions Smashed: {champs.filter((c) => c.smash).length}
+                        </p>
+                        <p>
+                            Champions Passed: {champs.filter((c) => !c.smash).length}
+                        </p>
                         <p className="statsText">Stats!</p>
-                        <p>Smashes by Gender: {stats["Male"]} males, {stats["Female"]} females, {stats["Nonbinary"]} nonbinary</p>
-                        {stats.customTags?.map(tag => (<p>{tag[0]}: {tag[1]} smashes</p>))}
-
+                        <p>
+                            Smashes by Gender: {stats["Male"]} males,{" "}
+                            {stats["Female"]} females, {stats["Nonbinary"]} nonbinary
+                        </p>
+                        {stats.customTags?.map((tag) => (
+                            <p>
+                                {tag[0]}: {tag[1]} smashes
+                            </p>
+                        ))}
+                        <input
+                            type="button"
+                            value="Download List"
+                            onClick={() => downloadCSV()}
+                        />
+                    </div>
+                </div>
+            ) : (
+                <></>
+            )}
+            {clearModal ? (
+                <div id="modal" class="modal">
+                    <div className="modal-content">
+                        <span className="close" onClick={() => setClearModal(false)}>
+                            &times;
+                        </span>
+                        <p>
+                            Are you sure you want to clear all selections for your
+                            smash or pass? This cant be undone, and includes clearing
+                            your saved progress if you left and came back.
+                        </p>
+                        <input
+                            type="button"
+                            value="Clear All"
+                            onClick={() => clearSelections()}
+                            style={{marginRight:'15px'}}
+                        />
+                        <input
+                            type="button"
+                            value="Cancel"
+                            onClick={() => setClearModal(false)}
+                        />
                     </div>
                 </div>
             ) : (
