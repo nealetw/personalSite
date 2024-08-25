@@ -8,7 +8,7 @@ import customTags from "./customTags.json";
 import "./LOLSmash.css";
 
 function LOLSmash() {
-    const versionNumber = "1.1";
+    const versionNumber = "1.1.1";
 
     const [cookies, setCookies] = useCookies(["data"]);
     const [gameVersion, setGameVersion] = useState();
