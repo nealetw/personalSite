@@ -92,7 +92,10 @@ overflow-y: scroll;
 .showInfoContent{
   padding: 0 2em
 }
-
+.statsText{
+  text-decoration: underline;
+  font-size: larger;
+}
 
 .signature{
   color: rgba(0, 0, 0, 0.541);

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
+import { getLeagueChampInfo, getLeagueChamps, getLeagueVersion } from "../../api";
+import customTags from './customTags.json';
+import _ from "lodash";
 
 import "./LOLSmash.css";
-import { getLeagueChampInfo, getLeagueChamps, getLeagueVersion } from "../../api";
 
 function LOLSmash() {
-    const versionNumber = "1.0";
+    const versionNumber = "1.1";
 
     const [cookies, setCookies] = useCookies(["data"]);
     const [gameVersion, setGameVersion] = useState();
@@ -13,6 +15,7 @@ function LOLSmash() {
     const [smashData, setSmashData] = useState(cookies.data ?? {});
     const [currentIndex, setIndex] = useState();
     const [endScreen, setEndScreen] = useState(false);
+    const [stats, setStats] = useState({});
     const [showInfo, setShowInfo] = useState(false);
     const [skinNumber, setSkinNumber] = useState(0);
     const [currentChamp, setCurrentChamp] = useState({});
@@ -28,7 +31,8 @@ function LOLSmash() {
                 var mapped = [];
 
                 for (var i in r.data)
-                    mapped.push({ ...r.data[i], smash: smashData[r.data[i].id] });
+                    mapped.push({ ...r.data[i], smash: smashData[r.data[i].id] })
+
                 setChamps(mapped);
                 if (mapped.every((c) => c.smash !== undefined)) {
                     setEndScreen(true);
@@ -44,6 +48,23 @@ function LOLSmash() {
                 for (var i in r.data) setCurrentChamp(r.data[i]);
             });
     }, [currentIndex]);
+
+    const calculateStats = () => {
+        const tags = []
+        for (var i of Object.keys(smashData)){
+            if(smashData[i]){
+                tags.push(customTags[i])}
+        }
+        const counted = _.countBy(tags.join(',').split(','))
+        const otherTags = Object.entries(counted).filter(c => c[0] !== 'Male' && c[0] !== 'Female' && c[0] !== 'Nonbinary').sort((a,b) => b[1] - a[1])
+        setStats({...counted, total:tags.length, customTags: otherTags })
+    }
+
+    useEffect(() => {
+        if(endScreen && champs){
+            calculateStats()
+        }
+    },[endScreen, champs])
 
     const getSplash = (champ) => {
         if (champ)
@@ -84,16 +105,16 @@ function LOLSmash() {
                     value={currentIndex}
                     onChange={handleDropdownChange}
                 >
-                    {champs.map((c, i) => (
-                        <option value={i}>
+                    {champs.map((c, i) => {
+                        const smashedOrPassed = smashData[c.id] === undefined
+                        ? undefined
+                        : smashData?.[c.id]
+                        return (
+                        <option value={i} style={{backgroundColor: smashedOrPassed === true ? "lightgreen" : smashedOrPassed === undefined ? '' : "lightcoral"}}>
                             {c.name}{" "}
-                            {smashData[c.id] === undefined
-                                ? ""
-                                : smashData?.[c.id]
-                                ? "(Smash)"
-                                : "(Pass)"}
+                            {smashedOrPassed === true ? "(Smashed)" : smashedOrPassed === undefined ? '' : "(Passed)"}
                         </option>
-                    ))}
+                    )})}
                 </select>
                 <div className="buttonContainer">
                     <div className="champCard">
@@ -180,8 +201,12 @@ function LOLSmash() {
                             &times;
                         </span>
                         <h1>Congrats!</h1>
-                        <p>Champs Smashed: {champs.filter((c) => c.smash).length}</p>
-                        <p>Champs Passed: {champs.filter((c) => !c.smash).length}</p>
+                        <p>Champions Smashed: {champs.filter((c) => c.smash).length}</p>
+                        <p>Champions Passed: {champs.filter((c) => !c.smash).length}</p>
+                        <p className="statsText">Stats!</p>
+                        <p>Smashes by Gender: {stats["Male"]} males, {stats["Female"]} females, {stats["Nonbinary"]} nonbinary</p>
+                        {stats.customTags?.map(tag => (<p>{tag[0]}: {tag[1]} smashes</p>))}
+
                     </div>
                 </div>
             ) : (
