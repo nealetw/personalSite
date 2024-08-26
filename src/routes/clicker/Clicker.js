@@ -7,6 +7,9 @@ import './Clicker.css';
 
 function Clicker() {
   const versionNumber = '1.0'
+  useEffect(() => {
+    document.title = 'Deer Clicker'
+  },[])
 
   const [cookies, setCookies] = useCookies(['data']);
 

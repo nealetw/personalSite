@@ -24,6 +24,7 @@ function LOLSmash() {
     const [usedDropdown, setUsedDropdown] = useState(false);
 
     useEffect(() => {
+        document.title = "League Smash or Pass"
         getLeagueVersion().then(setGameVersion);
     }, []);
 
