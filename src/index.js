@@ -2,50 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Main from "./routes/main/Main";
-import Clicker from "./routes/clicker/Clicker";
-//import Board from "./routes/board/Board";
 import reportWebVitals from "./reportWebVitals";
-import ErrorPage from "./routes/error-page";
-import LOLSmash from "./routes/LOLSmash/LOLSmash";
+import { siteRoutes } from "./routes/routes";
 
-const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <Main />,
-        errorElement: <ErrorPage />,
-    },
-    {
-        path: "/home",
-        element: <Main />,
-        errorElement: <ErrorPage />,
-    },
-    {
-        path: "/work",
-        element: <Main />,
-        errorElement: <ErrorPage />,
-    },
-    {
-        path: "/personal",
-        element: <Main />,
-        errorElement: <ErrorPage />,
-    },
-    {
-        path: "/clicker",
-        element: <Clicker />,
-        errorElement: <ErrorPage />,
-    },
-    {
-        path: "/smash",
-        element: <LOLSmash />,
-        errorElement: <ErrorPage />,
-    },
-    // {
-    //     path: "/board",
-    //     element: <Board />,
-    //     errorElement: <ErrorPage />,
-    // },
-]);
+const router = createBrowserRouter(siteRoutes);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>

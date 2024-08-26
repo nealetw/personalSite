@@ -1,0 +1,40 @@
+.siteMapContainer {
+    text-align: center;
+    font-family: monospace;
+    background-color: #1e2127;
+    height: 100vh;
+    overflow-y: hidden;
+    font-size: larger;
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    padding: 1em;
+    overflow-y: scroll;
+    color: white;
+}
+.buttonsContainer {
+    display: grid;
+    justify-content: space-evenly;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    padding: 3em;
+}
+.buttonImage{
+    width: 3em;
+}
+.routeButton {
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: large;
+    text-wrap: wrap;
+    width: 66%;
+    padding: 1.5em;
+    border: ridge black 4px;
+    border-radius: 16px;
+}
+.routeButton:hover {
+    text-decoration: none;
+    box-shadow: 1px 1px 12px 12px;
+}
