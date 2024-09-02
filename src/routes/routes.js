@@ -3,7 +3,16 @@ import LOLSmash from "./LOLSmash/LOLSmash";
 import Main from "./main/Main";
 import Clicker from "./clicker/Clicker";
 import SiteMap from "./sitemap/sitemap";
-//import Board from "./board/Board";
+import Board from "./board/Board";
+
+// {
+//     name:'Name that will be on site preview and tab,
+//     description:`Pretty much just on site preview`,
+//     color:['Color of text on site map square', 'background color of site map square'],
+//     path: "/",
+//     element: <Main />,
+//     errorElement: <ErrorPage />,
+// },
 
 export const siteRoutes = [
     {
@@ -60,9 +69,12 @@ export const siteRoutes = [
         element: <SiteMap />,
         errorElement: <ErrorPage />,
     },
-    // {
-    //     path: "/board",
-    //     element: <Board />,
-    //     errorElement: <ErrorPage />,
-    // },
+    {
+        name:`Some kind of forum`,
+        description:`A forum page I made just to try out making a backend. Its not great.`,
+        color:['black', 'white'],
+        path: "/board",
+        element: <Board />,
+        errorElement: <ErrorPage />,
+    },
 ]
