@@ -235,7 +235,7 @@ export default function Board() {
             )}
 
             <div className="posts">
-                {posts.map((post) => (
+                {posts?.map((post) => (
                     <BoardPost post={post} setPosts={setPosts} myUser={myUser} />
                 ))}
             </div>
