@@ -90,5 +90,5 @@ export const deleteReply = async (payload) => {
     return await apiCall(`/api/board/deleteReply/`, "put", payload);
 };
 export const leagueSmash = async (payload) => {
-    return await apiCall(`/api/smash/`, "post", payload);
+    return await apiCall(`/api/smash/`, "put", payload);
 };
