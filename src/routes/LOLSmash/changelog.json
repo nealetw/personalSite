@@ -1,0 +1,14 @@
+{
+    "1.2": [
+        "Added changelog (Wow!)",
+        "Added global stats, which also means I added a backend to this garbage",
+        "You can now see whos next on the right, opposite of the global stats"
+    ],
+    "1.1": [
+        "Added ending stats, which includes custom tags for each champ to make judgement easier"
+    ],
+    "1.0": [
+        "Initial thing, which already had dropdown choices, skin viewing, and any champ info.",
+        "This was initially made because i googled league smash or pass, and the only results were tier list makers, which are lame. I made this over the course of a few days, and then sent it to my friends, who then gave me lots of suggestions to make it better"
+    ]
+}

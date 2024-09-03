@@ -222,6 +222,19 @@ export default function Board() {
                             }
                         />
                     </div>
+                    <div className="inputAndLabel">
+                        <span>Pin Post?</span>
+                        <input
+                        type="checkbox"
+                            className="pinCheckbox"
+                            value={form.pinned}
+                            onChange={(e) =>
+                                handleFormChange({
+                                    pinned: e.target.value,
+                                })
+                            }
+                        />
+                    </div>
                     <input
                         className="submitButton"
                         onClick={handleSubmit}

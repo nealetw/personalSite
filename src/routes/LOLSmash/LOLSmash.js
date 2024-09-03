@@ -2,13 +2,19 @@ import React, { useEffect, useState } from "react";
 import _ from "lodash";
 import moment from "moment";
 import { useCookies } from "react-cookie";
-import { getLeagueChampInfo, getLeagueChamps, getLeagueVersion } from "../../api";
+import {
+    getLeagueChampInfo,
+    getLeagueChamps,
+    getLeagueVersion,
+    leagueSmash,
+} from "../../api";
 import customTags from "./customTags.json";
+import changeLog from "./changelog.json";
 
 import "./LOLSmash.css";
 
 function LOLSmash() {
-    const versionNumber = "1.1.1";
+    const versionNumber = Object.keys(changeLog)?.[0];
 
     const [cookies, setCookies] = useCookies(["data"]);
     const [gameVersion, setGameVersion] = useState();
@@ -17,14 +23,16 @@ function LOLSmash() {
     const [currentIndex, setIndex] = useState();
     const [endScreen, setEndScreen] = useState(false);
     const [clearModal, setClearModal] = useState(false);
+    const [changesModal, setChangesModal] = useState(false);
     const [stats, setStats] = useState({});
     const [showInfo, setShowInfo] = useState(false);
     const [skinNumber, setSkinNumber] = useState(0);
     const [currentChamp, setCurrentChamp] = useState({});
     const [usedDropdown, setUsedDropdown] = useState(false);
+    const [previousStats, setPreviousStats] = useState({});
 
     useEffect(() => {
-        document.title = "League Smash or Pass"
+        document.title = "League Smash or Pass";
         getLeagueVersion().then(setGameVersion);
     }, []);
 
@@ -80,6 +88,17 @@ function LOLSmash() {
 
     const handleButtonClick = (smash) => {
         const newChamps = [...champs];
+        const changed =
+            newChamps[currentIndex].smash !== smash &&
+            newChamps[currentIndex].smash !== undefined;
+        leagueSmash({
+            id: newChamps[currentIndex].id,
+            smash:
+                changed || newChamps[currentIndex].smash === undefined
+                    ? smash
+                    : null,
+            changed,
+        }).then(setPreviousStats);
         newChamps[currentIndex].smash = smash;
         setChamps(newChamps);
         const newData = { ...smashData };
@@ -99,6 +118,7 @@ function LOLSmash() {
         const d = document.getElementById("champSelect").value;
         setSkinNumber(0);
         setIndex(parseInt(d));
+        setPreviousStats([]);
         setUsedDropdown(true);
     };
 
@@ -110,10 +130,10 @@ function LOLSmash() {
 
             setChamps(mapped);
             setCookies("data", {});
-            setSmashData({})
+            setSmashData({});
             setIndex(0);
             setSkinNumber(0);
-            setClearModal(false)
+            setClearModal(false);
         });
     };
 
@@ -174,87 +194,117 @@ function LOLSmash() {
                     })}
                 </select>
                 <input
-                 style={{marginLeft:'15px'}}
+                    style={{ marginLeft: "15px" }}
                     type="button"
                     value="Clear All Selections"
                     onClick={() => setClearModal(true)}
                 />
-                <div className="buttonContainer">
-                    <div className="champCard">
-                        <div className="imageScroll">
-                            <input
-                                className="scrollButton"
-                                type="button"
-                                value="<"
-                                disabled={skinNumber === 0}
-                                onClick={() => setSkinNumber(skinNumber - 1)}
+                <div className="champCard">
+                    <div className="imageScroll">
+                        <input
+                            className="scrollButton"
+                            type="button"
+                            value="<"
+                            disabled={skinNumber === 0}
+                            onClick={() => setSkinNumber(skinNumber - 1)}
+                        />
+                        <a href={getSplash(currentChamp)} target="_blank">
+                            <img
+                                alt={currentChamp.skins?.[skinNumber]?.name}
+                                className="champImage"
+                                src={getSplash(currentChamp)}
+                                height={"600"}
                             />
-                            <a href={getSplash(currentChamp)} target="_blank">
-                                <img
-                                    alt={currentChamp.skins?.[skinNumber]?.name}
-                                    className="champImage"
-                                    src={getSplash(currentChamp)}
-                                    height={"600"}
-                                />
-                            </a>
-                            <input
-                                className="scrollButton"
-                                type="button"
-                                value=">"
-                                disabled={
-                                    skinNumber === currentChamp?.skins?.length - 1
-                                }
-                                onClick={() => setSkinNumber(skinNumber + 1)}
-                            />
-                        </div>
-                        <div className="infoBox">
-                            <p className="champName">
-                                {currentChamp.name}
-                                <span className="skinName">
-                                    {skinNumber !== 0
-                                        ? ` (${currentChamp.skins?.[skinNumber]?.name})`
-                                        : ""}
-                                </span>
-                            </p>
-                            <input
-                                type="checkbox"
-                                value="Show Info"
-                                onClick={() => setShowInfo(!showInfo)}
-                            />
-                            <span className="showInfoCheck">Show Info</span>
-                            {showInfo ? (
-                                <div className="showInfoContent">
-                                    <p>{currentChamp.lore}</p>
-                                    <p>
-                                        Playstyle:{" "}
-                                        {champs[currentIndex]?.tags.join(", ")}
-                                    </p>
-                                </div>
-                            ) : (
-                                <></>
-                            )}
-                        </div>
+                        </a>
+                        <input
+                            className="scrollButton"
+                            type="button"
+                            value=">"
+                            disabled={skinNumber === currentChamp?.skins?.length - 1}
+                            onClick={() => setSkinNumber(skinNumber + 1)}
+                        />
                     </div>
-                    <input
-                        type="button"
-                        value="Pass"
-                        className={
-                            smashData[currentChamp.id]
-                                ? "notSelectedButton"
-                                : "passButton"
-                        }
-                        onClick={() => handleButtonClick(false)}
-                    />
-                    <input
-                        type="button"
-                        value="Smash"
-                        className={
-                            smashData[currentChamp.id] === false
-                                ? "notSelectedButton"
-                                : "smashButton"
-                        }
-                        onClick={() => handleButtonClick(true)}
-                    />
+                    <div className="infoBox">
+                        <p className="champName">
+                            {currentChamp.name}
+                            <span className="skinName">
+                                {skinNumber !== 0
+                                    ? ` (${currentChamp.skins?.[skinNumber]?.name})`
+                                    : ""}
+                            </span>
+                        </p>
+                        <input
+                            type="checkbox"
+                            value="Show Info"
+                            onClick={() => setShowInfo(!showInfo)}
+                        />
+                        <span className="showInfoCheck">Show Info</span>
+                        {showInfo ? (
+                            <div className="showInfoContent">
+                                <p>{currentChamp.lore}</p>
+                                <p>
+                                    Playstyle:{" "}
+                                    {champs[currentIndex]?.tags.join(", ")}
+                                </p>
+                            </div>
+                        ) : (
+                            <></>
+                        )}
+                    </div>
+                </div>
+                <div className="buttonContainer">
+                    {currentIndex !== 0 && previousStats?.length ? (
+                        <div className="previousContainer">
+                            Global Stats for
+                            <br />
+                            {champs[parseInt(currentIndex) - 1]?.name}
+                            <br />
+                            Smash: {previousStats?.[0]}{" "}
+                            <span style={{ fontStyle: "italic", color: "#474747" }}>
+                                (
+                                {(previousStats?.[0] /
+                                    (previousStats?.[0] + previousStats?.[1])) *
+                                    100}
+                                %)
+                            </span>
+                            <br />
+                            Pass: {previousStats?.[1]}{" "}
+                            <span style={{ fontStyle: "italic", color: "#474747" }}>
+                                (
+                                {(previousStats?.[1] /
+                                    (previousStats?.[0] + previousStats?.[1])) *
+                                    100}
+                                %)
+                            </span>
+                        </div>
+                    ) : (
+                        <div className="previousContainer"></div>
+                    )}
+                    <div className="buttons">
+                        <input
+                            type="button"
+                            value="Pass"
+                            className={
+                                smashData[currentChamp.id]
+                                    ? "notSelectedButton"
+                                    : "passButton"
+                            }
+                            onClick={() => handleButtonClick(false)}
+                        />
+                        <input
+                            type="button"
+                            value="Smash"
+                            className={
+                                smashData[currentChamp.id] === false
+                                    ? "notSelectedButton"
+                                    : "smashButton"
+                            }
+                            onClick={() => handleButtonClick(true)}
+                        />
+                    </div>
+                    <div className="nextContainer">
+                        Next: {champs[parseInt(currentIndex) + 1]?.name ?? "???"}
+                    </div>
                 </div>
             </div>
             {endScreen ? (
@@ -305,7 +355,7 @@ function LOLSmash() {
                             type="button"
                             value="Clear All"
                             onClick={() => clearSelections()}
-                            style={{marginRight:'15px'}}
+                            style={{ marginRight: "15px" }}
                         />
                         <input
                             type="button"
@@ -317,12 +367,45 @@ function LOLSmash() {
             ) : (
                 <></>
             )}
+            {changesModal ? (
+                <div id="modal" class="modal">
+                    <div className="modal-content">
+                        <span
+                            className="close"
+                            onClick={() => setChangesModal(false)}
+                        >
+                            &times;
+                        </span>
+                        <h1>Changelog</h1>
+                        {Object.keys(changeLog).map((c) => (
+                            <>
+                                <ul className="changesList">
+                                    <h3>{c}</h3>
+                                    {changeLog[c].map((change) => (
+                                        <li>{change}</li>
+                                    ))}
+                                </ul>
+                            </>
+                        ))}
+                    </div>
+                </div>
+            ) : (
+                <></>
+            )}
             <span className="signature">
                 a dumb thing made by{" "}
                 <a className="signatureLink" href="https://nealetw.com/">
                     Tim Neale
                 </a>{" "}
-                (v. {versionNumber}, League v. {gameVersion})
+                (
+                <a
+                    className="signatureLink"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => setChangesModal(true)}
+                >
+                    v. {versionNumber}
+                </a>
+                , League v. {gameVersion})
             </span>
         </div>
     );

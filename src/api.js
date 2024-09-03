@@ -28,7 +28,7 @@ const apiCall = async (route, type, data) => {
             break;
     }
 
-    if (response?.error || response.data?.error) {
+    if (response?.error || response?.data?.error) {
         toast.error(response.data.message, {
             position: "top-center",
             autoClose: 5000,
@@ -88,4 +88,7 @@ export const deletePost = async (payload) => {
 };
 export const deleteReply = async (payload) => {
     return await apiCall(`/api/board/deleteReply/`, "put", payload);
+};
+export const leagueSmash = async (payload) => {
+    return await apiCall(`/api/smash/`, "post", payload);
 };
