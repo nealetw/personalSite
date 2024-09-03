@@ -111,7 +111,7 @@ export default function BoardPost({ post, setPosts, myUser }) {
             <div className="postChildren">
                 {post?.children
                     ?.slice(0, showReplies ? post.children.length : 2)
-                    .map((r) => (
+                    ?.map((r) => (
                         <div className="postReply">
                             <h5>
                                 {r?.user ?? "Unknown User"} ———{" "}
