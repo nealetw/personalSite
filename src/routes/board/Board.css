@@ -129,6 +129,7 @@
   border: 1px solid #888;
   width: 50%; /* Could be more or less, depending on screen size */
   max-height: 65%;
+  overflow-y: scroll;
 }
 
 /* The Close Button */
