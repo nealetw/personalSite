@@ -278,6 +278,7 @@ a{
   border-radius: 8px;
   width: 50%; /* Could be more or less, depending on screen size */
   max-height: 65%;
+  overflow-y: scroll;
 }
 
 /* The Close Button */

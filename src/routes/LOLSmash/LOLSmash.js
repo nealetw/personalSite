@@ -30,7 +30,7 @@ function LOLSmash() {
     const [currentChamp, setCurrentChamp] = useState({});
     const [usedDropdown, setUsedDropdown] = useState(false);
     const [previousStats, setPreviousStats] = useState({});
-    const [child, setChild] = useState(true);
+    const [child, setChild] = useState(false);
 
     useEffect(() => {
         document.title = "League Smash or Pass";

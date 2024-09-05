@@ -1,4 +1,6 @@
-{
+{"1.2.1": [
+        "added a sus thing if you click smash on sus people"
+    ],
     "1.2": [
         "Added changelog (Wow!)",
         "Added global stats, which also means I added a backend to this garbage",
