@@ -30,6 +30,7 @@ function LOLSmash() {
     const [currentChamp, setCurrentChamp] = useState({});
     const [usedDropdown, setUsedDropdown] = useState(false);
     const [previousStats, setPreviousStats] = useState({});
+    const [child, setChild] = useState(true);
 
     useEffect(() => {
         document.title = "League Smash or Pass";
@@ -105,6 +106,14 @@ function LOLSmash() {
         newData[currentChamp.id] = smash;
         setSmashData(newData);
         setCookies("data", newData);
+        if(smash && customTags[currentChamp.id].includes('Child')){
+            setChild(true)
+            const audio = new Audio(require('./../../vine-boom.mp3'))
+            audio.play()
+            setTimeout(() => {
+                setChild(false)
+            }, 1000);
+        }
         if (parseInt(currentIndex) + 1 === champs.length) {
             if (champs.every((c) => c.smash !== undefined)) setEndScreen(true);
             setIndex(0);
@@ -407,6 +416,10 @@ function LOLSmash() {
                 </a>
                 , League v. {gameVersion})
             </span>
+            <div className={child ? "susContainerIn" : "susContainerOut"}>
+                <img src={require('./../../images/sus.webp')} className="susImage" />
+                <p className="susText">BRO THAT WAS A CHILD</p>
+            </div>
         </div>
     );
 }

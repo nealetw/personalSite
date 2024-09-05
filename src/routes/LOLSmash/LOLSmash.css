@@ -137,3 +137,31 @@ overflow-y: scroll;
   padding-bottom: 1em;
   text-align: start;
 }
+.susContainerIn{
+  position: absolute;
+  display: flex;
+min-width: 50%;
+opacity: 80%;
+pointer-events: none;
+  flex-direction: column;
+  transition: 0.5s;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 16px;
+}
+.susContainerOut{
+  position: absolute;
+  display: flex;
+min-width: 50%;
+opacity: 0%;
+pointer-events: none;
+  flex-direction: column;
+  transition: 0.5s;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 16px;
+}
+.susText{
+  font-size: xx-large;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-style: oblique;
+  color:white
+}
