@@ -4,6 +4,7 @@ import Main from "./main/Main";
 import Clicker from "./clicker/Clicker";
 import SiteMap from "./sitemap/sitemap";
 import Board from "./board/Board";
+import Chatbot from "./Chatbot/chatbot";
 
 // {
 //     name:'Name that will be on site preview and tab,
@@ -67,6 +68,14 @@ export const siteRoutes = [
         description:`Tim Neale's Personal Projects, ranging from somewhat productive things, to slightly stupid or degenerate things.`,
         path: "/map",
         element: <SiteMap />,
+        errorElement: <ErrorPage />,
+    },
+    {
+        name:`Tim's dumb Chatbot`,
+        description:`Chatbot, basically just a custom wrapper for ChatGPT to try out its API and stuff.`,
+        path: "/chatbot",
+        hidden: true,
+        element: <Chatbot />,
         errorElement: <ErrorPage />,
     },
     // {

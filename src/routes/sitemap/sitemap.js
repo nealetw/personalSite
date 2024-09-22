@@ -16,7 +16,7 @@ function SiteMap() {
                 {siteRoutes
                     .filter(
                         (a, i) =>
-                            siteRoutes.findIndex((b) => b.name === a.name) === i
+                            siteRoutes.findIndex((b) => b.name === a.name) === i && !a.hidden
                     )
                     .map((route) => {
                         return (

@@ -1,0 +1,75 @@
+.container{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding:0;
+    margin:0;
+    background-color: skyblue;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+.contentThing{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    height: 60vh;
+}
+.prompts{
+    max-height: 50vh;
+    overflow-x: scroll;
+    flex-direction: column-reverse;
+    max-width: 50em;
+    text-wrap:balance;
+    overflow-y: visible;
+}
+.inputArea{
+    display: flex;
+    justify-content: center;
+}
+.textboxThing{
+    background-color:skyblue ;
+    border: 0;
+    border-radius: 8px;
+    padding: 8px;
+    margin-right: 5px;
+    justify-self: center;
+    max-width: 30em;
+    width: 30em;
+    box-shadow: inset 0em 0em .5em 0.1em rgba(134, 134, 134, 0.493);
+}
+.sendButton{
+    background-color:rgb(255, 255, 255) ;
+    border: 0;
+    border-radius: 8px;
+    padding: 8px;
+    margin-right: 5px;
+    box-shadow: inset 0em 0em .5em 0.1em rgba(134, 134, 134, 0.493);
+}
+.currentPrompt{
+    margin-top: 2em;
+    color:rgb(43, 43, 43);
+}
+.pastAssistPrompts{
+    color:rgb(75, 75, 75);
+    margin: 0;
+    margin-top: 1em;
+}
+.pastUserPrompt{
+    text-align: end;
+    color:rgba(75, 75, 75, 0.521);
+    margin: 0;
+    padding-top: 5px;
+}
+.replyArrow{
+    margin-right: 5px;
+    padding-top: 5px;
+    max-width: 20px;
+    opacity: 50%;
+    max-height: 20px;
+    color:rgba(75, 75, 75, 0.521);
+}
+.error{
+    color: red;
+}
