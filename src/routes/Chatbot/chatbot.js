@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { sendTextToApi } from "../../api";
 
 import "./chatbot.css";
-import { sendTextToApi } from "../../api";
 
 function Chatbot() {
     const [currentText, setText] = useState("");
@@ -11,6 +11,7 @@ function Chatbot() {
     const [msgNum, setMsgNum] = useState(1);
     const [error, setError] = useState("");
     const maxPrompts = 12;
+    const messagesEndRef = useRef()
 
     const input = document.getElementById("textbox");
     input?.addEventListener("keypress", function (event) {
@@ -22,7 +23,7 @@ function Chatbot() {
 
     useEffect(() => {
         sendTextToApi({ text: "", msgNum: 0 })
-            .then(setPrompts)
+            .then((r) => setPrompts(r.chat))
             .catch((e) =>
                 setError("The backend may be dead, please come back later")
             );
@@ -33,9 +34,9 @@ function Chatbot() {
         setLoading(true);
         sendTextToApi({ text: currentText, msgNum, messages: prompts })
             .then((r) => {
-                setMsgNum(msgNum + 1);
+                setMsgNum(r.msgNum);
                 setText("");
-                setPrompts(r);
+                setPrompts(r.chat);
                 setLoading(false);
             })
             .catch((e) => setError(e));
@@ -55,96 +56,108 @@ function Chatbot() {
                 )
                 .filter((p) => p.role !== "system")
         );
+        setTimeout( () => {
+            messagesEndRef?.current?.scrollIntoView({behavior:"smooth"})
+        }, 100);
     }, [prompts]);
 
     return (
         <div className="container">
-            <div className="contentThing">
-                <div className="prompts">
-                    {shownPrompts.map((p, i) =>
-                        i === shownPrompts.length - 1 ? (
-                            <p className="currentPrompt">
-                                {[...p.content].map((char, index) => {
-                                    const style = {
-                                        "animation-delay":
-                                            0.5 + index / maxPrompts + "s",
-                                    };
-                                    return (
-                                        <span
-                                            style={style}
-                                            aria-hidden="true"
-                                            key={index}
-                                        >
-                                            {char}
-                                        </span>
-                                    );
-                                })}
-                            </p>
-                        ) : (
-                            <div
-                                style={{
-                                    display: "flex",
-                                    justifyContent:
-                                        p.role === "user" ? "end" : "center",
-                                }}
-                            >
-                                {p.role === "user" ? (
-                                    <img
-                                        className="replyArrow"
-                                        style={{
-                                            opacity: `${
-                                                (100 -
-                                                    (100 / maxPrompts) *
-                                                        (shownPrompts.length - i)) /
-                                                2
-                                            }%`,
-                                        }}
-                                        src={require("./reply.png")}
-                                    />
-                                ) : (
-                                    <></>
-                                )}
-                                <p
-                                    className={
-                                        p.role === "user"
-                                            ? "pastUserPrompt"
-                                            : "pastAssistPrompts"
-                                    }
+            <img src={require("./clouds.jpg")} className="backgroundImage" />
+                <div className="contentThing">
+                    <div id="prompts" className="prompts">
+                        {shownPrompts.map((p, i) =>
+                            i === shownPrompts.length - 1 ? (
+                                <p className="currentPrompt">
+                                    {p.content.split("\n").map((char, index) => {
+                                        const style = {
+                                            "animation-delay":
+                                                0.5 + index / maxPrompts + "s",
+                                        };
+                                        return (
+                                            <p
+                                                style={style}
+                                                aria-hidden="true"
+                                                key={index}
+                                            >
+                                                {char}
+                                            </p>
+                                        );
+                                    })}
+                                </p>
+                            ) : (
+                                <div
                                     style={{
-                                        opacity: `${
-                                            100 -
-                                            (100 / maxPrompts) *
-                                                (shownPrompts.length - i)
-                                        }%`,
+                                        display: "flex",
+                                        justifyContent:
+                                            p.role === "user" ? "end" : "center",
                                     }}
                                 >
-                                    {p.content}
-                                </p>
-                            </div>
-                        )
-                    )}
-                </div>
+                                    {p.role === "user" ? (
+                                        <img
+                                            className="replyArrow"
+                                            style={{
+                                                opacity: `${
+                                                    (100 -
+                                                        (100 / maxPrompts) *
+                                                            (shownPrompts.length -
+                                                                i)) /
+                                                    2
+                                                }%`,
+                                            }}
+                                            src={require("./reply.png")}
+                                        />
+                                    ) : (
+                                        <></>
+                                    )}
+                                    <p
+                                        className={
+                                            p.role === "user"
+                                                ? "pastUserPrompt"
+                                                : "pastAssistPrompts"
+                                        }
+                                        style={{
+                                            opacity: `${
+                                                100 -
+                                                (100 / maxPrompts) *
+                                                    (shownPrompts.length - i)
+                                            }%`,
+                                        }}
+                                    >
+                                        {p.content}
+                                    </p>
+                                </div>
+                            )
+                        )}
+                        <div id="bottom" ref={messagesEndRef}/>
+                    </div>
 
-                <div className="inputArea">
-                    <input
-                        id="textbox"
-                        type="text"
-                        value={currentText}
-                        className="textboxThing"
-                        onChange={(e) => setText(e.target.value)}
-                        disabled={loading}
-                    />
-                    <input
-                        id="sendButton"
-                        type="button"
-                        className="sendButton"
-                        onClick={sendText}
-                        value={"Send"}
-                        disabled={loading}
-                    />
+                    <div className="inputArea">
+                        <input
+                            id="textbox"
+                            type="text"
+                            value={currentText}
+                            className="textboxThing"
+                            onChange={(e) => setText(e.target.value)}
+                            disabled={loading}
+                        />
+                        <input
+                            id="sendButton"
+                            type="button"
+                            className="sendButton"
+                            onClick={sendText}
+                            value={"Send"}
+                            disabled={loading}
+                        />
+                    </div>
+                    {error.length ? <p className="error">{error}</p> : <></>}
                 </div>
-                {error.length ? <p className="error">{error}</p> : <></>}
-            </div>
+                <span className="signature">
+                    a dumb thing made by{" "}
+                    <a className="signatureLink" href="https://nealetw.com/">
+                        Tim Neale
+                    </a>
+                </span>
         </div>
     );
 }

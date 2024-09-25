@@ -9,11 +9,13 @@
     text-align: center;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 .contentThing{
     display: flex;
     flex-direction: column;
     justify-content: end;
+    max-width: 90%;
     height: 60vh;
 }
 .prompts{
@@ -23,6 +25,12 @@
     max-width: 50em;
     text-wrap:balance;
     overflow-y: visible;
+    background-color: rgba(255, 255, 255, 0.15);
+    padding:0 1em;
+    margin-bottom: 5px;
+    border-radius: 16px;
+    box-shadow: rgba(255, 255, 255, 0.15) 0 0 3em 3em;
+
 }
 .inputArea{
     display: flex;
@@ -37,6 +45,7 @@
     justify-self: center;
     max-width: 30em;
     width: 30em;
+    text-align: center;
     box-shadow: inset 0em 0em .5em 0.1em rgba(134, 134, 134, 0.493);
 }
 .sendButton{
@@ -73,3 +82,31 @@
 .error{
     color: red;
 }
+
+.backgroundImage{
+        opacity: 0.14;
+        z-index: 0;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100%;
+        fill-rule: evenodd;
+        pointer-events: none;
+       object-fit: cover;
+}
+
+.signature{
+    color: rgba(0, 0, 0, 0.404);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-style: italic;
+    font-size: smaller;
+  }
+  .signatureLink{
+    color: inherit
+  }
+  .signatureLink:hover{
+    color:blue
+  }
