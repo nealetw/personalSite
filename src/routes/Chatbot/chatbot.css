@@ -59,6 +59,7 @@
 .currentPrompt{
     margin-top: 2em;
     color:rgb(43, 43, 43);
+    transition: all 2s;
 }
 .pastAssistPrompts{
     color:rgb(75, 75, 75);
