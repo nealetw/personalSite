@@ -271,9 +271,9 @@ function LOLSmash() {
                             Smash: {previousStats?.[0]}{" "}
                             <span style={{ fontStyle: "italic", color: "#474747" }}>
                                 (
-                                {(previousStats?.[0] /
+                                {((previousStats?.[0] /
                                     (previousStats?.[0] + previousStats?.[1])) *
-                                    100}
+                                    100)?.toFixed(2)}
                                 %)
                             </span>
                             <br />
