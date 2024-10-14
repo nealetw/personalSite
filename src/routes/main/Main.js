@@ -264,7 +264,7 @@ function Main() {
         </div>
       </div>
       <footer>
-        <p>Created By: Tim Neale</p>
+        <p><a href='/map'>Full site map</a> (Come here for all my other projects!)</p>
         <p>All Rights Reserved {new Date().getFullYear()}</p>
         <p><a href="mailto:neale.timw@gmail.com">neale.timw@gmail.com</a></p>
       </footer>
