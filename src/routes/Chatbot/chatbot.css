@@ -21,10 +21,10 @@
 .prompts{
     max-height: 50vh;
     overflow-x: visible;
+    overflow-y: auto;
     flex-direction: column-reverse;
     max-width: 50em;
     text-wrap:balance;
-    overflow-y: visible;
     background-color: rgba(255, 255, 255, 0.15);
     padding:0 1em;
     margin-bottom: 5px;
