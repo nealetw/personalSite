@@ -5,6 +5,7 @@ import Clicker from "./clicker/Clicker";
 import SiteMap from "./sitemap/sitemap";
 import Board from "./board/Board";
 import Chatbot from "./Chatbot/chatbot";
+import Daily from "./daily/daily";
 
 // {
 //     name:'Name that will be on site preview and tab,
@@ -79,6 +80,15 @@ export const siteRoutes = [
         element: <Chatbot />,
         errorElement: <ErrorPage />,
     },
+    // {
+    //     name:`Daily Word Game`,
+    //     description:`A daily game where you fill the board with words that fit the cross sections!`,
+    //     path: "/daily",
+    //     color:['black','white' ],
+    //     image:require('../images/chatbubble.png'),
+    //     element: <Daily />,
+    //     errorElement: <ErrorPage />,
+    // },
     // {
     //     name:`Some kind of forum`,
     //     description:`A forum page I made just to try out making a backend. Its not great.`,
