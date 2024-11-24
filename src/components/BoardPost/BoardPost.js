@@ -1,36 +1,42 @@
 import React, { useState } from "react";
 import { createPostReply, deletePost, deleteReply } from "../../api";
 import moment from "moment";
+import { DEFAULT_POST_COLORS } from "../../constants";
+import { HexColorInput, HexColorPicker } from "react-colorful";
 
 export default function BoardPost({ post, setPosts, myUser }) {
+    const defaultColors = DEFAULT_POST_COLORS;
     const [openReply, setOpenReply] = useState(false);
     const [imageError, setImageError] = useState(false);
     const [deleteModal, setDeleteModal] = useState(false);
+    const [extraOpen, setExtraOpen] = useState(false);
     const [showReplies, setShowReplies] = useState(
         post.children.length && post.children?.length <= 2
     );
-    const [reply, setReply] = useState({ text: "", image: "" });
+    const [reply, setReply] = useState({ text: "", image: "", name: '', color:DEFAULT_POST_COLORS.color });
 
     const submitReply = () => {
         if (reply.image?.length && !urlPattern.test(reply.image)) {
             setImageError("Image should be a valid image URL");
         } else{
-        createPostReply({ ...reply, parent: post.id, userId: myUser.id }).then(
+        createPostReply({ ...reply, parent: post.id, }).then(
             setPosts
-        );
-        setOpenReply(false);
-        setReply({ text: "", image: "" });
-    setImageError(false)}
+        ).then(() => {
+            setOpenReply(false);
+            setReply({ text: "", image: "" });
+        });
+        setImageError(false)}
     };
     const urlPattern = new RegExp("(?:https?)");
+    const plural = post.children?.length && post.children.length > 1
 
     return (
-        <div className="postContainer">
+        <div className="postContainer" style={{backgroundColor:post.background ?? defaultColors.background }}>
             <h5>
-                {post?.user ?? "Unknown User"} ——— Created:{" "}
+                <span style={{color:post.color ?? defaultColors.color}}>{post?.name ?? "Anonymous"}</span> ——— Created:{" "}
                 {moment(post.createdAt)?.format("hh:mma Do MMM YYYY")}{" "}
                 {post.children?.length
-                    ? `——— Last Reply: ${moment(post.updatedAt)?.format(
+                    ? ` —— ${post.children.length} Repl${plural ? 'ies' : 'y'} —— Last Reply: ${moment(post.updatedAt)?.format(
                           "hh:mma Do MMM YYYY"
                       )}`
                     : ""}
@@ -45,7 +51,7 @@ export default function BoardPost({ post, setPosts, myUser }) {
                 ) : (
                     <></>
                 )}
-                <div>
+                <div style={{color:post.contentColor ?? defaultColors.contentColor}}>
                     <h2>{post.subject ?? "No Subject"}</h2>
                     <p>{post.text ?? ""}</p>
                 </div>
@@ -55,6 +61,7 @@ export default function BoardPost({ post, setPosts, myUser }) {
                     <div className="inputAndLabel">
                         <span>Reply*</span>
                         <input
+                            placeholder="I think what you are saying is..."
                             className="submissionText"
                             value={reply.text}
                             onChange={(e) =>
@@ -72,6 +79,7 @@ export default function BoardPost({ post, setPosts, myUser }) {
                             )}
                         </span>
                         <input
+                            placeholder="A valid image link"
                             className="submissionText"
                             style={{
                                 backgroundColor: imageError?.length
@@ -84,20 +92,51 @@ export default function BoardPost({ post, setPosts, myUser }) {
                             }
                         />
                     </div>
+                    <div className="inputAndLabel">
+                        <span>Name</span>
+                        <input
+                            placeholder="Who is replying?"
+                            className="submissionText"
+                            value={reply.name}
+                            onChange={(e) =>
+                                setReply({ ...reply, name: e.target.value })
+                            }
+                        />
+                    </div>
+                    <div style={{display:'flex', flexDirection:'row'}}>
+                        <div className="inputAndLabel">
+                            <span>Custom Name Color?</span>
+                            <input
+                                type="checkbox"
+                                className="pinCheckbox"
+                                checked={extraOpen}
+                                onChange={(e) => setExtraOpen(e.target.checked)}
+                            />
+                        </div>
+                        {extraOpen ? 
+                            <div className="inputAndLabel">
+                                <span>
+                                    Name Color
+                                </span>
+                                <span style={{fontStyle:'italic', color:'grey'}}>{post.sharedColors ? ' Note: Replies on this post will inherit their other colors' : ''}</span>
+                                <HexColorPicker color={reply.color} onChange={c => setReply({ color: c })} />
+                                <HexColorInput color={reply.color} onChange={c => setReply({ color: c })} />
+                            </div> 
+                            : <></>}
+                    </div>
+                    
                     <input
                         type="button"
                         value="Submit"
                         onClick={() => submitReply()}
                     />
                 </div>
-            ) : myUser ? (
+            ) : (
                 <input
                     type="button"
                     value="Reply"
                     onClick={() => setOpenReply(true)}
                 />
-            ) : (
-                <></>
             )}
             {post.user && myUser?.username === post.user ?
                 <input
@@ -114,7 +153,7 @@ export default function BoardPost({ post, setPosts, myUser }) {
                     ?.map((r) => (
                         <div className="postReply">
                             <h5>
-                                {r?.user ?? "Unknown User"} ———{" "}
+                                {r?.name ?? "Anonymous"} ———{" "}
                                 {moment(r.createdAt)?.format("hh:mma Do MMM YYYY")}
                             </h5>
                             <div className="replyContent">
@@ -146,7 +185,7 @@ export default function BoardPost({ post, setPosts, myUser }) {
             ) : (
                 <input
                     type="button"
-                    value="See all replies..."
+                    value={`See ${post.children.length - 2} other repl${post.children.length - 2 > 1 ? 'ies' : 'y'}...`}
                     onClick={() => setShowReplies(true)}
                 />
             )}

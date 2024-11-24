@@ -1,0 +1,155 @@
+.boardContainer{
+    padding: 20px;
+    background-color:lightblue;
+    min-height: 100vh;
+  }
+  .errorText{
+    color: red
+  }
+  .posts{
+    display: flex;
+    flex-direction: column;
+  }
+  .submissionDiv{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    border: solid black 1px;
+    background-color: rgba(255, 246, 234, 0.479);
+    padding: 1em;
+    border-radius: 8px;
+    width:75%;
+    max-width: 90%;
+    margin-left: 10%;
+  }
+  .submitButton {
+    grid-area: 4 / 1 / 5 / 3;
+    margin-top: 0.5em; }
+  .submissionText {
+    grid-area: 1 / 2 / 3 / 3; }
+  .inputAndLabel{
+    display: flex;
+    padding: 0 0.5em;
+    flex-direction: column;
+  }
+  .postContainer{
+    margin: 1em;
+    padding:0.5em 1em;
+    border: black ridge 2px;
+    border-radius: 16px;
+    background-color: #ffcd8be6;
+    background-image: url("https://www.transparenttextures.com/patterns/textured-paper.png");
+    box-shadow: 0.25em 0.25em 0.15em 0.15em;
+    border-image: url(http://www.dca.fee.unicamp.br/~lotufo/Courses/ia-636-1995/alberto/proj5/html/pattern_Id.gif) 24 repeat;
+  }
+  .createAccountLink{
+    margin-left: 10%;
+    line-height: 10%;
+    cursor: pointer;
+  }
+  .loginButtons{
+    padding-top:15px;
+    padding-left: 5px;
+  }
+  .headerBar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .headerBarRight{
+    display: flex;
+    max-width: 50%;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .loginButton{
+    cursor: pointer;
+    height: 40px;
+    min-width: 50%;
+    max-width: 100%;
+    border: solid grey 1px;
+    border-radius: 8px;
+    background-color: rgb(255, 205, 139, 0.9);
+    background-image: url("https://www.transparenttextures.com/patterns/textured-paper.png");
+  }
+  .loginButton:hover{
+    cursor: pointer;
+    height: 40px;
+    min-width: 50%;
+    max-width: 100%;
+    border: solid grey 2px;
+    box-shadow: 0.01em 0.01em 0.01em 0.01em;
+    border-radius: 8px;
+    background-color: rgba(190, 154, 105, 0.9);
+    background-image: url("https://www.transparenttextures.com/patterns/textured-paper.png");
+  }
+  .postReply{
+    border: dotted grey 1px;
+    border-radius: 8px;
+    margin: 5px 0px;
+    padding-left: 1em;
+  }
+  .replyContainer{
+    max-width: 40em;
+    margin: 1em;
+  }
+  .postContent, .replyContent{
+    display: flex;
+    margin-bottom: 1em;
+  }
+  .postImage{
+    height: auto;
+    max-width: 20%;
+    max-height: 150px;
+    margin-right: 1em;
+    object-fit:contain;
+    border: solid 1px grey;
+    border-radius: 5px;
+  }
+  
+  .modal {
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%; /* Could be more or less, depending on screen size */
+    max-height: 65%;
+    overflow-y: scroll;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .colorpickersHorizontal {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: center;
+  }
+  
