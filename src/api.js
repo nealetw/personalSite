@@ -2,7 +2,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
 
-const ip = (await fetch("https://api.ipify.org?format=json")).json();
+const ip = (await axios.get("https://api.ipify.org?format=json"))?.data?.ip;
 const token = Cookies.get("login");
 const apiCall = async (route, type, data) => {
     const address =

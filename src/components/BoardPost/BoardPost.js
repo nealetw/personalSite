@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { createPostReply, deletePost, deleteReply } from "../../api";
+import { deletePost, deleteReply } from "../../api";
 import moment from "moment";
 import { DEFAULT_POST_COLORS } from "../../constants";
 import { HexColorInput, HexColorPicker } from "react-colorful";
 
-export default function BoardPost({ post, setPosts, myUser }) {
+export default function BoardPost({ post, setPosts, createReply }) {
     const defaultColors = DEFAULT_POST_COLORS;
+
     const [openReply, setOpenReply] = useState(false);
     const [imageError, setImageError] = useState(false);
     const [deleteModal, setDeleteModal] = useState(false);
@@ -13,32 +14,33 @@ export default function BoardPost({ post, setPosts, myUser }) {
     const [showReplies, setShowReplies] = useState(
         post.children.length && post.children?.length <= 2
     );
-    const [reply, setReply] = useState({ text: "", image: "", name: '', color:DEFAULT_POST_COLORS.color });
+    const [reply, setReply] = useState({ text: "", image: "", name: '', color: DEFAULT_POST_COLORS.color });
 
     const submitReply = () => {
         if (reply.image?.length && !urlPattern.test(reply.image)) {
             setImageError("Image should be a valid image URL");
-        } else{
-        createPostReply({ ...reply, parent: post.id, }).then(
-            setPosts
-        ).then(() => {
-            setOpenReply(false);
-            setReply({ text: "", image: "" });
-        });
-        setImageError(false)}
+        } else {
+            createReply({ ...reply, parent: post.id, }).then(
+                setPosts
+            ).then(() => {
+                setOpenReply(false);
+                setReply({ text: "", image: "" });
+            });
+            setImageError(false)
+        }
     };
     const urlPattern = new RegExp("(?:https?)");
     const plural = post.children?.length && post.children.length > 1
 
     return (
-        <div className="postContainer" style={{backgroundColor:post.background ?? defaultColors.background }}>
+        <div className="postContainer" style={{ backgroundColor: post.background ?? defaultColors.background }}>
             <h5>
-                <span style={{color:post.color ?? defaultColors.color}}>{post?.name ?? "Anonymous"}</span> ——— Created:{" "}
+                <span style={{ color: post.color ?? defaultColors.color }}>{post?.name?.length ? post.name : "Anonymous"}</span> ——— Created:{" "}
                 {moment(post.createdAt)?.format("hh:mma Do MMM YYYY")}{" "}
                 {post.children?.length
                     ? ` —— ${post.children.length} Repl${plural ? 'ies' : 'y'} —— Last Reply: ${moment(post.updatedAt)?.format(
-                          "hh:mma Do MMM YYYY"
-                      )}`
+                        "hh:mma Do MMM YYYY"
+                    )}`
                     : ""}
             </h5>
             <div className="postContent">
@@ -51,7 +53,7 @@ export default function BoardPost({ post, setPosts, myUser }) {
                 ) : (
                     <></>
                 )}
-                <div style={{color:post.contentColor ?? defaultColors.contentColor}}>
+                <div style={{ color: post.contentColor ?? defaultColors.contentColor }}>
                     <h2>{post.subject ?? "No Subject"}</h2>
                     <p>{post.text ?? ""}</p>
                 </div>
@@ -103,7 +105,7 @@ export default function BoardPost({ post, setPosts, myUser }) {
                             }
                         />
                     </div>
-                    <div style={{display:'flex', flexDirection:'row'}}>
+                    <div style={{ display: 'flex', flexDirection: 'row' }}>
                         <div className="inputAndLabel">
                             <span>Custom Name Color?</span>
                             <input
@@ -113,18 +115,18 @@ export default function BoardPost({ post, setPosts, myUser }) {
                                 onChange={(e) => setExtraOpen(e.target.checked)}
                             />
                         </div>
-                        {extraOpen ? 
+                        {extraOpen ?
                             <div className="inputAndLabel">
                                 <span>
                                     Name Color
                                 </span>
-                                <span style={{fontStyle:'italic', color:'grey'}}>{post.sharedColors ? ' Note: Replies on this post will inherit their other colors' : ''}</span>
-                                <HexColorPicker color={reply.color} onChange={c => setReply({ color: c })} />
-                                <HexColorInput color={reply.color} onChange={c => setReply({ color: c })} />
-                            </div> 
+                                <span style={{ fontStyle: 'italic', color: 'grey' }}>{post.sharedColors ? ' Note: Replies on this post will inherit their other colors' : ''}</span>
+                                <HexColorPicker color={reply.color} onChange={c => setReply({ ...reply, color: c })} />
+                                <HexColorInput color={reply.color} onChange={c => setReply({ ...reply, color: c })} />
+                            </div>
                             : <></>}
                     </div>
-                    
+
                     <input
                         type="button"
                         value="Submit"
@@ -138,22 +140,13 @@ export default function BoardPost({ post, setPosts, myUser }) {
                     onClick={() => setOpenReply(true)}
                 />
             )}
-            {post.user && myUser?.username === post.user ?
-                <input
-                    type="button"
-                    value="Delete Post"
-                    onClick={() => setDeleteModal({text:'Post', id: post.id})}
-                />
-             :
-                <></>
-            }
             <div className="postChildren">
                 {post?.children
                     ?.slice(0, showReplies ? post.children.length : 2)
                     ?.map((r) => (
                         <div className="postReply">
                             <h5>
-                                {r?.name ?? "Anonymous"} ———{" "}
+                                <span style={{ color: r.color ?? defaultColors.color }}>{r?.name?.length ? r.name : "Anonymous"}</span> ———{" "}
                                 {moment(r.createdAt)?.format("hh:mma Do MMM YYYY")}
                             </h5>
                             <div className="replyContent">
@@ -168,15 +161,6 @@ export default function BoardPost({ post, setPosts, myUser }) {
                                 )}
                                 <p>{r?.text ?? ""}</p>
                             </div>
-                            {r.user && myUser?.username === r.user ?
-                                <input
-                                    type="button"
-                                    value="Delete Reply"
-                                    onClick={() => setDeleteModal({text:'Reply', id: r.id})}
-                                />
-                            :
-                                <></>
-                            }
                         </div>
                     ))}
             </div>
@@ -195,24 +179,24 @@ export default function BoardPost({ post, setPosts, myUser }) {
                         <div className="inputAndLabel">
                             <p>Are you sure you want to delete this {deleteModal.text}?</p>
                             <div className="loginButtons">
-                            <input
-                                type="button"
-                                value="Delete"
-                                onClick={() => {
-                                    if(deleteModal.text === 'Post')
-                                        deletePost({id: deleteModal.id});
-                                    else
-                                        deleteReply({parentId: post.id, id: deleteModal.id})
-                                    setDeleteModal(false)
-                                }}
-                            />
-                            <input
-                                type="button"
-                                value="Cancel"
-                                onClick={() => {
-                                    setDeleteModal(false)
-                                }}
-                            />
+                                <input
+                                    type="button"
+                                    value="Delete"
+                                    onClick={() => {
+                                        if (deleteModal.text === 'Post')
+                                            deletePost({ id: deleteModal.id });
+                                        else
+                                            deleteReply({ parentId: post.id, id: deleteModal.id })
+                                        setDeleteModal(false)
+                                    }}
+                                />
+                                <input
+                                    type="button"
+                                    value="Cancel"
+                                    onClick={() => {
+                                        setDeleteModal(false)
+                                    }}
+                                />
                             </div>
                         </div>
                     </div>

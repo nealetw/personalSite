@@ -1,23 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useCookies } from "react-cookie";
 
 import {
     createBoardPost,
-    createUser,
+    createPostReply,
     getBoardPosts,
-    getUserByToken,
-    login,
 } from "../../api";
 import BoardPost from "../../components/BoardPost/BoardPost";
+import SubmissionForm from "../../components/BoardSubmissionForm/BoardSubForm";
 
 import "./Board.css";
-import SubmissionForm from "../../components/BoardSubmissionForm/BoardSubForm";
 
 export default function Board() {
     const [posts, setPosts] = useState([]);
-    const [myUser, setMyUser] = useState();
 
     useEffect(() => {
         getBoardPosts().then((r) => {
@@ -54,7 +50,7 @@ export default function Board() {
 
             <div className="posts">
                 {posts?.map((post) => (
-                    <BoardPost post={post} setPosts={setPosts} myUser={myUser} />
+                    <BoardPost post={post} setPosts={setPosts} createReply={createPostReply} />
                 ))}
             </div>
         </div>
