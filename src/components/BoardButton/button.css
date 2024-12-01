@@ -1,0 +1,10 @@
+.boardButton {
+    padding: 0.6em;
+    border-radius: 8px;
+    border-width: 2px;
+    border-style: ridge;
+    cursor: pointer;
+}
+.boardButton:hover {
+    filter: brightness(85%);
+}

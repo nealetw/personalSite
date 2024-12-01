@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { deletePost, deleteReply } from "../../api";
-import moment from "moment";
-import { DEFAULT_POST_COLORS } from "../../constants";
 import { HexColorInput, HexColorPicker } from "react-colorful";
+import moment from "moment";
+import { deletePost, deleteReply } from "../../api";
+import { DEFAULT_POST_COLORS } from "../../constants";
+import BoardButton from "../BoardButton/button";
+import BoardTextInput from "../BoardTextbox/textInput";
 
 export default function BoardPost({ post, setPosts, createReply }) {
     const defaultColors = DEFAULT_POST_COLORS;
@@ -60,61 +62,54 @@ export default function BoardPost({ post, setPosts, createReply }) {
             </div>
             {openReply ? (
                 <div className="replyContainer">
-                    <div className="inputAndLabel">
-                        <span>Reply*</span>
-                        <input
-                            placeholder="I think what you are saying is..."
-                            className="submissionText"
-                            value={reply.text}
-                            onChange={(e) =>
-                                setReply({ ...reply, text: e.target.value })
-                            }
-                        />
-                    </div>
-                    <div className="inputAndLabel">
-                        <span>
-                            Image{" "}
-                            {imageError?.length ? (
-                                <span className="errorText">({imageError})</span>
-                            ) : (
-                                ""
-                            )}
-                        </span>
-                        <input
-                            placeholder="A valid image link"
-                            className="submissionText"
-                            style={{
-                                backgroundColor: imageError?.length
-                                    ? "lightCoral"
-                                    : "",
-                            }}
-                            value={reply.image}
-                            onChange={(e) =>
-                                setReply({ ...reply, image: e.target.value })
-                            }
-                        />
-                    </div>
-                    <div className="inputAndLabel">
-                        <span>Name</span>
-                        <input
-                            placeholder="Who is replying?"
-                            className="submissionText"
-                            value={reply.name}
-                            onChange={(e) =>
-                                setReply({ ...reply, name: e.target.value })
-                            }
-                        />
-                    </div>
+                    <BoardTextInput
+                        label='Reply'
+                        required
+                        value={reply.text}
+                        placeholder="I think what you are saying is..."
+                        onChange={(e) =>
+                            setReply({ ...reply, text: e.target.value })
+                        }
+                    />
+                    <BoardTextInput
+                        label={
+                            <span>
+                                Image{" "}
+                                {imageError?.length ? (
+                                    <span className="errorText">({imageError})</span>
+                                ) : (
+                                    ""
+                                )}
+                            </span>}
+                            
+                        value={reply.image}
+                        placeholder="A valid image link"
+                        customStyle={{
+                            backgroundColor: imageError?.length
+                                ? "lightCoral"
+                                : "",
+                        }}
+                        onChange={(e) =>
+                            setReply({ ...reply, image: e.target.value })
+                        }
+                    />
+                    <BoardTextInput
+                        label='Name'
+                        value={reply.name}
+                        placeholder="Who is replying?"
+                        onChange={(e) =>
+                            setReply({ ...reply, name: e.target.value })
+                        }
+                    />
                     <div style={{ display: 'flex', flexDirection: 'row' }}>
-                        <div className="inputAndLabel">
-                            <span>Custom Name Color?</span>
-                            <input
-                                type="checkbox"
-                                className="pinCheckbox"
-                                checked={extraOpen}
-                                onChange={(e) => setExtraOpen(e.target.checked)}
-                            />
-                        </div>
+                        <BoardTextInput
+                            label='Custom Name Color?'
+                            value={extraOpen}
+                            checked={extraOpen}
+                            type="checkbox"
+                            customInputStyle={{ maxWidth: 'fit-content' }}
+                            onChange={(e) => setExtraOpen(e.target.checked)}
+                        />
                         {extraOpen ?
                             <div className="inputAndLabel">
                                 <span>
@@ -126,16 +121,13 @@ export default function BoardPost({ post, setPosts, createReply }) {
                             </div>
                             : <></>}
                     </div>
-
-                    <input
-                        type="button"
+                    <BoardButton
                         value="Submit"
-                        onClick={() => submitReply()}
+                        onClick={submitReply}
                     />
                 </div>
             ) : (
-                <input
-                    type="button"
+                <BoardButton
                     value="Reply"
                     onClick={() => setOpenReply(true)}
                 />
@@ -167,11 +159,10 @@ export default function BoardPost({ post, setPosts, createReply }) {
             {showReplies || post.children.length < 2 ? (
                 <></>
             ) : (
-                <input
-                    type="button"
-                    value={`See ${post.children.length - 2} other repl${post.children.length - 2 > 1 ? 'ies' : 'y'}...`}
-                    onClick={() => setShowReplies(true)}
-                />
+            <BoardButton
+                value={`See ${post.children.length - 2} other repl${post.children.length - 2 > 1 ? 'ies' : 'y'}...`}
+                onClick={() => setShowReplies(true)}
+            />
             )}
             {deleteModal ? (
                 <div id="modal" class="modal">

@@ -29,11 +29,6 @@
     margin-top: 0.5em; }
   .submissionText {
     grid-area: 1 / 2 / 3 / 3; }
-  .inputAndLabel{
-    display: flex;
-    padding: 0 0.5em;
-    flex-direction: column;
-  }
   .postContainer{
     margin: 1em;
     padding:0.5em 1em;

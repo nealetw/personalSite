@@ -1,0 +1,15 @@
+.textInput {
+    padding: 0.5em;
+    border-radius: 8px;
+    border-width: 2px;
+    border-style: ridge;
+}
+.boardButton:hover {
+    filter: brightness(85%);
+}
+.inputAndLabel{
+    display: flex;
+    padding: 0 0.5em;
+    flex-direction: column;
+    margin-bottom: 0.3em;
+  }

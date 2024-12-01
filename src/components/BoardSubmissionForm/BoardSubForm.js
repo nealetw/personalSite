@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { HexColorInput, HexColorPicker } from "react-colorful";
 import { DEFAULT_POST_COLORS } from "../../constants";
+import BoardTextInput from "../BoardTextbox/textInput";
 
 import "./submissionForm.css";
 
@@ -34,102 +35,89 @@ export default function SubmissionForm(props) {
             ...values,
         });
     };
-    
+
     return (
         <form className="submissionDiv">
-            <div className="inputAndLabel">
-                <span>Subject*</span>
-                <input
-                    className="submissionText"
-                    value={form.subject}
-                    onChange={(e) =>
-                        handleFormChange({
-                            subject: e.target.value,
-                        })
-                    }
-                />
-            </div>
+            <BoardTextInput
+                label='Subject'
+                value={form.subject}
+                onChange={(e) =>
+                    handleFormChange({
+                        subject: e.target.value,
+                    })
+                }
+            />
 
             <div className="submissionText">
-                <div className="inputAndLabel">
-                    <span>Text</span>
-                    <textarea
-                        className="submissionText"
-                        placeholder="Type whatever you want"
-                        value={form.text}
-                        onChange={(e) =>
-                            handleFormChange({
-                                text: e.target.value,
-                            })
-                        }
-                        rows="3"
-                    />
-                </div>
+                <BoardTextInput
+                    label='Text'
+                    value={form.text}
+                    area={true}
+                    rows={4}
+                    onChange={(e) =>
+                        handleFormChange({
+                            text: e.target.value,
+                        })
+                    }
+                />
             </div>
 
-            <div className="inputAndLabel">
-                <span>
-                    Image{" "}
-                    {imageError?.length ? (
-                        <span className="errorText">({imageError})</span>
-                    ) : (
-                        ""
-                    )}
-                </span>
-                <input
-                    className="submissionText"
-                    placeholder="Valid image url"
-                    value={form.image}
-                    style={{
-                        backgroundColor: imageError?.length
-                            ? "lightCoral"
-                            : "",
-                    }}
+            <BoardTextInput
+                label={
+                    <span>
+                        Image{" "}
+                        {imageError?.length ? (
+                            <span className="errorText">({imageError})</span>
+                        ) : (
+                            ""
+                        )}
+                    </span>
+                }
+                value={form.image}
+                placeholder="Valid image url"
+                onChange={(e) =>
+                    handleFormChange({
+                        image: e.target.value,
+                    })
+                }
+                customStyle={{
+                    backgroundColor: imageError?.length
+                        ? "lightCoral"
+                        : "",
+                }}
+            />
+            <BoardTextInput
+                label='Name'
+                value={form.name}
+                placeholder="Who is posting this?"
+                onChange={(e) =>
+                    handleFormChange({
+                        name: e.target.value,
+                    })
+                }
+            />
+            <BoardTextInput
+                label='Customize Colors?'
+                value={extraOpen}
+                checked={extraOpen}
+                type="checkbox"
+                customInputStyle={{ maxWidth: 'fit-content' }}
+                onChange={(e) => setExtraOpen(e.target.checked)}
+            />
+            {extraOpen ?
+                <BoardTextInput
+                    label='Replies share colors?'
+                    value={form.sharedColors}
+                    checked={form.sharedColors}
+                    type="checkbox"
+                    customInputStyle={{ maxWidth: 'fit-content' }}
                     onChange={(e) =>
                         handleFormChange({
-                            image: e.target.value,
-                        })
-                    }
+                            sharedColors: e.target.value,
+                        })}
                 />
-            </div>
-            <div className="inputAndLabel">
-                <span>Name</span>
-                <input
-                    className="submissionText"
-                    placeholder="Who is posting this?"
-                    value={form.name}
-                    onChange={(e) =>
-                        handleFormChange({
-                            name: e.target.value,
-                        })
-                    }
-                />
-            </div>
-            <div style={{display:'flex', flexDirection:'row'}}>
-                <div className="inputAndLabel">
-                    <span>Customize Colors?</span>
-                    <input
-                        type="checkbox"
-                        className="pinCheckbox"
-                        checked={extraOpen}
-                        onChange={(e) => setExtraOpen(e.target.checked)}
-                    />
-                </div>
-                {extraOpen ? 
-                    <div className="inputAndLabel">
-                        <span>Replies share colors?</span>
-                        <input
-                            type="checkbox"
-                            className="pinCheckbox"
-                            checked={form.sharedColors}
-                            onChange={(e) => 
-                                handleFormChange({
-                                    sharedColors: e.target.value,
-                                })}
-                        />
-                    </div> : <></>}
-            </div>
-            {extraOpen ? 
+                : <></>}
+            {extraOpen ?
                 <div className="colorpickersHorizontal">
                     <div className="inputAndLabel">
                         <span>
@@ -153,7 +141,7 @@ export default function SubmissionForm(props) {
                         <HexColorInput color={form.contentColor} onChange={c => handleFormChange({ contentColor: c })} />
                     </div>
                 </div> :
-            <></>}
+                <></>}
             <input
                 className="submitButton"
                 onClick={handlePostSubmit}
@@ -161,6 +149,6 @@ export default function SubmissionForm(props) {
                 type="button"
                 value="Submit"
             />
-        </form>
+        </form >
     )
 }
