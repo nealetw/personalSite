@@ -1,580 +1,174 @@
 {
-    "Aatrox": [
-        "Darkin",
-        "Male"
-    ],
-    "Ahri": [
-        "Furry",
-        "Female"
-    ],
-    "Akali": [
-        "Female"
-    ],
-    "Akshan": [
-        "Male"
-    ],
-    "Alistar": [
-        "Furry",
-        "Male"
-    ],
-    "Amumu": [
-        "Yordle",
-        "Male"
-    ],
-    "Anivia": [
-        "Furry",
-        "Female"
-    ],
-    "Annie": [
-        "Child",
-        "Female"
-    ],
-    "Aphelios": [
-        "Male"
-    ],
-    "Ashe": [
-        "Male"
-    ],
-    "AurelionSol": [
-        "Male"
-    ],
-    "Aurora": [
-        "Furry",
-        "Female"
-    ],
-    "Azir": [
-        "Furry",
-        "Male"
-    ],
-    "Bard": [
-        "Nonbinary",
-        "Not even biological at this point"
-    ],
-    "Belveth": [
-        "Female"
-    ],
-    "Blitzcrank": [
-        "Nonbinary",
-        "Not even biological at this point"
-    ],
-    "Brand": [
-        "Male"
-    ],
-    "Braum": [
-        "Male"
-    ],
-    "Briar": [
-        "Female"
-    ],
-    "Caitlyn": [
-        "Female"
-    ],
-    "Camille": [
-        "Female"
-    ],
-    "Cassiopeia": [
-        "Furry",
-        "Female"
-    ],
-    "Chogath": [
-        "Male",
-        "Monster"
-    ],
-    "Corki": [
-        "Yordle",
-        "Male"
-    ],
-    "Darius": [
-        "Male"
-    ],
-    "Diana": [
-        "Female"
-    ],
-    "Draven": [
-        "Male"
-    ],
-    "DrMundo": [
-        "Male"
-    ],
-    "Ekko": [
-        "Male"
-    ],
-    "Elise": [
-        "Female"
-    ],
-    "Evelynn": [
-        "Female"
-    ],
-    "Ezreal": [
-        "Male"
-    ],
+    "Aatrox": ["Darkin", "Male"],
+    "Ahri": ["Furry", "Female"],
+    "Akali": ["Female"],
+    "Akshan": ["Male"],
+    "Alistar": ["Furry", "Male"],
+    "Amumu": ["Yordle", "Male"],
+    "Anivia": ["Furry", "Female"],
+    "Annie": ["Child", "Female"],
+    "Aphelios": ["Male"],
+    "Ashe": ["Male"],
+    "AurelionSol": ["Male"],
+    "Aurora": ["Furry", "Female"],
+    "Azir": ["Furry", "Male"],
+    "Bard": ["Nonbinary", "Not even biological at this point"],
+    "Belveth": ["Female"],
+    "Blitzcrank": ["Nonbinary", "Not even biological at this point"],
+    "Brand": ["Male"],
+    "Braum": ["Male"],
+    "Briar": ["Female"],
+    "Caitlyn": ["Female"],
+    "Camille": ["Female"],
+    "Cassiopeia": ["Furry", "Female"],
+    "Chogath": ["Male", "Monster"],
+    "Corki": ["Yordle", "Male"],
+    "Darius": ["Male"],
+    "Diana": ["Female"],
+    "Draven": ["Male"],
+    "DrMundo": ["Male"],
+    "Ekko": ["Male"],
+    "Elise": ["Female"],
+    "Evelynn": ["Female"],
+    "Ezreal": ["Male"],
     "Fiddlesticks": [
         "Nonbinary",
         "Monster",
         "Not even biological at this point"
     ],
-    "Fiora": [
-        "Female"
-    ],
-    "Fizz": [
-        "Furry",
-        "Yordle",
-        "Male"
-    ],
-    "Galio": [
-        "Male",
-        "Not even biological at this point"
-    ],
-    "Gangplank": [
-        "Male"
-    ],
-    "Garen": [
-        "Male"
-    ],
-    "Gnar": [
-        "Furry",
-        "Yordle",
-        "Male"
-    ],
-    "Gragas": [
-        "Male"
-    ],
-    "Graves": [
-        "Male"
-    ],
-    "Gwen": [
-        "Female"
-    ],
-    "Hecarim": [
-        "Furry",
-        "Male"
-    ],
-    "Heimerdinger": [
-        "Yordle",
-        "Male"
-    ],
-    "Hwei": [
-        "Male"
-    ],
-    "Illaoi": [
-        "Female"
-    ],
-    "Irelia": [
-        "Female"
-    ],
-    "Ivern": [
-        "Male"
-    ],
-    "Janna": [
-        "Female"
-    ],
-    "JarvanIV": [
-        "Male"
-    ],
-    "Jax": [
-        "Male"
-    ],
-    "Jayce": [
-        "Male"
-    ],
-    "Jhin": [
-        "Male"
-    ],
-    "Jinx": [
-        "Female"
-    ],
-    "Kaisa": [
-        "Female"
-    ],
-    "Kalista": [
-        "Female"
-    ],
-    "Karma": [
-        "Female"
-    ],
-    "Karthus": [
-        "Male"
-    ],
-    "Kassadin": [
-        "Male"
-    ],
-    "Katarina": [
-        "Female"
-    ],
-    "Kayle": [
-        "Female"
-    ],
-    "Kayn": [
-        "Darkin",
-        "Male"
-    ],
-    "Kennen": [
-        "Yordle",
-        "Male"
-    ],
-    "Khazix": [
-        "Male",
-        "Furry",
-        "Monster"
-    ],
-    "Kindred": [
-        "Furry",
-        "Female"
-    ],
-    "Kled": [
-        "Yordle",
-        "Male"
-    ],
-    "KogMaw": [
-        "Male",
-        "Monster"
-    ],
-    "KSante": [
-        "Male"
-    ],
-    "Leblanc": [
-        "Female"
-    ],
-    "LeeSin": [
-        "Male"
-    ],
-    "Leona": [
-        "Female"
-    ],
-    "Lillia": [
-        "Furry",
-        "Female"
-    ],
-    "Lissandra": [
-        "Female"
-    ],
-    "Lucian": [
-        "Male"
-    ],
-    "Lulu": [
-        "Yordle",
-        "Female"
-    ],
-    "Lux": [
-        "Female"
-    ],
-    "Malphite": [
-        "Male"
-    ],
-    "Malzahar": [
-        "Male",
-        "Not even biological at this point"
-    ],
-    "Maokai": [
-        "Male"
-    ],
-    "MasterYi": [
-        "Male"
-    ],
-    "Milio": [
-        "Child",
-        "Male"
-    ],
-    "MissFortune": [
-        "Female"
-    ],
-    "MonkeyKing": [
-        "Male"
-    ],
-    "Mordekaiser": [
-        "Male",
-        "Not even biological at this point"
-    ],
-    "Morgana": [
-        "Female"
-    ],
-    "Naafiri": [
-        "Furry",
-        "Darkin",
-        "Female"
-    ],
-    "Nami": [
-        "Furry",
-        "Female"
-    ],
-    "Nasus": [
-        "Furry",
-        "Male"
-    ],
-    "Nautilus": [
-        "Male",
-        "Not even biological at this point"
-    ],
-    "Neeko": [
-        "Furry",
-        "Female"
-    ],
-    "Nidalee": [
-        "Furry",
-        "Female"
-    ],
-    "Nilah": [
-        "Female"
-    ],
-    "Nocturne": [
-        "Male",
-        "Monster"
-    ],
-    "Nunu": [
-        "Child",
-        "Male"
-    ],
-    "Olaf": [
-        "Male"
-    ],
-    "Orianna": [
-        "Female",
-        "Not even biological at this point"
-    ],
-    "Ornn": [
-        "Furry",
-        "Male"
-    ],
-    "Pantheon": [
-        "Male"
-    ],
-    "Poppy": [
-        "Yordle",
-        "Female"
-    ],
-    "Pyke": [
-        "Male"
-    ],
-    "Qiyana": [
-        "Female"
-    ],
-    "Quinn": [
-        "Female"
-    ],
-    "Rakan": [
-        "Furry",
-        "Male"
-    ],
-    "Rammus": [
-        "Male"
-    ],
-    "RekSai": [
-        "Female",
-        "Monster"
-    ],
-    "Rell": [
-        "Female"
-    ],
-    "Renata": [
-        "Female"
-    ],
-    "Renekton": [
-        "Male",
-        "Furry"
-    ],
-    "Rengar": [
-        "Furry",
-        "Male"
-    ],
-    "Riven": [
-        "Female"
-    ],
-    "Rumble": [
-        "Yordle",
-        "Male"
-    ],
-    "Ryze": [
-        "Male"
-    ],
-    "Samira": [
-        "Female"
-    ],
-    "Sejuani": [
-        "Female"
-    ],
-    "Senna": [
-        "Female"
-    ],
-    "Seraphine": [
-        "Female"
-    ],
-    "Sett": [
-        "Male"
-    ],
-    "Shaco": [
-        "Male"
-    ],
-    "Shen": [
-        "Male"
-    ],
-    "Shyvana": [
-        "Furry",
-        "Female"
-    ],
-    "Singed": [
-        "Male"
-    ],
-    "Sion": [
-        "Male"
-    ],
-    "Sivir": [
-        "Female"
-    ],
-    "Skarner": [
-        "Male",
-        "Monster"
-    ],
-    "Smolder": [
-        "Furry",
-        "Child",
-        "Male"
-    ],
-    "Sona": [
-        "Female"
-    ],
-    "Soraka": [
-        "Furry",
-        "Female"
-    ],
-    "Swain": [
-        "Male"
-    ],
-    "Sylas": [
-        "Male"
-    ],
-    "Syndra": [
-        "Female"
-    ],
-    "TahmKench": [
-        "Furry",
-        "Male",
-        "Monster"
-    ],
-    "Taliyah": [
-        "Female"
-    ],
-    "Talon": [
-        "Male"
-    ],
-    "Taric": [
-        "Male"
-    ],
-    "Teemo": [
-        "Furry",
-        "Yordle",
-        "Male"
-    ],
-    "Thresh": [
-        "Male",
-        "Not even biological at this point"
-    ],
-    "Tristana": [
-        "Yordle",
-        "Female"
-    ],
-    "Trundle": [
-        "Male"
-    ],
-    "Tryndamere": [
-        "Male"
-    ],
-    "TwistedFate": [
-        "Male"
-    ],
-    "Twitch": [
-        "Furry",
-        "Male"
-    ],
-    "Udyr": [
-        "Male"
-    ],
-    "Urgot": [
-        "Male"
-    ],
-    "Varus": [
-        "Darkin",
-        "Male"
-    ],
-    "Vayne": [
-        "Female"
-    ],
-    "Veigar": [
-        "Yordle",
-        "Male"
-    ],
-    "Velkoz": [
-        "Male",
-        "Monster"
-    ],
-    "Vex": [
-        "Yordle",
-        "Female"
-    ],
-    "Vi": [
-        "Female"
-    ],
-    "Viego": [
-        "Male"
-    ],
-    "Viktor": [
-        "Male"
-    ],
-    "Vladimir": [
-        "Male"
-    ],
-    "Volibear": [
-        "Furry",
-        "Male"
-    ],
-    "Warwick": [
-        "Furry",
-        "Male"
-    ],
-    "Xayah": [
-        "Furry",
-        "Female"
-    ],
-    "Xerath": [
-        "Male",
-        "Not even biological at this point"
-    ],
-    "XinZhao": [
-        "Male"
-    ],
-    "Yasuo": [
-        "Male"
-    ],
-    "Yone": [
-        "Male"
-    ],
-    "Yorick": [
-        "Male"
-    ],
-    "Yuumi": [
-        "Furry",
-        "Female"
-    ],
-    "Zac": [
-        "Male"
-    ],
-    "Zed": [
-        "Male"
-    ],
-    "Zeri": [
-        "Female"
-    ],
-    "Ziggs": [
-        "Yordle",
-        "Male"
-    ],
-    "Zilean": [
-        "Male"
-    ],
-    "Zoe": [
-        "Child",
-        "Female"
-    ],
-    "Zyra": [
-        "Female"
-    ]
+    "Fiora": ["Female"],
+    "Fizz": ["Furry", "Yordle", "Male"],
+    "Galio": ["Male", "Not even biological at this point"],
+    "Gangplank": ["Male"],
+    "Garen": ["Male"],
+    "Gnar": ["Furry", "Yordle", "Male"],
+    "Gragas": ["Male"],
+    "Graves": ["Male"],
+    "Gwen": ["Female"],
+    "Hecarim": ["Furry", "Male"],
+    "Heimerdinger": ["Yordle", "Male"],
+    "Hwei": ["Male"],
+    "Illaoi": ["Female"],
+    "Irelia": ["Female"],
+    "Ivern": ["Male"],
+    "Janna": ["Female"],
+    "JarvanIV": ["Male"],
+    "Jax": ["Male"],
+    "Jayce": ["Male"],
+    "Jhin": ["Male"],
+    "Jinx": ["Female"],
+    "Kaisa": ["Female"],
+    "Kalista": ["Female"],
+    "Karma": ["Female"],
+    "Karthus": ["Male"],
+    "Kassadin": ["Male"],
+    "Katarina": ["Female"],
+    "Kayle": ["Female"],
+    "Kayn": ["Darkin", "Male"],
+    "Kennen": ["Yordle", "Male"],
+    "Khazix": ["Male", "Furry", "Monster"],
+    "Kindred": ["Furry", "Female"],
+    "Kled": ["Yordle", "Male"],
+    "KogMaw": ["Male", "Monster"],
+    "KSante": ["Male"],
+    "Leblanc": ["Female"],
+    "LeeSin": ["Male"],
+    "Leona": ["Female"],
+    "Lillia": ["Furry", "Female"],
+    "Lissandra": ["Female"],
+    "Lucian": ["Male"],
+    "Lulu": ["Yordle", "Female"],
+    "Lux": ["Female"],
+    "Malphite": ["Male"],
+    "Malzahar": ["Male", "Not even biological at this point"],
+    "Maokai": ["Male"],
+    "MasterYi": ["Male"],
+    "Milio": ["Child", "Male"],
+    "MissFortune": ["Female"],
+    "MonkeyKing": ["Male"],
+    "Mordekaiser": ["Male", "Not even biological at this point"],
+    "Morgana": ["Female"],
+    "Naafiri": ["Furry", "Darkin", "Female"],
+    "Nami": ["Furry", "Female"],
+    "Nasus": ["Furry", "Male"],
+    "Nautilus": ["Male", "Not even biological at this point"],
+    "Neeko": ["Furry", "Female"],
+    "Nidalee": ["Furry", "Female"],
+    "Nilah": ["Female"],
+    "Nocturne": ["Male", "Monster"],
+    "Nunu": ["Child", "Male"],
+    "Olaf": ["Male"],
+    "Orianna": ["Female", "Not even biological at this point"],
+    "Ornn": ["Furry", "Male"],
+    "Pantheon": ["Male"],
+    "Poppy": ["Yordle", "Female"],
+    "Pyke": ["Male"],
+    "Qiyana": ["Female"],
+    "Quinn": ["Female"],
+    "Rakan": ["Furry", "Male"],
+    "Rammus": ["Male"],
+    "RekSai": ["Female", "Monster"],
+    "Rell": ["Female"],
+    "Renata": ["Female"],
+    "Renekton": ["Male", "Furry"],
+    "Rengar": ["Furry", "Male"],
+    "Riven": ["Female"],
+    "Rumble": ["Yordle", "Male"],
+    "Ryze": ["Male"],
+    "Samira": ["Female"],
+    "Sejuani": ["Female"],
+    "Senna": ["Female"],
+    "Seraphine": ["Female"],
+    "Sett": ["Male"],
+    "Shaco": ["Male"],
+    "Shen": ["Male"],
+    "Shyvana": ["Furry", "Female"],
+    "Singed": ["Male"],
+    "Sion": ["Male"],
+    "Sivir": ["Female"],
+    "Skarner": ["Male", "Monster"],
+    "Smolder": ["Furry", "Child", "Male"],
+    "Sona": ["Female"],
+    "Soraka": ["Furry", "Female"],
+    "Swain": ["Male"],
+    "Sylas": ["Male"],
+    "Syndra": ["Female"],
+    "TahmKench": ["Furry", "Male", "Monster"],
+    "Taliyah": ["Female"],
+    "Talon": ["Male"],
+    "Taric": ["Male"],
+    "Teemo": ["Furry", "Yordle", "Male"],
+    "Thresh": ["Male", "Not even biological at this point"],
+    "Tristana": ["Yordle", "Female"],
+    "Trundle": ["Male"],
+    "Tryndamere": ["Male"],
+    "TwistedFate": ["Male"],
+    "Twitch": ["Furry", "Male"],
+    "Udyr": ["Male"],
+    "Urgot": ["Male"],
+    "Varus": ["Darkin", "Male"],
+    "Vayne": ["Female"],
+    "Veigar": ["Yordle", "Male"],
+    "Velkoz": ["Male", "Monster"],
+    "Vex": ["Yordle", "Female"],
+    "Vi": ["Female"],
+    "Viego": ["Male"],
+    "Viktor": ["Male"],
+    "Vladimir": ["Male"],
+    "Volibear": ["Furry", "Male"],
+    "Warwick": ["Furry", "Male"],
+    "Xayah": ["Furry", "Female"],
+    "Xerath": ["Male", "Not even biological at this point"],
+    "XinZhao": ["Male"],
+    "Yasuo": ["Male"],
+    "Yone": ["Male"],
+    "Yorick": ["Male"],
+    "Yuumi": ["Furry", "Female"],
+    "Zac": ["Male"],
+    "Zed": ["Male"],
+    "Zeri": ["Female"],
+    "Ziggs": ["Yordle", "Male"],
+    "Zilean": ["Male"],
+    "Zoe": ["Child", "Female"],
+    "Zyra": ["Female"]
 }

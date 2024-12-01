@@ -1,16 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React, { useEffect, useState } from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import {
-    createBoardPost,
-    createPostReply,
-    getBoardPosts,
-} from "../../api";
-import BoardPost from "../../components/BoardPost/BoardPost";
-import SubmissionForm from "../../components/BoardSubmissionForm/BoardSubForm";
+import { createBoardPost, createPostReply, getBoardPosts } from '../../api';
+import BoardPost from '../../components/BoardPost/BoardPost';
+import SubmissionForm from '../../components/BoardSubmissionForm/BoardSubForm';
 
-import "./Board.css";
+import './Board.css';
 
 export default function Board() {
     const [posts, setPosts] = useState([]);
@@ -50,7 +46,11 @@ export default function Board() {
 
             <div className="posts">
                 {posts?.map((post) => (
-                    <BoardPost post={post} setPosts={setPosts} createReply={createPostReply} />
+                    <BoardPost
+                        post={post}
+                        setPosts={setPosts}
+                        createReply={createPostReply}
+                    />
                 ))}
             </div>
         </div>

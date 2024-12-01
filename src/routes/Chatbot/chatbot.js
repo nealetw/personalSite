@@ -1,32 +1,33 @@
-import React, { useEffect, useRef, useState } from "react";
-import { sendTextToApi } from "../../api";
+import React, { useEffect, useRef, useState } from 'react';
+import { sendTextToApi } from '../../api';
+import SiteSignature from '../../components/SiteSignature/signature';
 
-import "./chatbot.css";
+import './chatbot.css';
 
 function Chatbot() {
-    const [currentText, setText] = useState("");
+    const [currentText, setText] = useState('');
     const [prompts, setPrompts] = useState([]);
     const [shownPrompts, setShownPrompts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [hidden, setHidden] = useState(false);
     const [msgNum, setMsgNum] = useState(1);
-    const [error, setError] = useState("");
+    const [error, setError] = useState('');
     const maxPrompts = 12;
     const messagesEndRef = useRef();
 
-    const input = document.getElementById("textbox");
-    input?.addEventListener("keypress", function (event) {
-        if (event.key === "Enter") {
+    const input = document.getElementById('textbox');
+    input?.addEventListener('keypress', function (event) {
+        if (event.key === 'Enter') {
             event.preventDefault();
-            document.getElementById("sendButton").click();
+            document.getElementById('sendButton').click();
         }
     });
 
     useEffect(() => {
-        sendTextToApi({ text: "", msgNum: 0 })
+        sendTextToApi({ text: '', msgNum: 0 })
             .then((r) => setPrompts(r.chat))
             .catch((e) =>
-                setError("The backend may be dead, please come back later")
+                setError('The backend may be dead, please come back later')
             );
     }, []);
 
@@ -37,7 +38,7 @@ function Chatbot() {
             .then((r) => {
                 setHidden(true);
                 setMsgNum(r.msgNum);
-                setText("");
+                setText('');
                 setPrompts(r.chat);
                 setLoading(false);
                 setTimeout(() => setHidden(false), 100);
@@ -46,7 +47,7 @@ function Chatbot() {
     };
 
     useEffect(() => {
-        if (!loading) document.getElementById("textbox").focus();
+        if (!loading) document.getElementById('textbox').focus();
     }, [loading]);
 
     useEffect(() => {
@@ -57,22 +58,22 @@ function Chatbot() {
                         prompts.length < maxPrompts ||
                         prompts.length - i < maxPrompts
                 )
-                .filter((p) => p.role !== "system")
+                .filter((p) => p.role !== 'system')
         );
         setTimeout(() => {
-            messagesEndRef?.current?.scrollIntoView({ behavior: "smooth" });
+            messagesEndRef?.current?.scrollIntoView({ behavior: 'smooth' });
         }, 100);
     }, [prompts]);
 
     return (
         <div className="container">
-            <img src={require("./clouds.jpg")} className="backgroundImage" />
+            <img src={require('./clouds.jpg')} className="backgroundImage" />
             <div className="contentThing">
                 <div id="prompts" className="prompts">
                     {shownPrompts.map((p, i) =>
                         i === shownPrompts.length - 1 ? (
                             <p className="currentPrompt">
-                                {p.content.split("\n").map((line, index) => (
+                                {p.content.split('\n').map((line, index) => (
                                     <p aria-hidden="true" key={index}>
                                         {[...line].map((char, charIndex) => (
                                             <span
@@ -94,32 +95,33 @@ function Chatbot() {
                         ) : (
                             <div
                                 style={{
-                                    display: "flex",
+                                    display: 'flex',
                                     justifyContent:
-                                        p.role === "user" ? "end" : "center",
+                                        p.role === 'user' ? 'end' : 'center',
                                 }}
                             >
-                                {p.role === "user" ? (
+                                {p.role === 'user' ? (
                                     <img
                                         className="replyArrow"
                                         style={{
                                             opacity: `${
                                                 (100 -
                                                     (100 / maxPrompts) *
-                                                        (shownPrompts.length - i)) /
+                                                        (shownPrompts.length -
+                                                            i)) /
                                                 2
                                             }%`,
                                         }}
-                                        src={require("./reply.png")}
+                                        src={require('./reply.png')}
                                     />
                                 ) : (
                                     <></>
                                 )}
                                 <p
                                     className={
-                                        p.role === "user"
-                                            ? "pastUserPrompt"
-                                            : "pastAssistPrompts"
+                                        p.role === 'user'
+                                            ? 'pastUserPrompt'
+                                            : 'pastAssistPrompts'
                                     }
                                     style={{
                                         opacity: `${
@@ -151,18 +153,13 @@ function Chatbot() {
                         type="button"
                         className="sendButton"
                         onClick={sendText}
-                        value={"Send"}
+                        value={'Send'}
                         disabled={loading}
                     />
                 </div>
                 {error.length ? <p className="error">{error}</p> : <></>}
             </div>
-            <span className="signature">
-                a dumb thing made by{" "}
-                <a className="signatureLink" href="https://nealetw.com/">
-                    Tim Neale
-                </a>
-            </span>
+            <SiteSignature />
         </div>
     );
 }

@@ -1,15 +1,23 @@
-import React from "react";
-import { DEFAULT_BUTTON_COLORS } from "../../constants";
+import React from 'react';
+import { DEFAULT_BUTTON_COLORS } from '../../constants';
 
-import './button.css'
+import './button.css';
 
-export default function BoardButton({ backgroundColor, color, borderColor, onClick, content, ...props }) {
+export default function BoardButton({
+    backgroundColor,
+    color,
+    borderColor,
+    onClick,
+    content,
+    ...props
+}) {
     return (
-        <input 
-            className="boardButton" 
+        <input
+            className="boardButton"
             type="button"
             style={{
-                backgroundColor: backgroundColor ?? DEFAULT_BUTTON_COLORS.backgroundColor,
+                backgroundColor:
+                    backgroundColor ?? DEFAULT_BUTTON_COLORS.backgroundColor,
                 color: color ?? DEFAULT_BUTTON_COLORS.color,
                 borderColor: borderColor ?? DEFAULT_BUTTON_COLORS.borderColor,
             }}

@@ -1,22 +1,23 @@
-import React from "react";
-import { siteRoutes } from "../routes";
+import React from 'react';
+import { siteRoutes } from '../routes';
 
-import "./sitemap.css";
+import './sitemap.css';
 
 function SiteMap() {
     return (
         <div className="siteMapContainer">
             <h1>Welcome to Tim Neale's Site</h1>
             <h3>
-                This is the site map, linking all of my personal projects together.
-                Find my portfolio below, and then some other weird things I've made.
-                Don't judge, I get enough judgement already.
+                This is the site map, linking all of my personal projects
+                together. Find my portfolio below, and then some other weird
+                things I've made. Don't judge, I get enough judgement already.
             </h3>
             <div className="buttonsContainer">
                 {siteRoutes
                     .filter(
                         (a, i) =>
-                            siteRoutes.findIndex((b) => b.name === a.name) === i && !a.hidden
+                            siteRoutes.findIndex((b) => b.name === a.name) ===
+                                i && !a.hidden
                     )
                     .map((route) => {
                         return (
@@ -25,7 +26,9 @@ function SiteMap() {
                                 style={{
                                     color: route.color?.[0],
                                     backgroundColor: route.color?.[1],
-                                    justifyContent: route.image ? 'space-evenly' : 'center'
+                                    justifyContent: route.image
+                                        ? 'space-evenly'
+                                        : 'center',
                                 }}
                                 className="routeButton"
                             >

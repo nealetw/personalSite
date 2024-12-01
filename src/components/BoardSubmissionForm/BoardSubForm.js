@@ -1,33 +1,32 @@
-import { useState } from "react";
-import { HexColorInput, HexColorPicker } from "react-colorful";
-import { DEFAULT_POST_COLORS } from "../../constants";
-import BoardTextInput from "../BoardTextbox/textInput";
+import { useState } from 'react';
+import { HexColorInput, HexColorPicker } from 'react-colorful';
+import { DEFAULT_POST_COLORS } from '../../constants';
+import BoardTextInput from '../BoardTextbox/textInput';
 
-import "./submissionForm.css";
+import './submissionForm.css';
 
 export default function SubmissionForm(props) {
-    const defaultPostColors = DEFAULT_POST_COLORS
+    const defaultPostColors = DEFAULT_POST_COLORS;
     const emptyPost = {
-        subject: "",
-        text: "",
-        image: "",
-        name: "",
-        ...defaultPostColors
+        subject: '',
+        text: '',
+        image: '',
+        name: '',
+        ...defaultPostColors,
     };
 
     const [imageError, setImageError] = useState(false);
     const [form, setForm] = useState(emptyPost);
     const [extraOpen, setExtraOpen] = useState(false);
-    const urlPattern = new RegExp("(?:http?)");
+    const urlPattern = new RegExp('(?:http?)');
 
     const handlePostSubmit = () => {
         if (form.image?.length && !urlPattern.test(form.image)) {
-            setImageError("Image should be a valid image URL");
+            setImageError('Image should be a valid image URL');
+        } else {
+            props.handleSubmit(form);
         }
-        else {
-            props.handleSubmit(form)
-        }
-    }
+    };
 
     const handleFormChange = (values) => {
         setForm({
@@ -39,7 +38,7 @@ export default function SubmissionForm(props) {
     return (
         <form className="submissionDiv">
             <BoardTextInput
-                label='Subject'
+                label="Subject"
                 value={form.subject}
                 onChange={(e) =>
                     handleFormChange({
@@ -50,7 +49,7 @@ export default function SubmissionForm(props) {
 
             <div className="submissionText">
                 <BoardTextInput
-                    label='Text'
+                    label="Text"
                     value={form.text}
                     area={true}
                     rows={4}
@@ -65,11 +64,11 @@ export default function SubmissionForm(props) {
             <BoardTextInput
                 label={
                     <span>
-                        Image{" "}
+                        Image{' '}
                         {imageError?.length ? (
                             <span className="errorText">({imageError})</span>
                         ) : (
-                            ""
+                            ''
                         )}
                     </span>
                 }
@@ -81,13 +80,11 @@ export default function SubmissionForm(props) {
                     })
                 }
                 customStyle={{
-                    backgroundColor: imageError?.length
-                        ? "lightCoral"
-                        : "",
+                    backgroundColor: imageError?.length ? 'lightCoral' : '',
                 }}
             />
             <BoardTextInput
-                label='Name'
+                label="Name"
                 value={form.name}
                 placeholder="Who is posting this?"
                 onChange={(e) =>
@@ -97,16 +94,16 @@ export default function SubmissionForm(props) {
                 }
             />
             <BoardTextInput
-                label='Customize Colors?'
+                label="Customize Colors?"
                 value={extraOpen}
                 checked={extraOpen}
                 type="checkbox"
                 customInputStyle={{ maxWidth: 'fit-content' }}
                 onChange={(e) => setExtraOpen(e.target.checked)}
             />
-            {extraOpen ?
+            {extraOpen ? (
                 <BoardTextInput
-                    label='Replies share colors?'
+                    label="Replies share colors?"
                     value={form.sharedColors}
                     checked={form.sharedColors}
                     type="checkbox"
@@ -114,34 +111,59 @@ export default function SubmissionForm(props) {
                     onChange={(e) =>
                         handleFormChange({
                             sharedColors: e.target.value,
-                        })}
+                        })
+                    }
                 />
-                : <></>}
-            {extraOpen ?
+            ) : (
+                <></>
+            )}
+            {extraOpen ? (
                 <div className="colorpickersHorizontal">
                     <div className="inputAndLabel">
-                        <span>
-                            Name Color
-                        </span>
-                        <HexColorPicker color={form.color} onChange={c => handleFormChange({ color: c })} />
-                        <HexColorInput color={form.color} onChange={c => handleFormChange({ color: c })} />
+                        <span>Name Color</span>
+                        <HexColorPicker
+                            color={form.color}
+                            onChange={(c) => handleFormChange({ color: c })}
+                        />
+                        <HexColorInput
+                            color={form.color}
+                            onChange={(c) => handleFormChange({ color: c })}
+                        />
                     </div>
                     <div className="inputAndLabel">
-                        <span>
-                            Post Color
-                        </span>
-                        <HexColorPicker color={form.background} onChange={c => handleFormChange({ background: c })} />
-                        <HexColorInput color={form.background} onChange={c => handleFormChange({ background: c })} />
+                        <span>Post Color</span>
+                        <HexColorPicker
+                            color={form.background}
+                            onChange={(c) =>
+                                handleFormChange({ background: c })
+                            }
+                        />
+                        <HexColorInput
+                            color={form.background}
+                            onChange={(c) =>
+                                handleFormChange({ background: c })
+                            }
+                        />
                     </div>
                     <div className="inputAndLabel">
-                        <span>
-                            Content Text Color
-                        </span>
-                        <HexColorPicker color={form.contentColor} onChange={c => handleFormChange({ contentColor: c })} />
-                        <HexColorInput color={form.contentColor} onChange={c => handleFormChange({ contentColor: c })} />
+                        <span>Content Text Color</span>
+                        <HexColorPicker
+                            color={form.contentColor}
+                            onChange={(c) =>
+                                handleFormChange({ contentColor: c })
+                            }
+                        />
+                        <HexColorInput
+                            color={form.contentColor}
+                            onChange={(c) =>
+                                handleFormChange({ contentColor: c })
+                            }
+                        />
                     </div>
-                </div> :
-                <></>}
+                </div>
+            ) : (
+                <></>
+            )}
             <input
                 className="submitButton"
                 onClick={handlePostSubmit}
@@ -149,6 +171,6 @@ export default function SubmissionForm(props) {
                 type="button"
                 value="Submit"
             />
-        </form >
-    )
+        </form>
+    );
 }

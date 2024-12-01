@@ -1,23 +1,21 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 
 import './daily.css';
 
 function Daily() {
-  const versionNumber = '1.0'
-  useEffect(() => {
-    document.title = 'Deer Clicker'
-  },[])
+    const versionNumber = '1.0';
+    useEffect(() => {
+        document.title = 'Lingual(e)';
+    }, []);
 
-  const [cookies, setCookies] = useCookies(['data']);
+    const [cookies, setCookies] = useCookies(['data']);
 
-  return (
-    <div className="dailyApp">
-      <div className='dailyGrid'>
-        
-      </div>
-    </div>
-  );
+    return (
+        <div className="dailyApp">
+            <div className="dailyGrid"></div>
+        </div>
+    );
 }
 
 export default Daily;

@@ -1,43 +1,42 @@
-.container{
+.container {
     flex: 1;
     display: flex;
     flex-direction: column;
     height: 100vh;
-    padding:0;
-    margin:0;
+    padding: 0;
+    margin: 0;
     background-color: skyblue;
     text-align: center;
     align-items: center;
     justify-content: center;
     overflow: hidden;
 }
-.contentThing{
+.contentThing {
     display: flex;
     flex-direction: column;
     justify-content: end;
     max-width: 90%;
     height: 60vh;
 }
-.prompts{
+.prompts {
     max-height: 50vh;
     overflow-x: visible;
     overflow-y: auto;
     flex-direction: column-reverse;
     max-width: 50em;
-    text-wrap:balance;
+    text-wrap: balance;
     background-color: rgba(255, 255, 255, 0.15);
-    padding:0 1em;
+    padding: 0 1em;
     margin-bottom: 5px;
     border-radius: 16px;
     box-shadow: rgba(255, 255, 255, 0.15) 0 0 3em 3em;
-
 }
-.inputArea{
+.inputArea {
     display: flex;
     justify-content: center;
 }
-.textboxThing{
-    background-color:skyblue ;
+.textboxThing {
+    background-color: skyblue;
     border: 0;
     border-radius: 8px;
     padding: 8px;
@@ -46,68 +45,53 @@
     max-width: 30em;
     width: 30em;
     text-align: center;
-    box-shadow: inset 0em 0em .5em 0.1em rgba(134, 134, 134, 0.493);
+    box-shadow: inset 0em 0em 0.5em 0.1em rgba(134, 134, 134, 0.493);
 }
-.sendButton{
-    background-color:rgb(255, 255, 255) ;
+.sendButton {
+    background-color: rgb(255, 255, 255);
     border: 0;
     border-radius: 8px;
     padding: 8px;
     margin-right: 5px;
-    box-shadow: inset 0em 0em .5em 0.1em rgba(134, 134, 134, 0.493);
+    box-shadow: inset 0em 0em 0.5em 0.1em rgba(134, 134, 134, 0.493);
 }
-.currentPrompt{
+.currentPrompt {
     margin-top: 2em;
-    color:rgb(43, 43, 43);
+    color: rgb(43, 43, 43);
     transition: all 2s;
 }
-.pastAssistPrompts{
-    color:rgb(75, 75, 75);
+.pastAssistPrompts {
+    color: rgb(75, 75, 75);
     margin: 0;
     margin-top: 1em;
 }
-.pastUserPrompt{
+.pastUserPrompt {
     text-align: end;
-    color:rgba(75, 75, 75, 0.521);
+    color: rgba(75, 75, 75, 0.521);
     margin: 0;
     padding-top: 5px;
 }
-.replyArrow{
+.replyArrow {
     margin-right: 5px;
     padding-top: 5px;
     max-width: 20px;
     opacity: 50%;
     max-height: 20px;
-    color:rgba(75, 75, 75, 0.521);
+    color: rgba(75, 75, 75, 0.521);
 }
-.error{
+.error {
     color: red;
 }
 
-.backgroundImage{
-        opacity: 0.14;
-        z-index: 0;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100vw;
-        height: 100%;
-        fill-rule: evenodd;
-        pointer-events: none;
-       object-fit: cover;
-}
-
-.signature{
-    color: rgba(0, 0, 0, 0.404);
+.backgroundImage {
+    opacity: 0.14;
+    z-index: 0;
     position: absolute;
-    bottom: 0;
-    right: 0;
-    font-style: italic;
-    font-size: smaller;
-  }
-  .signatureLink{
-    color: inherit
-  }
-  .signatureLink:hover{
-    color:blue
-  }
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100%;
+    fill-rule: evenodd;
+    pointer-events: none;
+    object-fit: cover;
+}

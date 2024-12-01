@@ -5,9 +5,5 @@ export const painArray = [
     'Pathetic',
     'That tickles',
     'Was that supposed to hurt?',
-
-]
-export const timeArray = [
-    `You've been here a while`,
-    `Not bored yet?`
-]
+];
+export const timeArray = [`You've been here a while`, `Not bored yet?`];

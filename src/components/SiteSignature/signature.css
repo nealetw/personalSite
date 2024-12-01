@@ -1,0 +1,22 @@
+.signature {
+  color: rgba(0, 0, 0, 0.541);
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-style: italic;
+  font-size: smaller;
+}
+.signatureLink {
+  color: inherit;
+  cursor: pointer;
+}
+.signatureLink:hover {
+  color: blue;
+}
+.versionLink {
+  color: rgb(80, 80, 173);
+  cursor: pointer;
+}
+.versionLink:hover {
+  color: blue;
+}

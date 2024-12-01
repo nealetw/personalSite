@@ -1,22 +1,23 @@
-import React, { useEffect, useState } from "react";
-import _ from "lodash";
-import moment from "moment";
-import { useCookies } from "react-cookie";
+import React, { useEffect, useState } from 'react';
+import _ from 'lodash';
+import moment from 'moment';
+import { useCookies } from 'react-cookie';
 import {
     getLeagueChampInfo,
     getLeagueChamps,
     getLeagueVersion,
     leagueSmash,
-} from "../../api";
-import customTags from "./customTags.json";
-import changeLog from "./changelog.json";
+} from '../../api';
+import SiteSignature from '../../components/SiteSignature/signature';
+import customTags from './customTags.json';
+import changeLog from './changelog.json';
 
-import "./LOLSmash.css";
+import './LOLSmash.css';
 
 function LOLSmash() {
     const versionNumber = Object.keys(changeLog)?.[0];
 
-    const [cookies, setCookies] = useCookies(["data"]);
+    const [cookies, setCookies] = useCookies(['data']);
     const [gameVersion, setGameVersion] = useState();
     const [champs, setChamps] = useState([]);
     const [smashData, setSmashData] = useState(cookies.data ?? {});
@@ -31,9 +32,9 @@ function LOLSmash() {
     const [usedDropdown, setUsedDropdown] = useState(false);
     const [previousStats, setPreviousStats] = useState({});
     const [child, setChild] = useState(false);
-
+    console.log(changesModal);
     useEffect(() => {
-        document.title = "League Smash or Pass";
+        document.title = 'League Smash or Pass';
         getLeagueVersion().then(setGameVersion);
     }, []);
 
@@ -42,7 +43,10 @@ function LOLSmash() {
             getLeagueChamps(gameVersion).then((r) => {
                 var mapped = [];
                 for (var i in r.data)
-                    mapped.push({ ...r.data[i], smash: smashData[r.data[i].id] });
+                    mapped.push({
+                        ...r.data[i],
+                        smash: smashData[r.data[i].id],
+                    });
 
                 setChamps(mapped);
                 if (mapped.every((c) => c.smash !== undefined)) {
@@ -55,9 +59,11 @@ function LOLSmash() {
     }, [gameVersion]);
     useEffect(() => {
         if (gameVersion && currentIndex !== undefined)
-            getLeagueChampInfo(gameVersion, champs[currentIndex]?.id).then((r) => {
-                for (var i in r.data) setCurrentChamp(r.data[i]);
-            });
+            getLeagueChampInfo(gameVersion, champs[currentIndex]?.id).then(
+                (r) => {
+                    for (var i in r.data) setCurrentChamp(r.data[i]);
+                }
+            );
     }, [currentIndex]);
 
     const calculateStats = () => {
@@ -67,10 +73,11 @@ function LOLSmash() {
                 tags.push(customTags[i]);
             }
         }
-        const counted = _.countBy(tags.join(",").split(","));
+        const counted = _.countBy(tags.join(',').split(','));
         const otherTags = Object.entries(counted)
             .filter(
-                (c) => c[0] !== "Male" && c[0] !== "Female" && c[0] !== "Nonbinary"
+                (c) =>
+                    c[0] !== 'Male' && c[0] !== 'Female' && c[0] !== 'Nonbinary'
             )
             .sort((a, b) => b[1] - a[1]);
         setStats({ ...counted, total: tags.length, customTags: otherTags });
@@ -105,13 +112,13 @@ function LOLSmash() {
         const newData = { ...smashData };
         newData[currentChamp.id] = smash;
         setSmashData(newData);
-        setCookies("data", newData);
-        if(smash && customTags[currentChamp.id].includes('Child')){
-            setChild(true)
-            const audio = new Audio(require('./../../vine-boom.mp3'))
-            audio.play()
+        setCookies('data', newData);
+        if (smash && customTags[currentChamp.id]?.includes('Child')) {
+            setChild(true);
+            const audio = new Audio(require('./../../vine-boom.mp3'));
+            audio.play();
             setTimeout(() => {
-                setChild(false)
+                setChild(false);
             }, 1000);
         }
         if (parseInt(currentIndex) + 1 === champs.length) {
@@ -124,7 +131,7 @@ function LOLSmash() {
     };
 
     const handleDropdownChange = () => {
-        const d = document.getElementById("champSelect").value;
+        const d = document.getElementById('champSelect').value;
         setSkinNumber(0);
         setIndex(parseInt(d));
         setPreviousStats([]);
@@ -138,7 +145,7 @@ function LOLSmash() {
                 mapped.push({ ...r.data[i], smash: smashData[r.data[i].id] });
 
             setChamps(mapped);
-            setCookies("data", {});
+            setCookies('data', {});
             setSmashData({});
             setIndex(0);
             setSkinNumber(0);
@@ -149,17 +156,17 @@ function LOLSmash() {
     const convertToCSV = (data) => {
         const smashes = data.filter((c) => c[1]).map((c) => c[0]);
         const passes = data.filter((c) => !c[1]).map((c) => c[0]);
-        return ["Smashes:", ...smashes, "\n", "Passes:", ...passes].join("\n");
+        return ['Smashes:', ...smashes, '\n', 'Passes:', ...passes].join('\n');
     };
 
     const downloadCSV = () => {
         const csvData = new Blob([convertToCSV(Object.entries(smashData))], {
-            type: "text/csv",
+            type: 'text/csv',
         });
         const csvURL = URL.createObjectURL(csvData);
-        const link = document.createElement("a");
+        const link = document.createElement('a');
         link.href = csvURL;
-        link.download = `MyLeagueSmashes-${moment().format("MM-DD-YY")}.csv`;
+        link.download = `MyLeagueSmashes-${moment().format('MM-DD-YY')}.csv`;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -186,24 +193,24 @@ function LOLSmash() {
                                 style={{
                                     backgroundColor:
                                         smashedOrPassed === true
-                                            ? "lightgreen"
+                                            ? 'lightgreen'
                                             : smashedOrPassed === undefined
-                                            ? ""
-                                            : "lightcoral",
+                                            ? ''
+                                            : 'lightcoral',
                                 }}
                             >
-                                {c.name}{" "}
+                                {c.name}{' '}
                                 {smashedOrPassed === true
-                                    ? "(Smashed)"
+                                    ? '(Smashed)'
                                     : smashedOrPassed === undefined
-                                    ? ""
-                                    : "(Passed)"}
+                                    ? ''
+                                    : '(Passed)'}
                             </option>
                         );
                     })}
                 </select>
                 <input
-                    style={{ marginLeft: "15px" }}
+                    style={{ marginLeft: '15px' }}
                     type="button"
                     value="Clear All Selections"
                     onClick={() => setClearModal(true)}
@@ -222,14 +229,16 @@ function LOLSmash() {
                                 alt={currentChamp.skins?.[skinNumber]?.name}
                                 className="champImage"
                                 src={getSplash(currentChamp)}
-                                height={"600"}
+                                height={'600'}
                             />
                         </a>
                         <input
                             className="scrollButton"
                             type="button"
                             value=">"
-                            disabled={skinNumber === currentChamp?.skins?.length - 1}
+                            disabled={
+                                skinNumber === currentChamp?.skins?.length - 1
+                            }
                             onClick={() => setSkinNumber(skinNumber + 1)}
                         />
                     </div>
@@ -239,7 +248,7 @@ function LOLSmash() {
                             <span className="skinName">
                                 {skinNumber !== 0
                                     ? ` (${currentChamp.skins?.[skinNumber]?.name})`
-                                    : ""}
+                                    : ''}
                             </span>
                         </p>
                         <input
@@ -252,8 +261,8 @@ function LOLSmash() {
                             <div className="showInfoContent">
                                 <p>{currentChamp.lore}</p>
                                 <p>
-                                    Playstyle:{" "}
-                                    {champs[currentIndex]?.tags.join(", ")}
+                                    Playstyle:{' '}
+                                    {champs[currentIndex]?.tags.join(', ')}
                                 </p>
                             </div>
                         ) : (
@@ -268,17 +277,30 @@ function LOLSmash() {
                             <br />
                             {champs[parseInt(currentIndex) - 1]?.name}
                             <br />
-                            Smash: {previousStats?.[0]}{" "}
-                            <span style={{ fontStyle: "italic", color: "#474747" }}>
+                            Smash: {previousStats?.[0]}{' '}
+                            <span
+                                style={{
+                                    fontStyle: 'italic',
+                                    color: '#474747',
+                                }}
+                            >
                                 (
-                                {((previousStats?.[0] /
-                                    (previousStats?.[0] + previousStats?.[1])) *
-                                    100)?.toFixed(2)}
+                                {(
+                                    (previousStats?.[0] /
+                                        (previousStats?.[0] +
+                                            previousStats?.[1])) *
+                                    100
+                                )?.toFixed(2)}
                                 %)
                             </span>
                             <br />
-                            Pass: {previousStats?.[1]}{" "}
-                            <span style={{ fontStyle: "italic", color: "#474747" }}>
+                            Pass: {previousStats?.[1]}{' '}
+                            <span
+                                style={{
+                                    fontStyle: 'italic',
+                                    color: '#474747',
+                                }}
+                            >
                                 (
                                 {(previousStats?.[1] /
                                     (previousStats?.[0] + previousStats?.[1])) *
@@ -295,8 +317,8 @@ function LOLSmash() {
                             value="Pass"
                             className={
                                 smashData[currentChamp.id]
-                                    ? "notSelectedButton"
-                                    : "passButton"
+                                    ? 'notSelectedButton'
+                                    : 'passButton'
                             }
                             onClick={() => handleButtonClick(false)}
                         />
@@ -305,34 +327,41 @@ function LOLSmash() {
                             value="Smash"
                             className={
                                 smashData[currentChamp.id] === false
-                                    ? "notSelectedButton"
-                                    : "smashButton"
+                                    ? 'notSelectedButton'
+                                    : 'smashButton'
                             }
                             onClick={() => handleButtonClick(true)}
                         />
                     </div>
                     <div className="nextContainer">
-                        Next: {champs[parseInt(currentIndex) + 1]?.name ?? "???"}
+                        Next:{' '}
+                        {champs[parseInt(currentIndex) + 1]?.name ?? '???'}
                     </div>
                 </div>
             </div>
             {endScreen ? (
                 <div id="modal" class="modal">
                     <div className="modal-content">
-                        <span className="close" onClick={() => setEndScreen(false)}>
+                        <span
+                            className="close"
+                            onClick={() => setEndScreen(false)}
+                        >
                             &times;
                         </span>
                         <h1>Congrats!</h1>
                         <p>
-                            Champions Smashed: {champs.filter((c) => c.smash).length}
+                            Champions Smashed:{' '}
+                            {champs.filter((c) => c.smash).length}
                         </p>
                         <p>
-                            Champions Passed: {champs.filter((c) => !c.smash).length}
+                            Champions Passed:{' '}
+                            {champs.filter((c) => !c.smash).length}
                         </p>
                         <p className="statsText">Stats!</p>
                         <p>
-                            Smashes by Gender: {stats["Male"]} males,{" "}
-                            {stats["Female"]} females, {stats["Nonbinary"]} nonbinary
+                            Smashes by Gender: {stats['Male']} males,{' '}
+                            {stats['Female']} females, {stats['Nonbinary']}{' '}
+                            nonbinary
                         </p>
                         {stats.customTags?.map((tag) => (
                             <p>
@@ -352,19 +381,23 @@ function LOLSmash() {
             {clearModal ? (
                 <div id="modal" class="modal">
                     <div className="modal-content">
-                        <span className="close" onClick={() => setClearModal(false)}>
+                        <span
+                            className="close"
+                            onClick={() => setClearModal(false)}
+                        >
                             &times;
                         </span>
                         <p>
-                            Are you sure you want to clear all selections for your
-                            smash or pass? This cant be undone, and includes clearing
-                            your saved progress if you left and came back.
+                            Are you sure you want to clear all selections for
+                            your smash or pass? This cant be undone, and
+                            includes clearing your saved progress if you left
+                            and came back.
                         </p>
                         <input
                             type="button"
                             value="Clear All"
                             onClick={() => clearSelections()}
-                            style={{ marginRight: "15px" }}
+                            style={{ marginRight: '15px' }}
                         />
                         <input
                             type="button"
@@ -401,23 +434,18 @@ function LOLSmash() {
             ) : (
                 <></>
             )}
-            <span className="signature">
-                a dumb thing made by{" "}
-                <a className="signatureLink" href="https://nealetw.com/">
-                    Tim Neale
-                </a>{" "}
-                (
-                <a
-                    className="signatureLink"
-                    style={{ cursor: "pointer" }}
-                    onClick={() => setChangesModal(true)}
-                >
-                    v. {versionNumber}
-                </a>
-                , League v. {gameVersion})
-            </span>
-            <div className={child ? "susContainerIn" : "susContainerOut"}>
-                <img src={require('./../../images/sus.webp')} className="susImage" />
+
+            <SiteSignature
+                pageVersion={versionNumber}
+                versionOnclick={() => setChangesModal(true)}
+                appendedText={`, League v. ${gameVersion}`}
+            />
+
+            <div className={child ? 'susContainerIn' : 'susContainerOut'}>
+                <img
+                    src={require('./../../images/sus.webp')}
+                    className="susImage"
+                />
                 <p className="susText">BRO THAT WAS A CHILD</p>
             </div>
         </div>

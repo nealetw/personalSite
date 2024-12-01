@@ -5,7 +5,7 @@
     height: 100vh;
     overflow-y: hidden;
     font-size: larger;
-    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     padding: 1em;
     overflow-y: scroll;
     color: white;
@@ -19,7 +19,7 @@
     grid-row-gap: 3em;
     padding: 3em;
 }
-.buttonImage{
+.buttonImage {
     width: 3em;
 }
 .routeButton {

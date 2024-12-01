@@ -1,366 +1,361 @@
 .deerApp {
-  text-align: center;
-  font-family: monospace;
-  background-color: grey;
-  display: flex;
-  flex-direction: row;
-  height: 100vh;
-  align-items: center;
-  font-size: larger;
+    text-align: center;
+    font-family: monospace;
+    background-color: grey;
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    align-items: center;
+    font-size: larger;
 }
-.deerContainer{
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  bottom: 0;
-  height: 100vh;
-  width: 25em;
+.deerContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    bottom: 0;
+    height: 100vh;
+    width: 25em;
+}
+img {
+    user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+.deer {
+    max-width: 25em;
+    transition: 0.1s;
+}
+.deer:hover {
+    transform: scale(1.05);
+    transition: 0.1s;
+}
+.deer:active {
+    transform: scale(0.95);
+    transition: 0.1s;
+}
+.upgradeContainer {
+    width: 100%;
+    flex: 1;
+    display: flex;
+}
+.deerUpgradeContainer {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    max-height: 5em;
+    flex-direction: row;
+    justify-self: center;
+    justify-items: center;
+    justify-content: space-evenly;
+    align-self: center;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-items: center;
+}
+.upgradeList {
+    width: 95%;
+    justify-content: center;
+    align-items: center;
+}
+.upgrade {
+    flex: 1;
+    height: 3em;
+    width: 130vh;
+    padding-left: 1em;
+    padding-right: 1em;
+    transition: 1s;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: larger;
+    background-color: rgb(212, 163, 107);
+    border: 2px groove black;
+    border-radius: 16px;
+}
+.deerUpgrade {
+    flex: 1;
+    height: 3em;
+    max-width: 3em;
+    width: 3em;
+    transition: 1s;
+    cursor: pointer;
+    padding-left: 0.4em;
+    justify-self: center;
 
+    background-color: rgb(212, 163, 107);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: larger;
+    border: 2px groove black;
+    border-radius: 16px;
+    transform: scale(0.99);
+    transition: 1s;
 }
-img{
-  user-drag: none;
-  -webkit-user-drag: none;
-  user-select: none;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;}
-.deer{
-  max-width: 25em;
-  transition: 0.1s;
+.upgrade:hover,
+.deerUpgrade:hover {
+    transform: scale(1.01);
+    transition: 0.1s;
 }
-.deer:hover{
-  transform: scale(1.05);
-  transition: 0.1s;
+.upgradeDisabled {
+    flex: 1;
+    height: 3em;
+    width: 130vh;
+    padding-left: 1em;
+    padding-right: 1em;
+    cursor: not-allowed;
+    background-color: rgb(158, 147, 135);
+    transition: 1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: larger;
+    border: 2px groove black;
+    border-radius: 16px;
+    transform: scale(0.99);
+    transition: 1s;
 }
-.deer:active{
-  transform: scale(0.95);
-  transition: 0.1s;
-}
-.upgradeContainer{
-  width: 100%;
-  flex: 1;
-  display: flex;
-}
-.deerUpgradeContainer{
-  width: 100%;
-  flex:1;
-  display: flex;
-  max-height: 5em;
-  flex-direction: row;
-  justify-self: center;
-  justify-items: center;
-  justify-content: space-evenly;
-  align-self: center;
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
-  margin-left: auto;
-  margin-right: auto;
-  justify-items: center;
+.deerUpgradeDisabled {
+    flex: 1;
+    cursor: not-allowed;
+    background-color: rgb(158, 147, 135);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: larger;
+    border: 2px groove black;
+    transform: scale(0.99);
+    transition: 1s;
 
+    height: 3em;
+    width: 3em;
+    max-width: 3em;
+    padding-left: 0.4em;
+    border-radius: 16px;
 }
-.upgradeList{
-  width: 95%;
-  justify-content: center;
-  align-items: center;
+.upgrade:active,
+.deerUpgrade:active {
+    transform: scale(0.99);
+    transition: 0.1s;
 }
-.upgrade{
-  flex:1;
-  height: 3em;
-  width: 130vh;
-  padding-left: 1em;
-  padding-right: 1em;
-  transition: 1s;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  font-size: larger;
-  background-color: rgb(212, 163, 107);
-  border: 2px groove black;
-  border-radius: 16px;
+.upgradeText {
+    display: flex;
+    flex: 1;
+    user-select: none;
+    justify-content: space-between;
 }
-.deerUpgrade{
-  flex:1;
-  height: 3em;
-  max-width: 3em;
-  width: 3em;
-  transition: 1s;
-  cursor: pointer;
-  padding-left: 0.4em;
-  justify-self: center;
-
-  background-color: rgb(212, 163, 107);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: larger;
-  border: 2px groove black;
-  border-radius: 16px;
-  transform: scale(0.99);
-  transition: 1s;
+.upgradeImage,
+.deerUpgradeImage {
+    height: 90%;
+    border-radius: 8px;
+    transition: 1s;
+    margin-right: 10px;
+    justify-self: start;
+    max-width: 3em;
+    max-height: 3em;
 }
-.upgrade:hover, .deerUpgrade:hover{
-  transform: scale(1.01);
-  transition: 0.1s;
+.disabledUpgradeImage,
+.disabledDeerUpgradeImage {
+    justify-self: start;
+    height: 90%;
+    opacity: 50%;
+    border-radius: 8px;
+    filter: grayscale(100%);
+    transition: 1s;
+    margin-right: 10px;
+    max-width: 3em;
+    max-height: 3em;
 }
-.upgradeDisabled{
-  flex:1;
-  height: 3em;
-  width: 130vh;
-  padding-left: 1em;
-  padding-right: 1em;
-  cursor: not-allowed;
-  background-color: rgb(158, 147, 135);
-  transition: 1s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: larger;
-  border: 2px groove black;
-  border-radius: 16px;
-  transform: scale(0.99);
-  transition: 1s;
-}.deerUpgradeDisabled{
-  flex:1;
-  cursor: not-allowed;
-  background-color: rgb(158, 147, 135);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: larger;
-  border: 2px groove black;
-  transform: scale(0.99);
-  transition: 1s;
-
-  height: 3em;
-  width: 3em;
-  max-width: 3em;
-  padding-left: 0.4em;
-  border-radius: 16px;
+.italic {
+    font-style: italic;
+    color: rgb(51, 51, 51);
 }
-.upgrade:active, .deerUpgrade:active{
-  transform: scale(0.99);
-  transition: 0.1s;
+.clickCount {
+    font-size: xx-large;
+    font-weight: 700;
+    font-style: oblique;
+    text-decoration: underline;
+    color: rgb(212, 163, 107);
+    text-shadow: black 2px 2px;
 }
-.upgradeText{
-  display: flex;
-  flex:1;
-  user-select: none;
-  justify-content: space-between;
+.clickText {
+    pointer-events: none;
+    user-select: none;
+    font-size: xx-large;
+    font-weight: 700;
+    cursor: default;
+    color: rgb(212, 163, 107);
+    text-shadow: black 2px 2px;
+    transition: 0.2;
+    z-index: 100;
 }
-.upgradeImage, .deerUpgradeImage{
-  height: 90%;
-  border-radius: 8px;
-  transition: 1s;
-  margin-right: 10px;
-  justify-self: start;
-  max-width: 3em;
-  max-height: 3em;
-}
-.disabledUpgradeImage,.disabledDeerUpgradeImage{
-  justify-self: start;
-  height: 90%;
-  opacity: 50%;
-  border-radius: 8px;
-  filter: grayscale(100%);
-  transition: 1s;
-  margin-right: 10px;
-  max-width: 3em;
-  max-height: 3em;
-}
-.italic{
-  font-style: italic;
-  color: rgb(51, 51, 51);
-}
-.clickCount{
-  font-size: xx-large;
-  font-weight: 700;
-  font-style: oblique;
-  text-decoration: underline;
-  color:rgb(212, 163, 107);
-  text-shadow: black 2px 2px;
-}
-.clickText{
-  pointer-events: none;
-  user-select: none;
-  font-size: xx-large;
-  font-weight: 700;
-  cursor: default;
-  color:rgb(212, 163, 107);
-  text-shadow: black 2px 2px;
-  transition: 0.2;
-  z-index: 100;
-}
-.signature{
-  color: rgba(0, 0, 0, 0.541);
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  font-style: italic;
-  font-size: smaller;
-}
-.signatureLink{
-  color: inherit
-}
-.signatureLink:hover{
-  color:blue
-}
-
-
-
 
 .modal {
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
 /* Modal Content/Box */
 .modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 50%; /* Could be more or less, depending on screen size */
-  max-height: 65%;
-  overflow-y: scroll;
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%; /* Could be more or less, depending on screen size */
+    max-height: 65%;
+    overflow-y: scroll;
 }
 
 /* The Close Button */
 .close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
 
-
-
-
-
-
-.speech-bubble{
-  --arrow-w:0.5em;
-  --arrow-h:1em;
-  --bubble-corners:16px;
-  --w:8em;
-  --border-size:3px;
-  --text-color:black;
-  --bubble-color:white;
-  --border-color:black;
-  opacity: 60%;
-  text-align:center;
-  font-family:cursive;
-  font-size:20px;
-  font-weight:bold;
-  color:var(--text-color);
-  background:var(--bubble-color);
-  padding:1em;
-  position:relative;
-  align-self: center;
-  border-radius:var(--bubble-corners);
-  box-shadow:0 0 0 var(--border-size) var(--border-color);
-  transition: 0.5;
-  z-index: 100;
+.speech-bubble {
+    --arrow-w: 0.5em;
+    --arrow-h: 1em;
+    --bubble-corners: 16px;
+    --w: 8em;
+    --border-size: 3px;
+    --text-color: black;
+    --bubble-color: white;
+    --border-color: black;
+    opacity: 60%;
+    text-align: center;
+    font-family: cursive;
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--text-color);
+    background: var(--bubble-color);
+    padding: 1em;
+    position: relative;
+    align-self: center;
+    border-radius: var(--bubble-corners);
+    box-shadow: 0 0 0 var(--border-size) var(--border-color);
+    transition: 0.5;
+    z-index: 100;
 }
-.speech-bubble-hidden{
-  --arrow-w:0.5em;
-  --arrow-h:1em;
-  --bubble-corners:0;
-  --w:12em;
-  --border-size:3px;
-  --text-color:black;
-  --bubble-color:white;
-  --border-color:black;
-  opacity: 0%;
-  text-align:center;
-  font-family:cursive;
-  font-size:20px;
-  overflow-x: visible;
-  overflow-wrap: unset;
-  font-weight:bold;
-  color:var(--text-color);
-  background:var(--bubble-color);
-  padding:1em;
-  position:relative;
-  border-radius:var(--bubble-corners);
-  max-width:var(--w);
-  box-shadow:0 0 0 var(--border-size) var(--border-color);
-  transition: 0.5;
+.speech-bubble-hidden {
+    --arrow-w: 0.5em;
+    --arrow-h: 1em;
+    --bubble-corners: 0;
+    --w: 12em;
+    --border-size: 3px;
+    --text-color: black;
+    --bubble-color: white;
+    --border-color: black;
+    opacity: 0%;
+    text-align: center;
+    font-family: cursive;
+    font-size: 20px;
+    overflow-x: visible;
+    overflow-wrap: unset;
+    font-weight: bold;
+    color: var(--text-color);
+    background: var(--bubble-color);
+    padding: 1em;
+    position: relative;
+    border-radius: var(--bubble-corners);
+    max-width: var(--w);
+    box-shadow: 0 0 0 var(--border-size) var(--border-color);
+    transition: 0.5;
 }
 
-.speech-bubble:before,.speech-bubble:after,.speech-bubble-hidden:after,.speech-bubble-hidden:before{
-  content:"";
-  position:absolute;
-  bottom:calc(-1 * var(--arrow-h) * 2 + 0.5px);
-  left:50%;
-  border-style:solid;
-  border-width:var(--arrow-h) var(--arrow-w);
-  border-color:var(--bubble-color) transparent transparent;
+.speech-bubble:before,
+.speech-bubble:after,
+.speech-bubble-hidden:after,
+.speech-bubble-hidden:before {
+    content: '';
+    position: absolute;
+    bottom: calc(-1 * var(--arrow-h) * 2 + 0.5px);
+    left: 50%;
+    border-style: solid;
+    border-width: var(--arrow-h) var(--arrow-w);
+    border-color: var(--bubble-color) transparent transparent;
 }
 
-.speech-bubble:before,.speech-bubble-hidden:before{
-  border-width:calc(var(--arrow-h) + var(--border-size)) calc(var(--arrow-w) + var(--border-size));
-  border-color:var(--border-color) transparent transparent;
-  bottom:calc(-1 * var(--arrow-h) * 2 - 2.5*var(--border-size));
-  left:calc(50% - var(--border-size));
+.speech-bubble:before,
+.speech-bubble-hidden:before {
+    border-width: calc(var(--arrow-h) + var(--border-size))
+        calc(var(--arrow-w) + var(--border-size));
+    border-color: var(--border-color) transparent transparent;
+    bottom: calc(-1 * var(--arrow-h) * 2 - 2.5 * var(--border-size));
+    left: calc(50% - var(--border-size));
 }
 
-.speech-bubble.t:after,.speech-bubble-hidden.t:after{
-  border-color:transparent transparent var(--bubble-color);
-  bottom:auto;
-  top:calc(-1 * var(--arrow-h) * 2 + 0.5px);
+.speech-bubble.t:after,
+.speech-bubble-hidden.t:after {
+    border-color: transparent transparent var(--bubble-color);
+    bottom: auto;
+    top: calc(-1 * var(--arrow-h) * 2 + 0.5px);
 }
 
-.speech-bubble.t:before,.speech-bubble-hidden.t:before{
-  border-width:calc(var(--arrow-h) + var(--border-size)) calc(var(--arrow-w) + var(--border-size));
-  border-color:transparent transparent var(--border-color);
-  bottom:auto;
-  top:calc(-1 * var(--arrow-h) * 2 - 2.5*var(--border-size));
+.speech-bubble.t:before,
+.speech-bubble-hidden.t:before {
+    border-width: calc(var(--arrow-h) + var(--border-size))
+        calc(var(--arrow-w) + var(--border-size));
+    border-color: transparent transparent var(--border-color);
+    bottom: auto;
+    top: calc(-1 * var(--arrow-h) * 2 - 2.5 * var(--border-size));
 }
 
-.speech-bubble.l:after,.speech-bubble-hidden.l:after{
-  border-color:transparent var(--bubble-color) transparent transparent;
-  bottom:auto;
-  border-width:var(--arrow-w) var(--arrow-h);
-  top:calc(50% - var(--arrow-w));
-  left:calc(-1 * var(--arrow-h) * 2 + 0.5px);
+.speech-bubble.l:after,
+.speech-bubble-hidden.l:after {
+    border-color: transparent var(--bubble-color) transparent transparent;
+    bottom: auto;
+    border-width: var(--arrow-w) var(--arrow-h);
+    top: calc(50% - var(--arrow-w));
+    left: calc(-1 * var(--arrow-h) * 2 + 0.5px);
 }
 
-.speech-bubble.l:before.speech-bubble-hidden.l:before{
-  border-width:calc(var(--arrow-w) + var(--border-size)) calc(var(--arrow-h) + var(--border-size));
-  border-color:transparent var(--border-color) transparent transparent;
-  bottom:auto;
-  top:calc(50% - var(--arrow-w) - var(--border-size));
-  left:calc(-1 * var(--arrow-h) * 2 - 2.5*var(--border-size));
+.speech-bubble.l:before.speech-bubble-hidden.l:before {
+    border-width: calc(var(--arrow-w) + var(--border-size))
+        calc(var(--arrow-h) + var(--border-size));
+    border-color: transparent var(--border-color) transparent transparent;
+    bottom: auto;
+    top: calc(50% - var(--arrow-w) - var(--border-size));
+    left: calc(-1 * var(--arrow-h) * 2 - 2.5 * var(--border-size));
 }
 
-.speech-bubble.r:after,.speech-bubble-hidden.r:after{
-  border-color:transparent transparent transparent var(--bubble-color);
-  bottom:auto;
-  left:auto;
-  border-width:var(--arrow-w) var(--arrow-h);
-  top:calc(50% - var(--arrow-w));
-  right:calc(-1 * var(--arrow-h) * 2 + 0.5px);
+.speech-bubble.r:after,
+.speech-bubble-hidden.r:after {
+    border-color: transparent transparent transparent var(--bubble-color);
+    bottom: auto;
+    left: auto;
+    border-width: var(--arrow-w) var(--arrow-h);
+    top: calc(50% - var(--arrow-w));
+    right: calc(-1 * var(--arrow-h) * 2 + 0.5px);
 }
 
-.speech-bubble.r:before,.speech-bubble-hidden.r:after{
-  border-width:calc(var(--arrow-w) + var(--border-size)) calc(var(--arrow-h) + var(--border-size));
-  border-color:transparent transparent transparent var(--border-color);
-  bottom:auto;
-  left:auto;
-  top:calc(50% - var(--arrow-w) - var(--border-size));
-  right:calc(-1 * var(--arrow-h) * 2 - 2.5*var(--border-size));
+.speech-bubble.r:before,
+.speech-bubble-hidden.r:after {
+    border-width: calc(var(--arrow-w) + var(--border-size))
+        calc(var(--arrow-h) + var(--border-size));
+    border-color: transparent transparent transparent var(--border-color);
+    bottom: auto;
+    left: auto;
+    top: calc(50% - var(--arrow-w) - var(--border-size));
+    right: calc(-1 * var(--arrow-h) * 2 - 2.5 * var(--border-size));
 }

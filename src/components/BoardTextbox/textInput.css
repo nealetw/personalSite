@@ -7,9 +7,9 @@
 .boardButton:hover {
     filter: brightness(85%);
 }
-.inputAndLabel{
+.inputAndLabel {
     display: flex;
     padding: 0 0.5em;
     flex-direction: column;
     margin-bottom: 0.3em;
-  }
+}
