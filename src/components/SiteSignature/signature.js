@@ -8,7 +8,7 @@ export default function SiteSignature({
     return (
         <span className="signature">
             a dumb thing made by{' '}
-            <a className="signatureLink" href="https://nealetw.com/">
+            <a className="signatureLink" href="/">
                 Tim Neale
             </a>
             {pageVersion ? (
