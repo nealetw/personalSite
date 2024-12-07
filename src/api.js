@@ -62,6 +62,13 @@ export const getLeagueChampInfo = async (version, name) => {
         )
     ).data;
 };
+export const dictionaryCall = async (word) => {
+    return (
+        await axios.get(
+            `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
+        )
+    ).data?.[0];
+};
 
 export const getBoardPosts = async () => {
     const data = await apiCall('/api/board/posts');

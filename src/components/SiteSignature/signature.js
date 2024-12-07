@@ -3,7 +3,7 @@ import './signature.css';
 export default function SiteSignature({
     pageVersion,
     versionOnclick,
-    appendedText,
+    appendedText = '',
 }) {
     return (
         <span className="signature">

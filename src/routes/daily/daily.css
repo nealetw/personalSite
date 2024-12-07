@@ -6,4 +6,22 @@
     grid-template-rows: repeat(5, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
+    display: grid;
+    gap: 1px;
+    grid-template-columns: repeat(5, minmax(0px, 1fr));
+}
+.gridBox {
+    display: flex;
+    -moz-box-align: center;
+    align-items: center;
+    -moz-box-pack: center;
+    justify-content: center;
+    flex-shrink: 0;
+    -moz-box-flex: 0;
+    flex-grow: 0;
+    width: 4.5rem;
+    height: 4.5rem;
+    position: relative;
+    width: var(--chakra-sizes-32);
+    height: var(--chakra-sizes-32);
 }
