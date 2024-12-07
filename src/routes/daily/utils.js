@@ -91,5 +91,6 @@ function usesLetter(word, label) {
     return word.word.toLowerCase().includes(letter.toLowerCase());
 }
 function partOfSpeech(word, label) {
-    return true;
+    const possibleParts = word.meanings.map((m) => m.partOfSpeech);
+    return possibleParts.includes(label.toLowerCase());
 }

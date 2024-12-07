@@ -9,7 +9,13 @@ export default function GridInput({ square, onEnter }) {
             onKeyDown={(e) => {
                 if (e.key === 'Enter') onEnter(inputValue);
             }}
-            style={{ backgroundColor: square.success ? 'green' : '' }}
+            style={{
+                backgroundColor: square.hasOwnProperty('success')
+                    ? square.success
+                        ? 'lightGreen'
+                        : 'coral'
+                    : '',
+            }}
             onChange={(e) => {
                 setValue(e.target.value);
             }}
