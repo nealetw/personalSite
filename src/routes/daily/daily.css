@@ -1,4 +1,13 @@
 .dailyApp {
+    min-width: 100vw;
+    min-height: 100vh;
+    background-color: rgb(127, 192, 253);
+    background-image: url('https://www.transparenttextures.com/patterns/lined-paper-2.png');
+}
+.dailyAppContainer {
+    display: flex;
+    align-content: center;
+    justify-content: center;
 }
 .dailyGrid {
     display: grid;
@@ -8,20 +17,8 @@
     grid-row-gap: 0px;
     display: grid;
     gap: 1px;
+    margin-top: 5rem;
     grid-template-columns: repeat(5, minmax(0px, 1fr));
-}
-.gridBox {
-    display: flex;
-    -moz-box-align: center;
-    align-items: center;
-    -moz-box-pack: center;
-    justify-content: center;
-    flex-shrink: 0;
-    -moz-box-flex: 0;
-    flex-grow: 0;
-    width: 4.5rem;
-    height: 4.5rem;
-    position: relative;
-    width: var(--chakra-sizes-32);
-    height: var(--chakra-sizes-32);
+    max-width: 800px;
+    max-height: 800px;
 }

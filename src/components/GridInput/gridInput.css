@@ -1,0 +1,36 @@
+.cellInputContainer {
+    display: flex;
+    -moz-box-align: center;
+    align-items: center;
+    -moz-box-pack: center;
+    justify-content: center;
+    flex-shrink: 0;
+    -moz-box-flex: 0;
+    flex-grow: 0;
+    position: relative;
+    width: 8rem;
+    height: 8rem;
+    border: solid 1px grey;
+    margin: 0;
+    padding: 3px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: rgb(255, 251, 210);
+    background-image: url('https://www.transparenttextures.com/patterns/lined-paper-2.png');
+}
+.emptyCell {
+    border: solid 0px white;
+}
+.cellInput {
+    font-size: larger;
+    max-width: 75%;
+    min-height: 25%;
+    align-self: center;
+    text-align: center;
+    background-color: rgb(255, 251, 210);
+    border-radius: 5px 5px 0 0;
+    border: 0;
+    border-bottom: dashed 2px black;
+    background-image: url('https://www.transparenttextures.com/patterns/lined-paper-2.png');
+    background-position: 0% 9%;
+}

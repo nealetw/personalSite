@@ -57,7 +57,7 @@ function Daily() {
         setMappedGrid(rowsAndDataMapping);
     }, [gridData, rows, columns]);
 
-    const dummyFunction = (word, cat1, cat2, square) => {
+    const sendGridCell = (word, cat1, cat2, square) => {
         if (word.length)
             dictionaryCall(word)
                 .then((r) => {
@@ -134,7 +134,7 @@ function Daily() {
             <div className="dailyAppContainer">
                 <div className="dailyGrid">
                     {columns.map((column) => (
-                        <div>{column.label}</div>
+                        <GridInput label={true} square={column} />
                     ))}
                     {mappedGrid?.map((data) => {
                         if (data?.hasOwnProperty('value'))
@@ -142,7 +142,7 @@ function Daily() {
                                 <GridInput
                                     square={data}
                                     onEnter={(word) =>
-                                        dummyFunction(
+                                        sendGridCell(
                                             word,
                                             rows[data.row]?.category,
                                             columns[data.column]?.category,
@@ -151,7 +151,7 @@ function Daily() {
                                     }
                                 />
                             );
-                        return <div>{data?.label}</div>;
+                        return <GridInput label={true} square={data} />;
                     })}
                 </div>
             </div>
