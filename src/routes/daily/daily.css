@@ -1,8 +1,9 @@
 .dailyApp {
     min-width: 100vw;
     min-height: 100vh;
-    background-color: rgb(127, 192, 253);
-    background-image: url('https://www.transparenttextures.com/patterns/lined-paper-2.png');
+
+    background-color: rgb(255, 255, 255);
+    background-image: url('https://www.transparenttextures.com/patterns/white-wall-2.png');
 }
 .dailyAppContainer {
     display: flex;
@@ -11,14 +12,13 @@
 }
 .dailyGrid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, minmax(0px, 1fr));
     grid-template-rows: repeat(5, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
-    display: grid;
-    gap: 1px;
+    gap: 10px;
+
     margin-top: 5rem;
-    grid-template-columns: repeat(5, minmax(0px, 1fr));
     max-width: 800px;
     max-height: 800px;
 }

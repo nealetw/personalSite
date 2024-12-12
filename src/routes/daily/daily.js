@@ -119,6 +119,14 @@ function Daily() {
 
     return (
         <div className="dailyApp">
+            <link
+                href="https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap"
+                rel="stylesheet"
+            />
+            <link
+                href="https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&family=Permanent+Marker&display=swap"
+                rel="stylesheet"
+            />
             <ToastContainer
                 position="top-center"
                 autoClose={5000}
@@ -136,11 +144,12 @@ function Daily() {
                     {columns.map((column) => (
                         <GridInput label={true} square={column} />
                     ))}
-                    {mappedGrid?.map((data) => {
+                    {mappedGrid?.map((data, index) => {
                         if (data?.hasOwnProperty('value'))
                             return (
                                 <GridInput
                                     square={data}
+                                    classIndex={index}
                                     onEnter={(word) =>
                                         sendGridCell(
                                             word,
