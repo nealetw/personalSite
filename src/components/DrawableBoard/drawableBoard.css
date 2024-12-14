@@ -1,0 +1,80 @@
+.drawableBoardContainer {
+    position: absolute;
+    z-index: 0;
+}
+.colorsContainer {
+    display: flex;
+    flex-direction: row;
+}
+.swatches {
+    position: absolute;
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    z-index: 10;
+    bottom: 0;
+    left: 0;
+    border-bottom: 1em solid;
+    justify-content: start;
+    padding: 0 1%;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-style: ridge;
+}
+#colorPickerInput {
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+}
+.colorSwatch {
+    height: 2em;
+    margin: 0 1em;
+    transition: 0.1s;
+}
+.eraserSwatch {
+    background-color: rgb(63, 63, 63);
+    border-radius: 5px;
+    box-shadow: inset 0px 0px 10px 5px rgb(0, 0, 0);
+    height: 2em;
+    width: 6em;
+    margin: 0 1em;
+    transition: 0.1s;
+}
+.colorSwatch:hover,
+.eraserSwatch:hover {
+    transition: 0.1s;
+    transform: scale(1.06) translateY(-4px);
+}
+.selectedSwatch,
+.selectedSwatch:hover {
+    transition: 0.1s;
+    transform: scale(1.25) translateY(-10px);
+    box-shadow: 0 -6px 2px 2px rgb(0, 0, 0) inset;
+}
+.selectedEraser,
+.selectedEraser:hover {
+    transition: 0.1s;
+    transform: scale(1.2) translateY(-10px);
+}
+.rainbowSwatch {
+    background: linear-gradient(
+        45deg,
+        red,
+        orange,
+        yellow,
+        green,
+        blue,
+        indigo,
+        violet,
+        red,
+        orange,
+        yellow,
+        green,
+        blue,
+        indigo,
+        violet
+    );
+}

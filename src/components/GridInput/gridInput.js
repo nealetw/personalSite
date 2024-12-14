@@ -1,12 +1,21 @@
 import { useState } from 'react';
 import './gridInput.css';
 
-export default function GridInput({ square, onEnter, label, classIndex }) {
+export default function GridInput({
+    square,
+    onEnter,
+    label,
+    selectedLabel,
+    classIndex,
+    customOnFocus,
+    customOnBlur,
+}) {
     const [inputValue, setValue] = useState('');
     const tryFocus = () => {
         if (classIndex) {
             const element = document.getElementById(`cell${classIndex}`);
             element.focus();
+            customOnFocus(square);
         }
     };
     return (
@@ -14,7 +23,9 @@ export default function GridInput({ square, onEnter, label, classIndex }) {
             className={
                 square?.label?.length
                     ? label
-                        ? 'labelCellContainer'
+                        ? selectedLabel
+                            ? 'selectedLabelCellContainer'
+                            : 'labelCellContainer'
                         : 'cellInputContainer'
                     : 'emptyCell'
             }
@@ -43,6 +54,7 @@ export default function GridInput({ square, onEnter, label, classIndex }) {
                     onChange={(e) => {
                         setValue(e.target.value);
                     }}
+                    onBlur={() => customOnBlur()}
                 />
             )}
         </div>

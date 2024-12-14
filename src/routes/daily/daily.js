@@ -8,12 +8,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import { getCategory, processWord } from './utils';
 
 import './daily.css';
+import DrawableBoard from '../../components/DrawableBoard/DrawableBoard';
 
 function Daily() {
     const versionNumber = '0.1';
     useEffect(() => {
         document.title = 'Lingual(e)';
     }, []);
+
     const emptyData = [
         { label: '1', value: '', row: 1, column: 1 },
         { label: '2', value: '', row: 1, column: 2 },
@@ -45,6 +47,7 @@ function Daily() {
     const [cookies, setCookies] = useCookies(['data']);
     const [gridData, setGridData] = useState(emptyData);
     const [mappedGrid, setMappedGrid] = useState();
+    const [focusedSquare, setFocusedSquare] = useState();
 
     useEffect(() => {
         const rowsAndDataMapping = [...gridData];
@@ -140,9 +143,14 @@ function Daily() {
                 theme="colored"
             />
             <div className="dailyAppContainer">
+                <DrawableBoard className="drawableBoard" />
                 <div className="dailyGrid">
-                    {columns.map((column) => (
-                        <GridInput label={true} square={column} />
+                    {columns.map((column, index) => (
+                        <GridInput
+                            selectedLabel={index === focusedSquare?.[1]}
+                            label={true}
+                            square={column}
+                        />
                     ))}
                     {mappedGrid?.map((data, index) => {
                         if (data?.hasOwnProperty('value'))
@@ -158,6 +166,13 @@ function Daily() {
                                             data
                                         )
                                     }
+                                    customOnFocus={(square) =>
+                                        setFocusedSquare([
+                                            square.row,
+                                            square.column,
+                                        ])
+                                    }
+                                    customOnBlur={setFocusedSquare}
                                 />
                             );
                         return <GridInput label={true} square={data} />;

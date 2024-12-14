@@ -22,3 +22,8 @@
     max-width: 800px;
     max-height: 800px;
 }
+.drawableBoard {
+    width: 100vw;
+    height: 100vh;
+    z-index: -100;
+}

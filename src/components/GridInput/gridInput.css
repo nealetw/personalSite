@@ -1,4 +1,5 @@
 .cellInputContainer,
+.selectedLabelCellContainer,
 .labelCellContainer {
     --angle1: 2deg;
     --angle2: -3deg;
@@ -32,16 +33,24 @@
     font-style: normal;
 }
 .labelCellContainer:nth-child(n),
+.selectedLabelCellContainer:nth-child(n),
 .cellInputContainer:nth-child(n) {
     transform: rotate(var(--angle1));
 }
 .labelCellContainer:nth-child(3n),
+.selectedLabelCellContainer:nth-child(3n),
 .cellInputContainer:nth-child(3n) {
     transform: rotate(var(--angle2));
 }
 .labelCellContainer:nth-child(7n),
+.selectedLabelCellContainer:nth-child(7n),
 .cellInputContainer:nth-child(7n) {
     transform: rotate(var(--angle3));
+}
+.selectedLabelCellContainer {
+    background-color: lightblue;
+    transition: 0.3s;
+    transform: scale(1.1) rotate(0);
 }
 .cellInputContainer:hover {
     z-index: 10;
