@@ -18,6 +18,8 @@ export default function GridInput({
             customOnFocus(square);
         }
     };
+    const hasAnswer = square?.hasOwnProperty('success');
+    const isCorrect = square?.success;
     return (
         <div
             className={
@@ -29,6 +31,13 @@ export default function GridInput({
                         : 'cellInputContainer'
                     : 'emptyCell'
             }
+            style={{
+                backgroundColor: hasAnswer
+                    ? isCorrect
+                        ? 'lightGreen'
+                        : 'coral'
+                    : '',
+            }}
             onClick={tryFocus}
         >
             {label ? (
@@ -45,8 +54,8 @@ export default function GridInput({
                         if (e.key === 'Enter') onEnter(inputValue);
                     }}
                     style={{
-                        backgroundColor: square.hasOwnProperty('success')
-                            ? square.success
+                        backgroundColor: hasAnswer
+                            ? isCorrect
                                 ? 'lightGreen'
                                 : 'coral'
                             : '',

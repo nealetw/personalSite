@@ -3,7 +3,7 @@ export const ROW_CATEGORIES = [
     { label: 'Verb', function: 'partOfSpeech' },
     { label: 'Adjective', function: 'partOfSpeech' },
     { label: 'Pronoun', function: 'partOfSpeech' },
-    { label: 'Proposition', function: 'partOfSpeech' },
+    { label: 'Preposition', function: 'partOfSpeech' },
     { label: 'Adverb', function: 'partOfSpeech' },
 ];
 

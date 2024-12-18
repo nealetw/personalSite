@@ -11,7 +11,7 @@
     width: fit-content;
     display: flex;
     flex-direction: row;
-    z-index: 10;
+    z-index: 1;
     bottom: 0;
     left: 0;
     border-bottom: 1em solid;
@@ -33,6 +33,7 @@
     height: 2em;
     margin: 0 1em;
     transition: 0.1s;
+    cursor: pointer;
 }
 .eraserSwatch {
     background-color: rgb(63, 63, 63);
@@ -42,6 +43,7 @@
     width: 6em;
     margin: 0 1em;
     transition: 0.1s;
+    cursor: pointer;
 }
 .colorSwatch:hover,
 .eraserSwatch:hover {
@@ -58,6 +60,18 @@
 .selectedEraser:hover {
     transition: 0.1s;
     transform: scale(1.2) translateY(-10px);
+}
+.selectedEraser:hover::after {
+    background-color: red;
+}
+.selectedEraser:hover::after {
+    background-color: coral;
+    color: black;
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    content: 'Clear All';
+    border-radius: 5px;
 }
 .rainbowSwatch {
     background: linear-gradient(
@@ -77,4 +91,20 @@
         indigo,
         violet
     );
+}
+.modalButtons {
+    display: flex;
+}
+.modalButton {
+    margin: 0.5em 1em;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    border: 1px black solid;
+    cursor: pointer;
+}
+.modalButton:hover {
+    filter: brightness(80%);
+}
+.clearButton {
+    background-color: coral;
 }

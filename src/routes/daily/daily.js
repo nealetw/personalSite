@@ -9,9 +9,11 @@ import { getCategory, processWord } from './utils';
 
 import './daily.css';
 import DrawableBoard from '../../components/DrawableBoard/DrawableBoard';
+import Modal from '../../components/Modal/Modal';
 
 function Daily() {
     const versionNumber = '0.1';
+    const [completeModal, setCompleteModal] = useState(false);
     useEffect(() => {
         document.title = 'Lingual(e)';
     }, []);
@@ -39,9 +41,9 @@ function Daily() {
     ]);
     const [rows, setRows] = useState([
         { label: '' },
-        { label: 'row1', category: 4 },
-        { label: 'row2', category: 5 },
-        { label: 'row3', category: 6 },
+        { label: 'row1', category: 4, row: 2 },
+        { label: 'row2', category: 5, row: 1 },
+        { label: 'row3', category: 6, row: 0 },
     ]);
 
     const [cookies, setCookies] = useCookies(['data']);
@@ -59,6 +61,16 @@ function Daily() {
         rowsAndDataMapping.splice(0, 0, null);
         setMappedGrid(rowsAndDataMapping);
     }, [gridData, rows, columns]);
+
+    useEffect(() => {
+        const allHaveAnswers = gridData.every(
+            (square) =>
+                square.value?.length && square?.hasOwnProperty('success')
+        );
+        if (allHaveAnswers) {
+            setCompleteModal(true);
+        }
+    }, [gridData]);
 
     const sendGridCell = (word, cat1, cat2, square) => {
         if (word.length)
@@ -109,16 +121,23 @@ function Daily() {
         const newRows = [];
         for (let x = 0; x < 4; x++) {
             if (x)
-                newRows.push(
-                    getCategory(
+                newRows.push({
+                    ...getCategory(
                         'row',
                         newRows.map((t) => t.category)
-                    )
-                );
+                    ),
+                    row: x,
+                });
             else newRows.push({ label: '' });
         }
         setRows(newRows);
     };
+
+    const completeModalContent = (
+        <div>
+            <p>Congrats!</p>
+        </div>
+    );
 
     return (
         <div className="dailyApp">
@@ -175,11 +194,22 @@ function Daily() {
                                     customOnBlur={setFocusedSquare}
                                 />
                             );
-                        return <GridInput label={true} square={data} />;
+                        return (
+                            <GridInput
+                                label={true}
+                                selectedLabel={focusedSquare?.[0] === data?.row}
+                                square={data}
+                            />
+                        );
                     })}
                 </div>
             </div>
             <SiteSignature pageVersion={versionNumber} />
+            <Modal
+                isOpen={completeModal}
+                setIsOpen={setCompleteModal}
+                content={completeModalContent}
+            />
         </div>
     );
 }

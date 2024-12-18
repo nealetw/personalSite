@@ -1,10 +1,17 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
+import Modal from '../Modal/Modal';
 
 import './drawableBoard.css';
 
 function DrawableBoard(props) {
     const canvas = useRef(null);
+    useEffect(() => {
+        const oldDrawing = localStorage.getItem('drawing');
+        if (oldDrawing && canvas) {
+            drawDataURIOnCanvas(oldDrawing);
+        }
+    }, []);
     const colors = [
         'black',
         'blue',
@@ -15,8 +22,9 @@ function DrawableBoard(props) {
         'white',
     ];
     const [drawing, setDrawing] = useState(false);
-    const [selectedColor, setSelectedColor] = useState('black');
+    const [selectedColor, setSelectedColor] = useState();
     const [size, setSize] = useState(5);
+    const [clearModal, setClearModal] = useState(false);
     const [position, setPosition] = useState(null);
     const onDown = useCallback((event) => {
         const coordinates = getCoordinates(event);
@@ -29,7 +37,23 @@ function DrawableBoard(props) {
     const onUp = useCallback(() => {
         setDrawing(false);
         setPosition(null);
+        if (canvas.current) {
+            localStorage.setItem('drawing', canvas?.current?.toDataURL());
+        }
     }, []);
+
+    function drawDataURIOnCanvas(strDataURI) {
+        var ctx = canvas.current.getContext('2d');
+        if (!strDataURI.length) {
+            ctx.clearRect(0, 0, canvas.current.width, canvas.current.height);
+        } else {
+            var img = new Image();
+            img.onload = function () {
+                ctx.drawImage(img, 0, 0); // Or at whatever offset you like
+            };
+            img.src = strDataURI;
+        }
+    }
 
     const getCoordinates = (event) => {
         if (!canvas.current) {
@@ -58,7 +82,7 @@ function DrawableBoard(props) {
     );
 
     const drawLine = (originalPosition, newPosition) => {
-        if (!canvas.current) {
+        if (!canvas.current || !selectedColor) {
             return null;
         }
 
@@ -68,7 +92,7 @@ function DrawableBoard(props) {
             const isWhite = selectedColor === 'white';
             context.strokeStyle = selectedColor;
             context.lineJoin = 'round';
-            context.lineWidth = isWhite ? size * 2 : size;
+            context.lineWidth = isWhite ? size * 4 : size;
 
             context.beginPath();
             context.moveTo(originalPosition.x, originalPosition.y);
@@ -78,6 +102,29 @@ function DrawableBoard(props) {
             context.stroke();
         }
     };
+    const clearModalContent = (
+        <>
+            <p>Are you sure you want to clear your entire whiteboard?</p>
+            <p>This cannot be undone!</p>
+            <div className="modalButtons">
+                <input
+                    value="Clear"
+                    type="button"
+                    className={classNames(['modalButton', 'clearButton'])}
+                    onClick={() => {
+                        drawDataURIOnCanvas('');
+                        setClearModal(false);
+                    }}
+                />
+                <input
+                    value="Cancel"
+                    type="button"
+                    className="modalButton"
+                    onClick={() => setClearModal(false)}
+                />
+            </div>
+        </>
+    );
 
     return (
         <>
@@ -100,6 +147,7 @@ function DrawableBoard(props) {
                                         'colorSwatch',
                                         'rainbowSwatch',
                                         c === 'custom' &&
+                                        selectedColor &&
                                         !colors.includes(selectedColor)
                                             ? 'selectedSwatch'
                                             : '',
@@ -121,7 +169,11 @@ function DrawableBoard(props) {
                                 'eraserSwatch',
                                 c === selectedColor ? 'selectedEraser' : '',
                             ])}
-                            onClick={() => setSelectedColor(c)}
+                            onClick={() => {
+                                if (selectedColor === 'white')
+                                    setClearModal(true);
+                                else setSelectedColor(c);
+                            }}
                         ></div>
                     ) : (
                         <img
@@ -148,6 +200,11 @@ function DrawableBoard(props) {
                 onTouchMove={onMove}
                 width={window.innerWidth}
                 height={window.innerHeight}
+            />
+            <Modal
+                isOpen={clearModal}
+                setIsOpen={setClearModal}
+                content={clearModalContent}
             />
         </>
     );
