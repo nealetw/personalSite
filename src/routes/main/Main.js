@@ -181,6 +181,74 @@ function Main() {
                                         : 'sectionTitle'
                                 }
                             >
+                                <h2>Construct Connect:</h2>
+                                <h3>Sep 2024 - Present</h3>
+                                <ul className="skillsList">
+                                    <span className="skillsTitle">
+                                        Skills Learned:
+                                    </span>
+                                    <li>React</li>
+                                    <li>Typescript</li>
+                                    <li>NextJS</li>
+                                    <li>Python</li>
+                                    <li>React Testing Library</li>
+                                    <li>Jira</li>
+                                    <li>Agile</li>
+                                    <li>HTML/XHTML</li>
+                                    <li>SCSS</li>
+                                </ul>
+                            </div>
+                            <p
+                                className={
+                                    isMobile
+                                        ? 'smallContentText'
+                                        : 'contentText'
+                                }
+                            >
+                                My current position as a Developer I,
+                                specifically working in front-end development
+                                with React. This has been my first experience
+                                with proper{' '}
+                                <span className="important">Agile</span>, as
+                                well as first time working with other, more
+                                insulated development teams. Collaboration
+                                across teams and having to communicate through{' '}
+                                <span className="important">Jira</span> tickets
+                                for each sprint, mocking future backend
+                                endpoints and data to make the front-end
+                                function before the entire feature is ready.
+                                Putting features or parts of features behind{' '}
+                                <span className="important">LaunchDarkly</span>{' '}
+                                flags is also a new skill here, but a very
+                                interesting and cool technology to work with.
+                                <br />
+                                This position also has stepped up my unit test
+                                game, as its required writing a new unit test
+                                with{' '}
+                                <span className="important">
+                                    React Testing Library
+                                </span>{' '}
+                                and <span className="important">Jest</span> to
+                                validate the functionality of components created
+                                or modified. This was shown with a huge{' '}
+                                <span className="important">NextJS</span>{' '}
+                                upgrade just as I started, and {'>'}1000 tests
+                                had to be verified or fixed with the updated
+                                React version.
+                            </p>
+                        </div>
+                        <div
+                            className={
+                                isMobile ? 'smallSection' : 'contentSection'
+                            }
+                        >
+                            <div
+                                className={
+                                    isMobile
+                                        ? 'smallSectionTitle'
+                                        : 'sectionTitle'
+                                }
+                            >
                                 <h2>iReportSource:</h2>
                                 <h3>May 2021 - June 2024</h3>
                                 <ul className="skillsList">
@@ -658,6 +726,15 @@ function Main() {
                                     made one from scratch here
                                 </a>
                                 . It was actually a lot of fun!
+                                <br />
+                                I've since been updating this site with a lot of
+                                different things, mostly just a bunch of random
+                                fun little projects I've come up with. Theres a
+                                link to a site map in the footer, or you can{' '}
+                                <a href="/map" rel="noreferrer" target="_blank">
+                                    click here
+                                </a>{' '}
+                                instead!
                             </p>
                         </div>
                     </>
