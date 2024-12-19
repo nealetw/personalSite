@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import SiteSignature from '../../components/SiteSignature/signature';
 import GridInput from '../../components/GridInput/gridInput';
-import { dictionaryCall } from '../../api';
+import { dictionaryCall, sendDailyResults } from '../../api';
 import { ToastContainer, toast, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getCategory, processWord } from './utils';
@@ -14,9 +14,11 @@ import Modal from '../../components/Modal/Modal';
 function Daily() {
     const versionNumber = '0.1';
     const [completeModal, setCompleteModal] = useState(false);
+    const [completedData, setCompletedData] = useState();
     useEffect(() => {
         document.title = 'Lingual(e)';
     }, []);
+    const today = new Date();
 
     const emptyData = [
         { label: '1', value: '', row: 1, column: 1 },
@@ -46,8 +48,12 @@ function Daily() {
         { label: 'row3', category: 6, row: 0 },
     ]);
 
-    const [cookies, setCookies] = useCookies(['data']);
-    const [gridData, setGridData] = useState(emptyData);
+    const [cookies, setCookies] = useCookies(['dailyData']);
+    const [gridData, setGridData] = useState(
+        cookies.dailyData.dateCompleted === today.toDateString()
+            ? cookies.dailyData.gridData
+            : emptyData
+    );
     const [mappedGrid, setMappedGrid] = useState();
     const [focusedSquare, setFocusedSquare] = useState();
 
@@ -61,6 +67,7 @@ function Daily() {
         rowsAndDataMapping.splice(0, 0, null);
         setMappedGrid(rowsAndDataMapping);
     }, [gridData, rows, columns]);
+    console.log(mappedGrid);
 
     useEffect(() => {
         const allHaveAnswers = gridData.every(
@@ -69,6 +76,15 @@ function Daily() {
         );
         if (allHaveAnswers) {
             setCompleteModal(true);
+            sendDailyResults({ date: today.toDateString(), gridData }).then(
+                (r) => {
+                    setCompletedData(r.data);
+                    setCookies('dailyData', {
+                        gridData,
+                        dateCompleted: today.toDateString(),
+                    });
+                }
+            );
         }
     }, [gridData]);
 
@@ -138,7 +154,7 @@ function Daily() {
             <p>Congrats!</p>
         </div>
     );
-
+    console.log(completedData);
     return (
         <div className="dailyApp">
             <link
@@ -192,6 +208,9 @@ function Daily() {
                                         ])
                                     }
                                     customOnBlur={setFocusedSquare}
+                                    majorityAnswer={
+                                        completedData?.[data.label - 1]
+                                    }
                                 />
                             );
                         return (

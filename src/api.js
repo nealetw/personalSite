@@ -112,3 +112,6 @@ export const leagueSmash = async (payload) => {
 export const sendTextToApi = async (payload) => {
     return await apiCall(`/api/prompt/`, 'put', payload);
 };
+export const sendDailyResults = async (payload) => {
+    return await apiCall(`/api/daily/`, 'put', payload);
+};

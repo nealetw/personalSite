@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './gridInput.css';
+import classNames from 'classnames';
 
 export default function GridInput({
     square,
@@ -9,15 +10,17 @@ export default function GridInput({
     classIndex,
     customOnFocus,
     customOnBlur,
+    majorityAnswer,
 }) {
     const [inputValue, setValue] = useState('');
     const tryFocus = () => {
-        if (classIndex) {
+        if (classIndex && !square.hasOwnProperty('success')) {
             const element = document.getElementById(`cell${classIndex}`);
             element.focus();
             customOnFocus(square);
         }
     };
+
     const hasAnswer = square?.hasOwnProperty('success');
     const isCorrect = square?.success;
     return (
@@ -53,6 +56,7 @@ export default function GridInput({
                     onKeyDown={(e) => {
                         if (e.key === 'Enter') onEnter(inputValue);
                     }}
+                    tabIndex={square.label}
                     style={{
                         backgroundColor: hasAnswer
                             ? isCorrect
@@ -65,6 +69,18 @@ export default function GridInput({
                     }}
                     onBlur={() => customOnBlur()}
                 />
+            )}
+            {majorityAnswer ? (
+                <div className="majority">
+                    <span className={classNames(['majorityLabel'])}>
+                        Majority:
+                    </span>
+                    <span className={classNames(['majorityAnswer'])}>
+                        {majorityAnswer}
+                    </span>
+                </div>
+            ) : (
+                <></>
             )}
         </div>
     );
