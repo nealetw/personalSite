@@ -12,7 +12,7 @@ export default function GridInput({
     customOnBlur,
     majorityAnswer,
 }) {
-    const [inputValue, setValue] = useState('');
+    const [inputValue, setValue] = useState(square?.value ?? '');
     const tryFocus = () => {
         if (classIndex && !square.hasOwnProperty('success')) {
             const element = document.getElementById(`cell${classIndex}`);
@@ -67,7 +67,7 @@ export default function GridInput({
                     onChange={(e) => {
                         setValue(e.target.value);
                     }}
-                    onBlur={() => customOnBlur()}
+                    onBlur={customOnBlur}
                 />
             )}
             {majorityAnswer ? (

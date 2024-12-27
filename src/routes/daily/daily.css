@@ -27,3 +27,9 @@
     height: 100vh;
     z-index: -100;
 }
+.finalScore {
+    font-size: larger;
+    font-weight: bold;
+    font-style: oblique;
+    text-decoration: underline;
+}

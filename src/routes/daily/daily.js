@@ -6,18 +6,20 @@ import { dictionaryCall, sendDailyResults } from '../../api';
 import { ToastContainer, toast, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getCategory, processWord } from './utils';
-
-import './daily.css';
 import DrawableBoard from '../../components/DrawableBoard/DrawableBoard';
 import Modal from '../../components/Modal/Modal';
 
+import './daily.css';
+
 function Daily() {
-    const versionNumber = '0.1';
+    const versionNumber = '0.9';
     const [completeModal, setCompleteModal] = useState(false);
     const [completedData, setCompletedData] = useState();
     useEffect(() => {
         document.title = 'Lingual(e)';
+        constructColumnsAndRows();
     }, []);
+
     const today = new Date();
 
     const emptyData = [
@@ -32,9 +34,6 @@ function Daily() {
         { label: '9', value: '', row: 3, column: 3 },
     ];
 
-    useEffect(() => {
-        constructColumnsAndRows();
-    }, []);
     const [columns, setColumns] = useState([
         { label: '' },
         { label: 'column1', category: 1 },
@@ -50,8 +49,8 @@ function Daily() {
 
     const [cookies, setCookies] = useCookies(['dailyData']);
     const [gridData, setGridData] = useState(
-        cookies.dailyData.dateCompleted === today.toDateString()
-            ? cookies.dailyData.gridData
+        cookies?.dailyData?.dateCompleted === today.toDateString()
+            ? cookies?.dailyData?.gridData
             : emptyData
     );
     const [mappedGrid, setMappedGrid] = useState();
@@ -67,7 +66,6 @@ function Daily() {
         rowsAndDataMapping.splice(0, 0, null);
         setMappedGrid(rowsAndDataMapping);
     }, [gridData, rows, columns]);
-    console.log(mappedGrid);
 
     useEffect(() => {
         const allHaveAnswers = gridData.every(
@@ -76,15 +74,20 @@ function Daily() {
         );
         if (allHaveAnswers) {
             setCompleteModal(true);
-            sendDailyResults({ date: today.toDateString(), gridData }).then(
-                (r) => {
+            sendDailyResults({ date: today.toDateString(), gridData })
+                .then((r) => {
                     setCompletedData(r.data);
                     setCookies('dailyData', {
                         gridData,
                         dateCompleted: today.toDateString(),
                     });
-                }
-            );
+                })
+                .catch((e) => {
+                    setCookies('dailyData', {
+                        gridData,
+                        dateCompleted: today.toDateString(),
+                    });
+                });
         }
     }, [gridData]);
 
@@ -151,10 +154,21 @@ function Daily() {
 
     const completeModalContent = (
         <div>
-            <p>Congrats!</p>
+            <p>You've completed today's squares!</p>
+            <p>
+                You got{' '}
+                <span className="finalScore">
+                    {gridData.filter((c) => c.success).length}/9
+                </span>{' '}
+                squares correct, come back tomorrow
+                {gridData.filter((c) => c.success).length !== 9
+                    ? ' to see if you can do better on'
+                    : ' for'}{' '}
+                a new puzzle!
+            </p>
         </div>
     );
-    console.log(completedData);
+
     return (
         <div className="dailyApp">
             <link
