@@ -234,6 +234,7 @@ function Clicker() {
                 deerLevel,
             });
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [total]);
 
     useEffect(() => {
@@ -241,6 +242,7 @@ function Clicker() {
             setSpeechText('0');
         }, 5000);
         return () => clearTimeout(timeout);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [speechText]);
 
     useEffect(() => {
@@ -249,10 +251,12 @@ function Clicker() {
             setSessionTime(sessionTime + 1);
         }, 500);
         return () => clearTimeout(timeout);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [sessionTime]);
 
     useEffect(() => {
         calculateClicks();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [owned]);
 
     const deerClick = (e) => {
@@ -275,7 +279,7 @@ function Clicker() {
         let total = 0;
         keys.forEach((k) => {
             const numOwned = isNaN(owned[k]) ? 0 : owned[k] ?? 0;
-            const upgrade = upgrades.find((t) => t.name == k);
+            const upgrade = upgrades.find((t) => t.name === k);
             if (upgrade)
                 total += numOwned * (upgrade.cps ?? upgrade.price * 0.05) ?? 0;
         });
@@ -342,7 +346,7 @@ function Clicker() {
                 >
                     {speechText}
                 </div>
-                <a className="deerButton" onClick={deerClick}>
+                <a className="deerButton" onClick={deerClick} href={deerClick}>
                     <img
                         draggable="false"
                         alt={deerUpgrades[deerLevel].name ?? 'Deer'}
@@ -431,6 +435,7 @@ function Clicker() {
                                                         ? 'disabledDeerUpgradeImage'
                                                         : 'deerUpgradeImage'
                                                 }
+                                                alt={u.image}
                                             />
                                         </div>
                                     </>
@@ -487,6 +492,7 @@ function Clicker() {
                                                     ? 'disabledUpgradeImage'
                                                     : 'upgradeImage'
                                             }
+                                            alt={u.image}
                                         />
 
                                         <div className="upgradeText">

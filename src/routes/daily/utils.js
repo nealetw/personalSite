@@ -120,7 +120,7 @@ function usesLetter(word, label) {
 }
 function startingLetter(word, label) {
     const letter = label.slice(-1).toLowerCase();
-    return word.word.slice(0, 1).toLowerCase() == letter;
+    return word.word.slice(0, 1).toLowerCase() === letter;
 }
 function partOfSpeech(word, label) {
     const possibleParts = word.meanings.map((m) => m.partOfSpeech);

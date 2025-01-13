@@ -65,7 +65,7 @@ export default function BoardPost({ post, setPosts, createReply }) {
                     <img
                         className="postImage"
                         src={post.image}
-                        alt="User generated image not found"
+                        alt={post.image}
                     />
                 ) : (
                     <></>
@@ -189,7 +189,7 @@ export default function BoardPost({ post, setPosts, createReply }) {
                                     <img
                                         className="postImage"
                                         src={r.image}
-                                        alt="User generated image not found"
+                                        alt={r.image}
                                     />
                                 ) : (
                                     <></>

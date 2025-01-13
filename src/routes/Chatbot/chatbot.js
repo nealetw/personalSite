@@ -67,7 +67,11 @@ function Chatbot() {
 
     return (
         <div className="container">
-            <img src={require('./clouds.jpg')} className="backgroundImage" />
+            <img
+                src={require('./clouds.jpg')}
+                className="backgroundImage"
+                alt="Pretend theres a background of clouds here"
+            />
             <div className="contentThing">
                 <div id="prompts" className="prompts">
                     {shownPrompts.map((p, i) =>
@@ -113,6 +117,7 @@ function Chatbot() {
                                             }%`,
                                         }}
                                         src={require('./reply.png')}
+                                        alt="Reply"
                                     />
                                 ) : (
                                     <></>

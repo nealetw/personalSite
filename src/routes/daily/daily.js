@@ -89,6 +89,7 @@ function Daily() {
                     });
                 });
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [gridData]);
 
     const sendGridCell = (word, cat1, cat2, square) => {

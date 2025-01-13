@@ -249,6 +249,7 @@ a {
 .invertImage {
     -webkit-filter: invert(100%); /* Safari/Chrome */
     filter: invert(100%);
+    cursor: pointer;
     width: 4em;
     transition: 0.25s;
     &:hover {

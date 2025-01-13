@@ -23,6 +23,7 @@ function DrawableBoard(props) {
     ];
     const [drawing, setDrawing] = useState(false);
     const [selectedColor, setSelectedColor] = useState();
+    // eslint-disable-next-line no-unused-vars
     const [size, setSize] = useState(5);
     const [clearModal, setClearModal] = useState(false);
     const [position, setPosition] = useState(null);
@@ -78,6 +79,7 @@ function DrawableBoard(props) {
                 }
             }
         },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         [drawing, position]
     );
 
@@ -160,7 +162,8 @@ function DrawableBoard(props) {
                                             );
                                         elem.click();
                                     }}
-                                ></img>
+                                    alt={`${c}-marker`}
+                                />
                             </>
                         );
                     return c === 'white' ? (
@@ -184,7 +187,8 @@ function DrawableBoard(props) {
                             ])}
                             style={{ backgroundColor: c }}
                             onClick={() => setSelectedColor(c)}
-                        ></img>
+                            alt={`eraser`}
+                        />
                     );
                 })}
             </div>

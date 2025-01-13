@@ -93,7 +93,11 @@ function Main() {
                 Or you can just get my resume or contact information directly
                 below!
             </h3>
-            <a onClick={resumeDownload} className="imageLink">
+            <a
+                onClick={resumeDownload}
+                className="imageLink"
+                href={resumeDownload}
+            >
                 <img
                     className="invertImage"
                     alt="Download Resume"
@@ -156,6 +160,7 @@ function Main() {
         return () => {
             if (timer) clearTimeout(timer);
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [age, selectedTab]);
 
     useEffect(() => {
@@ -744,6 +749,7 @@ function Main() {
             default:
                 break;
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedTab]);
 
     const miniGameLength = miniGame.filter((t) => !t).length;

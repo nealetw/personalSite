@@ -29,6 +29,7 @@ function LOLSmash() {
     const [showInfo, setShowInfo] = useState(false);
     const [skinNumber, setSkinNumber] = useState(0);
     const [currentChamp, setCurrentChamp] = useState({});
+    // eslint-disable-next-line no-unused-vars
     const [usedDropdown, setUsedDropdown] = useState(false);
     const [previousStats, setPreviousStats] = useState({});
     const [child, setChild] = useState(false);
@@ -56,6 +57,7 @@ function LOLSmash() {
                     setIndex(mapped.findIndex((c) => c.smash === undefined));
                 }
             });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [gameVersion]);
     useEffect(() => {
         if (gameVersion && currentIndex !== undefined)
@@ -64,6 +66,7 @@ function LOLSmash() {
                     for (var i in r.data) setCurrentChamp(r.data[i]);
                 }
             );
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentIndex]);
 
     const calculateStats = () => {
@@ -87,6 +90,7 @@ function LOLSmash() {
         if (endScreen && champs) {
             calculateStats();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [endScreen, champs]);
 
     const getSplash = (champ) => {
@@ -224,7 +228,11 @@ function LOLSmash() {
                             disabled={skinNumber === 0}
                             onClick={() => setSkinNumber(skinNumber - 1)}
                         />
-                        <a href={getSplash(currentChamp)} target="_blank">
+                        <a
+                            href={getSplash(currentChamp)}
+                            target="_blank"
+                            rel="noreferrer"
+                        >
                             <img
                                 alt={currentChamp.skins?.[skinNumber]?.name}
                                 className="champImage"
@@ -445,6 +453,7 @@ function LOLSmash() {
                 <img
                     src={require('./../../images/sus.webp')}
                     className="susImage"
+                    alt="sus"
                 />
                 <p className="susText">BRO THAT WAS A CHILD</p>
             </div>
