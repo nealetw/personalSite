@@ -261,7 +261,6 @@ a {
     margin-left: 10px;
     width: 4em;
     transition: 0.25s;
-    cursor: pointer;
     &:hover {
         filter: brightness(50%);
     }
