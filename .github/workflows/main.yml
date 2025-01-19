@@ -25,6 +25,8 @@ jobs:
         echo "Starting deploy to EC2 instance..."
         git pull
         echo "Successfully pulled repo"
+        npm install
+        echo "Successfully installed dependencies"
         npm run build
         echo "Npm has been built"
         sudo rm -r $HOST_DIRECTORY
