@@ -16,6 +16,7 @@ jobs:
         HOST: ${{ secrets.EC2_HOST }}
         USER: ${{ secrets.EC2_USER }}
       run: |
+        cd personalSite
         echo "Starting deploy to EC2 instance..."
         git pull
         echo "Successfully pulled repo"
