@@ -15,16 +15,19 @@ jobs:
         PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
         HOST: ${{ secrets.EC2_HOST }}
         USER: ${{ secrets.EC2_USER }}
+        NPM_HOME: ${{ secrets.NPM_HOME }}
+        HOST_DIRECTORY: ${{ secrets.HOST_DIRECTORY }}
+        BUILD_DIRECTORY: ${{ secrets.BUILD_DIRECTORY }}
       run: |
-        cd secrets.NPM_HOME
+        cd NPM_HOME
         echo "Starting deploy to EC2 instance..."
         git pull
         echo "Successfully pulled repo"
         npm run build
         echo "Npm has been built"
-        sudo rm -r secrets.HOST_DIRECTORY
-        sudo mkdir secrets.HOST_DIRECTORY
-        sudo mv -v secrets.BUILD_DIRECTORY secrets.HOST_DIRECTORY
+        sudo rm -r HOST_DIRECTORY
+        sudo mkdir HOST_DIRECTORY
+        sudo mv -v BUILD_DIRECTORY HOST_DIRECTORY
         echo "Successfully deployed to nealetw.com!"
         '
       
