@@ -32,7 +32,7 @@ jobs:
         echo "Npm has been built"
         sudo mkdir -p $HOST_DIRECTORY
         echo "Made directory"
-        sudo mv -v ~/build $HOST_DIRECTORY
+        sudo mv -v ~/runners/personalSite/build $HOST_DIRECTORY
         echo "Successfully deployed to nealetw.com!"
         '
       
