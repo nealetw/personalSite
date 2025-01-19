@@ -29,6 +29,8 @@ jobs:
         echo "Successfully installed dependencies"
         npm run build
         echo "Npm has been built"
+        sudo cd /var/www/nealetw
+        echo "In directory?"
         sudo rm -r $HOST_DIRECTORY
         sudo mkdir $HOST_DIRECTORY
         sudo mv -v $BUILD_DIRECTORY $HOST_DIRECTORY
