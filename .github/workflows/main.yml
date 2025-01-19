@@ -14,7 +14,7 @@ jobs:
       env:
         PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
         HOST: ${{ secrets.EC2_HOST }}
-        EC2USER: ${{ secrets.EC2_USER }}
+        USER: ${{ secrets.EC2_USER }}
         NPM_HOME: ${{ secrets.NPM_HOME }}
         HOST_DIRECTORY: ${{ secrets.HOST_DIRECTORY }}
         BUILD_DIRECTORY: ${{ secrets.BUILD_DIRECTORY }}
@@ -31,8 +31,8 @@ jobs:
         echo "Npm has been built"
         sudo mkdir -p $HOST_DIRECTORY
         echo "Made directory"
-        ls ~/personalSite
-        sudo mv -v /home/$EC2USER/personalSite/build $HOST_DIRECTORY
+        ls /home/ubuntu/personalSite
+        sudo mv -v /home/ubuntu/personalSite/build $HOST_DIRECTORY
         echo "Successfully deployed to nealetw.com!"
         '
       
