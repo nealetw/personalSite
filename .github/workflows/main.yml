@@ -24,6 +24,8 @@ jobs:
 
         ls ..
         ls ../..
+        ls ../../..
+        ls ../../../..
         echo "Starting deploy to EC2 instance..."
         git pull
         echo "Successfully pulled repo"
