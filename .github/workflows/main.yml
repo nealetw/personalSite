@@ -30,6 +30,7 @@ jobs:
         npm run build
         echo "Npm has been built"
         cd /
+        cd var
         ls
         echo "In directory?"
         sudo rm -r $HOST_DIRECTORY
