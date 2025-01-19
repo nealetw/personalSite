@@ -22,10 +22,7 @@ jobs:
         echo "$PRIVATE_KEY" > github-ec2.pem && chmod 400 github-ec2.pem
         ssh -o StrictHostKeyChecking=no -i github-ec2.pem ${USER}@${HOST}
 
-        ls ..
-        ls ../..
-        ls ../../..
-        ls ../../../..
+        ls ~
         echo "Starting deploy to EC2 instance..."
         git pull
         echo "Successfully pulled repo"
@@ -35,8 +32,7 @@ jobs:
         echo "Npm has been built"
         sudo mkdir -p $HOST_DIRECTORY
         echo "Made directory"
-        ls /home/
-        sudo mv -v /home/runner/personalSite/build $HOST_DIRECTORY
+        sudo mv -v ~/build $HOST_DIRECTORY
         echo "Successfully deployed to nealetw.com!"
         '
       
