@@ -29,7 +29,7 @@ jobs:
         echo "Successfully installed dependencies"
         npm run build
         echo "Npm has been built"
-        if ls $HOST_DIRECTORY; then
+        if [ -d "$HOST_DIRECTORY" ]; then
           sudo rm -r $HOST_DIRECTORY
         fi
         sudo mkdir $HOST_DIRECTORY
