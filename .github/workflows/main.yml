@@ -19,8 +19,8 @@ jobs:
         HOST_DIRECTORY: ${{ secrets.HOST_DIRECTORY }}
         BUILD_DIRECTORY: ${{ secrets.BUILD_DIRECTORY }}
       run: |
-        echo "$PRIVATE_KEY" > github-ec2.pem && chmod 600 github-ec2.pem
-        ssh -o StrictHostKeyChecking=no -i github-ec2.pem ${USER}@${HOST}
+        echo "$PRIVATE_KEY" > github-ec2.pem && chmod 400 github-ec2.pem
+        ssh -i github-ec2.pem ${USER}@${HOST}
 
         ls
         echo "Starting deploy to EC2 instance..."
