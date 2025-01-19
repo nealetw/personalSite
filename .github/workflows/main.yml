@@ -31,7 +31,7 @@ jobs:
         echo "Npm has been built"
         cd /
         cd var
-        cd www/nealetw/
+        cd www
         ls
         echo "In directory?"
         sudo rm -r $HOST_DIRECTORY
