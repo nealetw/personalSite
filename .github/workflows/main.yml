@@ -16,7 +16,7 @@ jobs:
         HOST: ${{ secrets.EC2_HOST }}
         USER: ${{ secrets.EC2_USER }}
       run: |
-        cd personalSite
+        cd secrets.NPM_HOME
         echo "Starting deploy to EC2 instance..."
         git pull
         echo "Successfully pulled repo"
@@ -24,7 +24,7 @@ jobs:
         echo "Npm has been built"
         sudo rm -r secrets.HOST_DIRECTORY
         sudo mkdir secrets.HOST_DIRECTORY
-        sudo mv -v ~/personalSite/build/* secrets.HOST_DIRECTORY
+        sudo mv -v secrets.BUILD_DIRECTORY secrets.HOST_DIRECTORY
         echo "Successfully deployed to nealetw.com!"
         '
       
