@@ -29,11 +29,9 @@ jobs:
         echo "Successfully installed dependencies"
         npm run build
         echo "Npm has been built"
-        if [ -d "$HOST_DIRECTORY" ]; then
-          sudo rm -r $HOST_DIRECTORY
-        fi
         sudo mkdir -p $HOST_DIRECTORY
-        sudo mv -v $BUILD_DIRECTORY $HOST_DIRECTORY
+        echo "Made directory"
+        sudo mv -v /home/$USER/personalSite/build $HOST_DIRECTORY
         echo "Successfully deployed to nealetw.com!"
         '
       
