@@ -20,9 +20,10 @@ jobs:
         BUILD_DIRECTORY: ${{ secrets.BUILD_DIRECTORY }}
       run: |
         echo "$PRIVATE_KEY" > github-ec2.pem && chmod 400 github-ec2.pem
-        ssh -i github-ec2.pem ${USER}@${HOST}
+        ssh -o StrictHostKeyChecking=no -i github-ec2.pem ${USER}@${HOST}
 
-        ls
+        ls ..
+        ls ../..
         echo "Starting deploy to EC2 instance..."
         git pull
         echo "Successfully pulled repo"
