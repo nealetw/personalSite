@@ -21,7 +21,8 @@ jobs:
       run: |
         echo "$PRIVATE_KEY" > github-ec2.pem && chmod 600 github-ec2.pem
         ssh -o StrictHostKeyChecking=no -i github-ec2.pem ${USER}@${HOST}
-        
+
+        ls
         cd personalSite
         echo "Starting deploy to EC2 instance..."
         git pull
