@@ -31,8 +31,8 @@ jobs:
         echo "Npm has been built"
         sudo mkdir -p $HOST_DIRECTORY
         echo "Made directory"
-        ls /home/ubuntu/personalSite
-        sudo mv -v /home/ubuntu/personalSite/build $HOST_DIRECTORY
+        ls /home/runner/personalSite
+        sudo mv -v /home/runner/personalSite/build $HOST_DIRECTORY
         echo "Successfully deployed to nealetw.com!"
         '
       
