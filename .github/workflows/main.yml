@@ -1,0 +1,29 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Deploy to EC2
+      env:
+        PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
+        HOST: ${{ secrets.EC2_HOST }}
+        USER: ${{ secrets.EC2_USER }}
+      run: |
+        echo "Starting deploy to EC2 instance..."
+        git pull
+        echo "Successfully pulled repo"
+        npm run build
+        echo "Npm has been built"
+        sudo rm -r secrets.HOST_DIRECTORY
+        sudo mkdir secrets.HOST_DIRECTORY
+        sudo mv -v ~/personalSite/build/* secrets.HOST_DIRECTORY
+        echo "Successfully deployed to nealetw.com!"
+        '
+      
