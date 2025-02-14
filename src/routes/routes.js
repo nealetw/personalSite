@@ -6,6 +6,7 @@ import SiteMap from './sitemap/sitemap';
 import Board from './board/Board';
 import Chatbot from './Chatbot/chatbot';
 import Daily from './daily/daily';
+import Mods from './gameMods/Mods';
 
 // {
 //     name:'Name that will be on site preview and tab,
@@ -95,6 +96,14 @@ export const siteRoutes = [
         color: ['black', 'white'],
         path: '/board',
         element: <Board />,
+        errorElement: <ErrorPage />,
+    },
+    {
+        name: `List of game mods`,
+        description: `A small but surprisingly growing list of games mods I've made`,
+        color: ['white', 'blue'],
+        path: '/gameMods',
+        element: <Mods />,
         errorElement: <ErrorPage />,
     },
 ];
