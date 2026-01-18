@@ -64,7 +64,7 @@ jobs:
           echo "$IMAGES" | while read DIGEST; do
             IMAGE_COUNT=$((IMAGE_COUNT + 1))
             if [ $IMAGE_COUNT -gt 3 ]; then
-              echo "Deleting image: gcr.io/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}@$DIGEST"
-              gcloud container images delete gcr.io/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}@$DIGEST --quiet
+              echo "Deleting image: gcr.io/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}@sha256:$DIGEST"
+              gcloud container images delete gcr.io/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}@sha256:$DIGEST --quiet
             fi
           done
