@@ -44,3 +44,27 @@ jobs:
             --platform managed \
             --region us-central1 \
             --allow-unauthenticated
+
+      - name: Clean up old Cloud Run revisions
+        run: |
+          REVISIONS=$(gcloud run revisions list --service=${{ env.SERVICE_NAME }} --region=us-central1 --format="value(name)" --sort-by="~metadata.createTime")
+          REVISION_COUNT=0
+          echo "$REVISIONS" | while read REVISION; do
+            REVISION_COUNT=$((REVISION_COUNT + 1))
+            if [ $REVISION_COUNT -gt 3 ]; then
+              echo "Deleting revision: $REVISION"
+              gcloud run revisions delete $REVISION --region=us-central1 --quiet
+            fi
+          done
+
+      - name: Clean up old GCR images
+        run: |
+          IMAGES=$(gcloud container images list-tags gcr.io/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }} --format="value(digest)" --sort-by="~timestamp")
+          IMAGE_COUNT=0
+          echo "$IMAGES" | while read DIGEST; do
+            IMAGE_COUNT=$((IMAGE_COUNT + 1))
+            if [ $IMAGE_COUNT -gt 3 ]; then
+              echo "Deleting image: gcr.io/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}@$DIGEST"
+              gcloud container images delete gcr.io/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}@$DIGEST --quiet
+            fi
+          done
