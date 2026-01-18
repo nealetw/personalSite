@@ -33,7 +33,7 @@ export const WORK_SECTIONS = [
             'HTML/XHTML',
             'SCSS',
         ],
-        content: `My current position as a Developer I'm
+        content: `My current position as a Web Developer 1. I'm
                         specifically working in front-end development
                         with React. This has been my first experience
                         with proper Agile, as well as first time working with other, more
