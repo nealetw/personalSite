@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { IMAGE_LINKS, PERSONAL_SECTIONS, WORK_SECTIONS } from './constants';
 import Section from '../../components/PortfolioSection/Section';
+
 import './Main.css';
 
 function Main() {
@@ -66,16 +67,18 @@ function Main() {
         <div className="infoSection">
             <h1>Hi, I'm Tim</h1>
             <h2>
-                I'm a {(age / 1000 / 60 / 60 / 24 / 365).toFixed(7)} year old
-                developer who started programming in high school.
+                I'm a {(age / 1000 / 60 / 60 / 24 / 365).toFixed(7)} year old <br/>
+                front-end developer based in Cincinnati, OH.
             </h2>
             <h3>
                 I know <span className="important">Javascript</span>,{' '}
-                <span className="important">Java</span>,{' '}
+                <span className="important">Typescript</span>,{' '}
                 <span className="important">Python</span>,{' '}
-                <span className="important">Typescript</span>, and pretty much
-                anything that goes into <span className="important">React</span>{' '}
-                development. Even this site was made with{' '}
+                <span className="important">Java</span>. <br/> 
+                I specialize in pretty much anything
+                that goes into <span className="important">React</span>{' '}
+                development. <br/>
+                Even this site was made with{' '}
                 <span className="important">React</span>!
             </h3>
             <br />
@@ -103,7 +106,7 @@ function Main() {
                     rel="noreferrer"
                     target="_blank"
                     className="imageLink"
-                    href={!imageLink.link?.length ? resumeDownload : () => {}}
+                    href={!imageLink.link?.length ? resumeDownload : imageLink.link}
                 >
                     <img
                         className={imageLink.invert ? `invertImage` : 'image'}

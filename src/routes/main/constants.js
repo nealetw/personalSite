@@ -292,9 +292,11 @@ export const PERSONAL_SECTIONS = [
                 With my free time, and a need to show off my work/portfolio, I
                 deployed this <span className="important">React</span> website
                 in a few days. Its hosted on an{' '}
-                <span className="important">AWS EC2 instance</span>, and I keep
+                <span className="important">Google Cloudrun instance</span>, and I keep
                 it up to date with{' '}
-                <span className="important">Github + SSH</span>
+                <span className="important">Docker Containers</span>. It gets automatically
+                deployed via <span className="important">GitHub Actions</span>{' '}
+                on each push to the main branch.
                 <br />
                 Over time, I've wanted to add more and more things, and my
                 friend told me to add a game similar to{' '}
