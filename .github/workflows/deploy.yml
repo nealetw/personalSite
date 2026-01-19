@@ -31,7 +31,8 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t gcr.io/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}:latest .
+          docker build -t gcr.io/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}:latest \
+            --build-arg REACT_APP_API_URL=${{ secrets.BACKEND_API_URL }} .
 
       - name: Push Docker image
         run: |

@@ -1,14 +1,12 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
+import { API_URL } from './constants';
 
 const ip = (await axios.get('https://api.ipify.org?format=json'))?.data?.ip;
 const token = Cookies.get('login');
 const apiCall = async (route, type, data) => {
-    const address =
-        process.env.NODE_ENV === 'production'
-            ? 'https://nealetw.com'
-            : 'http://localhost:5000';
+    const address = API_URL;
     let response;
     switch (type) {
         case 'put':

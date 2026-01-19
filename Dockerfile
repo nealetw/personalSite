@@ -1,11 +1,13 @@
 # Build stage
 FROM node:20-alpine AS build
 
+ARG REACT_APP_API_URL=http://localhost:5000
+
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-RUN npm run build
+RUN REACT_APP_API_URL=$REACT_APP_API_URL npm run build
 
 # Production stage
 FROM nginx:stable-alpine AS production
