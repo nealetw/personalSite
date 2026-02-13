@@ -298,20 +298,10 @@ export const PERSONAL_SECTIONS = [
                 deployed via <span className="important">GitHub Actions</span>{' '}
                 on each push to the main branch.
                 <br />
-                Over time, I've wanted to add more and more things, and my
-                friend told me to add a game similar to{' '}
-                <a
-                    href="https://orteil.dashnet.org/cookieclicker/"
-                    rel="noreferrer"
-                    target="_blank"
-                >
-                    Cookie Clicker
-                </a>
-                . Seeing it as a challenge to push the limits of my knowledge, I{' '}
-                <a href="/clicker" rel="noreferrer" target="_blank">
-                    made one from scratch here
-                </a>
-                . It was actually a lot of fun!
+                Over time, I've added more and more random things to the backend of this site, 
+                and actually had to make a custom <span className="important">RESTful API</span>{' '}
+                for other portions. That backend is built in <span className="important">NodeJS</span>,{' '}
+                and is deployed from a separate repository.
                 <br />
                 I've since been updating this site with a lot of different
                 things, mostly just a bunch of random fun little projects I've
