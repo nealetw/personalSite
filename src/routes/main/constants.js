@@ -28,13 +28,16 @@ export const WORK_SECTIONS = [
             'NextJS',
             'Python',
             'React Testing Library',
+            'Jest',
+            'Google Cloud',
+            'Terraform',
             'Jira',
             'Agile',
             'HTML/XHTML',
             'SCSS',
         ],
-        content: `My current position as a Web Developer 1. I'm
-                        specifically working in front-end development
+        content: `My current position as a Web Developer 2. I
+                        specifically work in front-end development
                         with React. This has been my first experience
                         with proper Agile, as well as first time working with other, more
                         insulated development teams. Collaboration
@@ -46,13 +49,17 @@ export const WORK_SECTIONS = [
                         LaunchDarkly flags is also a new skill here, but a very
                         interesting and cool technology to work with. \n
                         This position also has stepped up my unit test
-                        game, as its required writing a new unit test
+                        experience, as its required writing a new unit test
                         with React Testing Library
                         and Jest to validate the functionality of components created
                         or modified. This was shown with a huge
                         NextJS upgrade just as I started, and >1000 tests
                         had to be verified or fixed with the updated
-                        React version.`,
+                        React version. Much of the work is with Google Cloud, 
+                        and deploying any net new projects via Terraform code, 
+                        so I've grown pretty familiar with Google Cloud service accounts,
+                        Gitlab CI/CD deployments and authentication, and just in general 
+                        a massive pipeline to deploy our projects into Google Cloud Run.`,
     },
     {
         title: 'iReportSource',
